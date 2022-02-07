@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title"><b>Forum</b>App</h1>
+      <form class="search-form">
+        <input
+          type="text"
+          class="search-form__input"
+          placeholder="Enter Keywords"
+        />
+        <button class="search-form__submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+      <nav class="header-nav">
+        <ul class="header-nav__items">
+          <li class="header-nav__item">Home</li>
+          <li class="header-nav__item">
+            About us<i class="fa fa-caret-down fa-fw"></i>
+          </li>
+          <li class="header-nav__item">Blog</li>
+          <li class="header-nav__item">Term</li>
+          <li class="header-nav__item">Contact</li>
+        </ul>
+      </nav>
+      <button class="login-button">Login or Register</button>
+    </header>
+    <div class="content-wrapper">
+      <aside class="sidebar-left">
+        <div class="sidebar-left__button-container">
+          <button class="sidebar-left__button">+ Ask A Question</button>
+        </div>
+        <nav class="sidebar-left__nav">
+          <ul class="sidebar-left__nav-list">
+            <li class="sidebar-left__nav-item">
+              <i class="fa-solid fa-circle-question fa-fw"></i> Questions
+            </li>
+            <li class="sidebar-left__nav-item">
+              <i class="fa-solid fa-tags fa-fw"></i> Tags
+            </li>
+            <li class="sidebar-left__nav-item">
+              <i class="fa-solid fa-trophy fa-fw"></i> Badges
+            </li>
+            <li class="sidebar-left__nav-item">
+              <i class="fa-solid fa-list"></i> Categories
+            </li>
+            <li class="sidebar-left__nav-item">
+              <i class="fa-solid fa-users fa-fw"></i> Users
+            </li>
+          </ul>
+        </nav>
+        <footer class="footer">
+          <p class="footer__copyright">&copy; 2022 ForumApp</p>
+        </footer>
+      </aside>
+      <main class="main"></main>
+      <aside class="sidebar-right"></aside>
+    </div>
+  </body>
+</html>
