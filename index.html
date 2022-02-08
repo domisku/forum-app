@@ -45,7 +45,12 @@
           <li class="header-nav__item">Contact</li>
         </ul>
       </nav>
-      <button class="login-button">Login or Register</button>
+      <button class="login-button">
+        <span class="login-button__icon"
+          ><i class="fas fa-user fa-fw"></i
+        ></span>
+        <span class="login-button__text"> Login or Register</span>
+      </button>
     </header>
     <div class="content-wrapper">
       <aside class="sidebar-left">
@@ -137,8 +142,10 @@
                 <img class="question__img" alt="profile picture" />
                 <span class="question__username"></span>
                 <span class="question__status"></span>
-                <span class="question__asked-on"
-                  >Asked on in <span class="question__date"></span> in
+                <span class="question__asked-on">
+                  <span class="question__placeholder">Asked on in</span>
+                  <span class="question__date"></span>
+                  in
                   <span class="question__category"></span
                 ></span>
               </footer>
