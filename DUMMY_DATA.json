@@ -1,0 +1,80 @@
+[
+  {
+    "user": "admin",
+    "status": "professor",
+    "imgUrl": "https://picsum.photos/200",
+    "category": "technology",
+    "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis cursus ante. Integer nec ex vitae dui tincidunt efficitur quis vel sapien. Nulla luctus quam ac odio vestibulum, sit amet congue nibh maximus. Donec nec cursus arcu. Nunc faucibus consequat arcu, sed egestas libero. Nullam porta hendrerit nunc vitae ornare. Nulla ut tellus tincidunt, egestas erat ut, tristique odio. Curabitur eu tortor gravida, ultrices mauris id, placerat leo. Nunc blandit suscipit tortor, sed fermentum orci auctor id. Etiam laoreet mauris in mauris pulvinar, id sagittis justo pretium. Aenean luctus pretium auctor. Mauris quis efficitur nibh. Pellentesque tempus dui neque, sed vulputate eros ullamcorper quis.",
+    "tags": ["technology", "business"],
+    "views": 5,
+    "answers": 0,
+    "votes": 1,
+    "dateCreated": "2022-2-8"
+  },
+  {
+    "user": "Mary",
+    "status": "professor",
+    "imgUrl": "https://picsum.photos/200",
+    "category": "music",
+    "question": "Curabitur feugiat ipsum lacinia odio varius luctus",
+    "description": "Integer urna odio, dignissim vitae tellus non, hendrerit imperdiet orci. Donec imperdiet vehicula nibh quis malesuada. Donec bibendum ante a vestibulum congue. Suspendisse sollicitudin, massa in malesuada rhoncus, urna justo venenatis metus, eu facilisis dui purus ac purus. Phasellus ultricies malesuada augue, placerat ultricies elit suscipit in. Phasellus fringilla quis nisl id volutpat. Vestibulum in velit pretium, viverra dui sit amet, congue felis. Ut interdum semper purus. Aliquam vitae dictum nunc. Aliquam mollis nisl et sem vulputate, vel pulvinar neque molestie. Vestibulum enim odio, fringilla feugiat lacus a, iaculis eleifend est.",
+    "tags": ["music", "art"],
+    "views": 20,
+    "answers": 0,
+    "votes": 2,
+    "dateCreated": "2022-2-1"
+  },
+  {
+    "user": "admin",
+    "status": "reviewer",
+    "imgUrl": "https://picsum.photos/200",
+    "category": "music",
+    "question": "Etiam vestibulum arcu ac placerat efficitur",
+    "description": "Etiam erat lacus, aliquet ac convallis nec, sollicitudin ac est. Phasellus et nisi tellus. In hac habitasse platea dictumst. Vestibulum condimentum non lectus eget laoreet. Etiam tincidunt tincidunt faucibus. Mauris commodo sagittis lectus, et ultricies quam mattis nec. Aliquam quis metus a magna interdum eleifend a in quam. Morbi lobortis consequat mollis. Vestibulum vulputate sagittis facilisis. Nunc venenatis augue lectus, id pharetra nisl suscipit et.",
+    "tags": ["music", "piano", "rhodes"],
+    "views": 25,
+    "answers": 0,
+    "votes": 0,
+    "dateCreated": "2021-1-8"
+  },
+  {
+    "user": "Peter",
+    "status": "reviewer",
+    "imgUrl": "https://picsum.photos/200",
+    "category": "technology",
+    "question": "Integer ut nulla malesuada, bibendum enim eu, pellentesque lectus",
+    "description": "Mauris pulvinar metus eu diam aliquam volutpat. Nunc sodales laoreet eros, vel tristique dolor ornare ut. Nullam feugiat dictum risus, et cursus libero mattis sed. Sed quis venenatis mauris, sit amet efficitur urna. Quisque mattis facilisis tortor vel ultrices. Duis quis massa vitae quam tempus ultrices in et purus. Pellentesque dictum gravida condimentum. Aliquam ullamcorper ligula eu mi aliquam, congue rhoncus metus imperdiet. Suspendisse scelerisque pellentesque nulla non pretium. Pellentesque eget posuere dui. Aliquam semper ac enim tempus accumsan.",
+    "tags": ["technology", "mobile"],
+    "views": 1,
+    "answers": 0,
+    "votes": 1,
+    "dateCreated": "2021-12-15"
+  },
+  {
+    "user": "John",
+    "status": "train",
+    "imgUrl": "https://picsum.photos/200",
+    "category": "business",
+    "question": "In fringilla elit sit amet metus finibus, quis aliquet magna faucibus",
+    "description": "Aenean interdum, dolor vitae consequat tempus, eros enim auctor ipsum, eu efficitur lacus enim ut quam. Aliquam erat volutpat. Suspendisse luctus rhoncus semper.",
+    "tags": ["business", "finance"],
+    "views": 55,
+    "answers": 0,
+    "votes": 2,
+    "dateCreated": "2021-10-5"
+  },
+  {
+    "user": "John",
+    "status": "train",
+    "imgUrl": "https://picsum.photos/200",
+    "category": "technology",
+    "question": "Vestibulum in risus suscipit nibh sollicitudin laoreet et et elit",
+    "description": "Donec nisi massa, semper eu lacus at, porta elementum tortor. Quisque ullamcorper mollis mi, ut pharetra dolor. Nam lorem velit, dignissim ut eleifend sed, maximus pulvinar eros.",
+    "tags": ["apps", "facebook", "mobile", "social"],
+    "views": 6,
+    "answers": 0,
+    "votes": 3,
+    "dateCreated": "2022-10-20"
+  }
+]

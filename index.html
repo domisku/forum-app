@@ -10,6 +10,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -26,6 +32,9 @@
         </button>
       </form>
       <nav class="header-nav">
+        <button class="header-nav__hamburger">
+          <i class="fas fa-bars fa-fw fa-2xl"></i>
+        </button>
         <ul class="header-nav__items">
           <li class="header-nav__item">Home</li>
           <li class="header-nav__item">
@@ -40,34 +49,172 @@
     </header>
     <div class="content-wrapper">
       <aside class="sidebar-left">
-        <div class="sidebar-left__button-container">
+        <section class="sidebar-left__button-container">
           <button class="sidebar-left__button">+ Ask A Question</button>
-        </div>
+        </section>
         <nav class="sidebar-left__nav">
           <ul class="sidebar-left__nav-list">
             <li class="sidebar-left__nav-item">
-              <i class="fa-solid fa-circle-question fa-fw"></i> Questions
+              <i class="fa-solid fa-circle-question fa-fw"></i
+              ><span class="sidebar-left__nav-item-text">Questions</span>
             </li>
             <li class="sidebar-left__nav-item">
-              <i class="fa-solid fa-tags fa-fw"></i> Tags
+              <i class="fa-solid fa-tags fa-fw"></i
+              ><span class="sidebar-left__nav-item-text">Tags</span>
             </li>
             <li class="sidebar-left__nav-item">
-              <i class="fa-solid fa-trophy fa-fw"></i> Badges
+              <i class="fa-solid fa-trophy fa-fw"></i
+              ><span class="sidebar-left__nav-item-text">Badges</span>
             </li>
             <li class="sidebar-left__nav-item">
-              <i class="fa-solid fa-list"></i> Categories
+              <i class="fa-solid fa-list"></i
+              ><span class="sidebar-left__nav-item-text">Categories</span>
             </li>
             <li class="sidebar-left__nav-item">
-              <i class="fa-solid fa-users fa-fw"></i> Users
+              <i class="fa-solid fa-users fa-fw"></i
+              ><span class="sidebar-left__nav-item-text">Users</span>
             </li>
           </ul>
         </nav>
+        <section class="media-links">
+          <div class="media-link">
+            <i class="fab fa-facebook-f fa-fw"></i>
+          </div>
+          <div class="media-link">
+            <i class="fab fa-twitter fa-fw"></i>
+          </div>
+          <div class="media-link">
+            <i class="fab fa-google fa-fw"></i>
+          </div>
+        </section>
         <footer class="footer">
           <p class="footer__copyright">&copy; 2022 ForumApp</p>
         </footer>
       </aside>
-      <main class="main"></main>
-      <aside class="sidebar-right"></aside>
+      <main class="main">
+        <header class="main-header">
+          <section class="main-header__top">
+            <h2 class="main-header__title">All Questions</h2>
+            <select
+              class="main-header__filter"
+              name="category-filter"
+              id="category-filter"
+            >
+              <option value="" disabled selected>Filter by category</option>
+            </select>
+          </section>
+          <section class="main-header__bottom">
+            <ul class="main-header__list">
+              <li class="main-header__item main-header__item--active">
+                Latest
+              </li>
+              <li class="main-header__item">Votes</li>
+              <li class="main-header__item">Unanswered</li>
+            </ul>
+            <div class="count-filter">
+              <label class="count-filter__label" for="count-filter__select"
+                >Questions per page:</label
+              >
+              <select
+                class="count-filter__select"
+                name="count-filter__select"
+                id="count-filter__select"
+              >
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+              </select>
+            </div>
+          </section>
+        </header>
+        <template class="question-template">
+          <article class="question">
+            <section class="question__details">
+              <h3 class="question__title"></h3>
+              <p class="question__description"></p>
+              <ul class="question__tags"></ul>
+              <footer class="question__metadata">
+                <img class="question__img" alt="profile picture" />
+                <span class="question__username"></span>
+                <span class="question__status"></span>
+                <span class="question__asked-on"
+                  >Asked on in <span class="question__date"></span> in
+                  <span class="question__category"></span
+                ></span>
+              </footer>
+            </section>
+            <ul class="question__stats">
+              <li class="question__stats-item">
+                <span class="question__stats-views-count"></span>
+                <span class="question__stats-views">views</span>
+              </li>
+              <li class="question__stats-item">
+                <span class="question__stats-answers-count"></span>
+                <span class="question__stats-answers">answers</span>
+              </li>
+              <li class="question__stats-item">
+                <span class="question__stats-votes-count"></span>
+                <span class="question__stats-votes">votes</span>
+              </li>
+            </ul>
+          </article>
+        </template>
+      </main>
+      <aside class="sidebar-right">
+        <section class="sidebar-right__stats">
+          <figure class="sidebar-right__questions">
+            <figcaption class="sidebar-right__caption">Questions</figcaption>
+            <p class="sidebar-right__total">0</p>
+          </figure>
+          <figure class="sidebar-right__members">
+            <figcaption class="sidebar-right__caption">Members</figcaption>
+            <p class="sidebar-right__total">0</p>
+          </figure>
+        </section>
+        <section class="sidebar-right__tags">
+          <h4 class="sidebar-right__tags-title">Most Used Tags</h4>
+          <ul class="sidebar-right__tags-list">
+            <li class="sidebar-right__tags-item">Tag number one</li>
+            <li class="sidebar-right__tags-item">Tag number two</li>
+            <li class="sidebar-right__tags-item">Tag number three</li>
+          </ul>
+        </section>
+        <section class="sidebar-right__hot-questions">
+          <h4 class="sidebar-right__hot-title">Hot Questions</h4>
+          <ul class="sidebar-right__hot-list">
+            <li class="sidebar-right__hot-item">
+              <img
+                class="sidebar-right__hot-img"
+                src="https://picsum.photos/200"
+                alt="profile picture"
+              />
+              <span class="sidebar-right__hot-question"
+                >How to save more money?</span
+              >
+            </li>
+            <li class="sidebar-right__hot-item">
+              <img
+                class="sidebar-right__hot-img"
+                src="https://picsum.photos/200"
+                alt="profile picture"
+              />
+              <span class="sidebar-right__hot-question">
+                What are the best mobile apps for travelling?</span
+              >
+            </li>
+            <li class="sidebar-right__hot-item">
+              <img
+                class="sidebar-right__hot-img"
+                src="https://picsum.photos/200"
+                alt="profile picture"
+              />
+              <span class="sidebar-right__hot-question"
+                >Why isn't music free?</span
+              >
+            </li>
+          </ul>
+        </section>
+      </aside>
     </div>
   </body>
 </html>
