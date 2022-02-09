@@ -1,18 +1,43 @@
 import fetchQuestions from "./fetchQuestions.js";
+import connectScrollEventListeners from "./scrollButton.js";
 
-const mainContent = document.querySelector(".main");
-const questionTemplate = document.querySelector(".question-template");
+connectScrollEventListeners();
+renderDynamicContent();
 
-main();
-async function main() {
+async function renderDynamicContent() {
   const questions = await fetchQuestions();
+
+  questions.sort(
+    (question, nextQuestion) =>
+      convertToJavascriptTime(nextQuestion.dateCreated) -
+      convertToJavascriptTime(question.dateCreated)
+  );
+
   renderCategoryOptions(questions);
   renderQuestions(questions);
   listenForFilterChange(questions);
+  listenForSelectedCategoryChange(questions);
+  listenForSelectedPerPageChange(questions);
   renderTagCount(questions);
   renderQuestionsCount(questions);
   renderMemberCount(questions);
   renderHotQuestions(questions);
+}
+
+function listenForSelectedPerPageChange(questions) {
+  const select = document.querySelector("#count-filter__select");
+
+  select.addEventListener("change", () => {
+    renderQuestions(questions);
+  });
+}
+
+function listenForSelectedCategoryChange(questions) {
+  const select = document.querySelector("#category-filter");
+
+  select.addEventListener("change", () => {
+    renderQuestions(questions);
+  });
 }
 
 function renderCategoryOptions(questions) {
@@ -111,14 +136,13 @@ function renderTagCount(questions) {
         toggleTagsButton.textContent = "See more tags";
       }
     });
-    tagsList.appendChild(toggleTagsButton);
+    tagsList.insertAdjacentElement("afterend", toggleTagsButton);
   }
 
   createTagElements(sortedTags);
 }
 
 function createTagElements(sortedTags, showAll = false) {
-  const toggleTagsButton = document.querySelector(".sidebar-right__button");
   const tagsList = document.querySelector(".sidebar-right__tags-list");
   const tagItems = tagsList.querySelectorAll(".sidebar-right__tags-item");
 
@@ -132,7 +156,7 @@ function createTagElements(sortedTags, showAll = false) {
     tagElement.textContent = tagName;
     tagElement.dataset.count = "x " + tagCount;
 
-    toggleTagsButton.insertAdjacentElement("beforebegin", tagElement);
+    tagsList.appendChild(tagElement);
     index++;
   }
 }
@@ -180,10 +204,26 @@ function listenForFilterChange(questions) {
 function renderQuestions(questions) {
   if (!questions) return;
 
+  const mainContent = document.querySelector(".main");
+  const questionTemplate = document.querySelector(".question-template");
+
   const articles = mainContent.querySelectorAll(".question");
   articles.forEach((article) => article.remove());
 
-  for (let entry of questions) {
+  const categoryFilter = findActiveFilter("#category-filter");
+  const questionPerPageCount = +findActiveFilter("#count-filter__select");
+
+  let filteredQuestions;
+
+  if (categoryFilter) {
+    filteredQuestions = questions.filter(
+      (question) => question.category === categoryFilter
+    );
+  } else filteredQuestions = questions;
+
+  for (let [index, entry] of Object.entries(filteredQuestions)) {
+    if (index >= questionPerPageCount) break;
+
     const clone = questionTemplate.content.cloneNode(true);
 
     const username = clone.querySelector(".question__username");
@@ -235,6 +275,13 @@ function renderQuestions(questions) {
 
     mainContent.appendChild(clone);
   }
+}
+
+function findActiveFilter(className) {
+  const select = document.querySelector(className);
+  const selectedOption = select.options[select.selectedIndex].value;
+
+  return selectedOption;
 }
 
 function capitalizeFirstLetter(string) {
