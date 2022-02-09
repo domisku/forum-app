@@ -1,7 +1,9 @@
 import fetchQuestions from "./fetchQuestions.js";
+import connectHamburgerListeners from "./hamburgerMenu.js";
 import connectScrollEventListeners from "./scrollButton.js";
 
 connectScrollEventListeners();
+connectHamburgerListeners();
 renderDynamicContent();
 
 async function renderDynamicContent() {
@@ -60,7 +62,9 @@ function renderCategoryOptions(questions) {
 }
 
 function renderHotQuestions(questions) {
-  questions.sort(
+  const questionsCopy = [...questions];
+
+  questionsCopy.sort(
     (question, nextQuestion) => nextQuestion.views - question.views
   );
 
@@ -70,7 +74,7 @@ function renderHotQuestions(questions) {
   );
 
   let i = 0;
-  for (let question of questions) {
+  for (let question of questionsCopy) {
     if (i === 5) break;
 
     const clone = hotQuestionTemplate.content.cloneNode(true);
@@ -215,7 +219,7 @@ function renderQuestions(questions) {
 
   let filteredQuestions;
 
-  if (categoryFilter) {
+  if (categoryFilter && categoryFilter !== "all") {
     filteredQuestions = questions.filter(
       (question) => question.category === categoryFilter
     );

@@ -32,9 +32,26 @@
         </button>
       </form>
       <nav class="header-nav">
-        <button class="header-nav__hamburger">
-          <i class="fas fa-bars fa-fw fa-2xl"></i>
-        </button>
+        <div class="hamburger">
+          <button class="hamburger__button">
+            <i class="fas fa-bars fa-fw fa-2xl"></i>
+          </button>
+          <ul class="hamburger__list">
+            <li class="hamburger__item">+ Ask a question</li>
+            <li class="hamburger__item">Home</li>
+            <li class="hamburger__item">
+              About us<i class="fa fa-caret-down fa-fw"></i>
+            </li>
+            <li class="hamburger__item">Blog</li>
+            <li class="hamburger__item">Term</li>
+            <li class="hamburger__item">Contract</li>
+            <li class="hamburger__item">Questions</li>
+            <li class="hamburger__item">Tags</li>
+            <li class="hamburger__item">Badges</li>
+            <li class="hamburger__item">Categories</li>
+            <li class="hamburger__item">Users</li>
+          </ul>
+        </div>
         <ul class="header-nav__items">
           <li class="header-nav__item">Home</li>
           <li class="header-nav__item">
@@ -107,6 +124,7 @@
               id="category-filter"
             >
               <option value="" disabled selected>Filter by category</option>
+              <option value="all">All categories</option>
             </select>
           </section>
           <section class="main-header__bottom">
