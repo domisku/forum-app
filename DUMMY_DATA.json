@@ -21,7 +21,7 @@
     "description": "Integer urna odio, dignissim vitae tellus non, hendrerit imperdiet orci. Donec imperdiet vehicula nibh quis malesuada. Donec bibendum ante a vestibulum congue. Suspendisse sollicitudin, massa in malesuada rhoncus, urna justo venenatis metus, eu facilisis dui purus ac purus. Phasellus ultricies malesuada augue, placerat ultricies elit suscipit in. Phasellus fringilla quis nisl id volutpat. Vestibulum in velit pretium, viverra dui sit amet, congue felis. Ut interdum semper purus. Aliquam vitae dictum nunc. Aliquam mollis nisl et sem vulputate, vel pulvinar neque molestie. Vestibulum enim odio, fringilla feugiat lacus a, iaculis eleifend est.",
     "tags": ["music", "art"],
     "views": 20,
-    "answers": 0,
+    "answers": 10,
     "votes": 2,
     "dateCreated": "2022-2-1"
   },
@@ -34,7 +34,7 @@
     "description": "Etiam erat lacus, aliquet ac convallis nec, sollicitudin ac est. Phasellus et nisi tellus. In hac habitasse platea dictumst. Vestibulum condimentum non lectus eget laoreet. Etiam tincidunt tincidunt faucibus. Mauris commodo sagittis lectus, et ultricies quam mattis nec. Aliquam quis metus a magna interdum eleifend a in quam. Morbi lobortis consequat mollis. Vestibulum vulputate sagittis facilisis. Nunc venenatis augue lectus, id pharetra nisl suscipit et.",
     "tags": ["music", "piano", "rhodes"],
     "views": 25,
-    "answers": 0,
+    "answers": 4,
     "votes": 0,
     "dateCreated": "2021-1-8"
   },
@@ -58,10 +58,10 @@
     "category": "business",
     "question": "In fringilla elit sit amet metus finibus, quis aliquet magna faucibus",
     "description": "Aenean interdum, dolor vitae consequat tempus, eros enim auctor ipsum, eu efficitur lacus enim ut quam. Aliquam erat volutpat. Suspendisse luctus rhoncus semper.",
-    "tags": ["business", "finance"],
+    "tags": ["business", "finance", "technology"],
     "views": 55,
     "answers": 0,
-    "votes": 2,
+    "votes": 22,
     "dateCreated": "2021-10-5"
   },
   {

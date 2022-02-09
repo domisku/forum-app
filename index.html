@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
-    <script src="app.js" defer></script>
+    <script src="app.js" type="module"></script>
   </head>
   <body>
     <header class="header">
@@ -94,6 +94,7 @@
         </section>
         <footer class="footer">
           <p class="footer__copyright">&copy; 2022 ForumApp</p>
+          <span class="footer__terms">Terms & Privacy</span>
         </footer>
       </aside>
       <main class="main">
@@ -110,11 +111,16 @@
           </section>
           <section class="main-header__bottom">
             <ul class="main-header__list">
-              <li class="main-header__item main-header__item--active">
+              <li
+                class="main-header__item main-header__item--active"
+                data-filter-type="latest"
+              >
                 Latest
               </li>
-              <li class="main-header__item">Votes</li>
-              <li class="main-header__item">Unanswered</li>
+              <li class="main-header__item" data-filter-type="votes">Votes</li>
+              <li class="main-header__item" data-filter-type="unanswered">
+                Unanswered
+              </li>
             </ul>
             <div class="count-filter">
               <label class="count-filter__label" for="count-filter__select"
@@ -180,45 +186,21 @@
         </section>
         <section class="sidebar-right__tags">
           <h4 class="sidebar-right__tags-title">Most Used Tags</h4>
-          <ul class="sidebar-right__tags-list">
-            <li class="sidebar-right__tags-item">Tag number one</li>
-            <li class="sidebar-right__tags-item">Tag number two</li>
-            <li class="sidebar-right__tags-item">Tag number three</li>
-          </ul>
+          <ul class="sidebar-right__tags-list"></ul>
         </section>
         <section class="sidebar-right__hot-questions">
           <h4 class="sidebar-right__hot-title">Hot Questions</h4>
           <ul class="sidebar-right__hot-list">
-            <li class="sidebar-right__hot-item">
-              <img
-                class="sidebar-right__hot-img"
-                src="https://picsum.photos/200"
-                alt="profile picture"
-              />
-              <span class="sidebar-right__hot-question"
-                >How to save more money?</span
-              >
-            </li>
-            <li class="sidebar-right__hot-item">
-              <img
-                class="sidebar-right__hot-img"
-                src="https://picsum.photos/200"
-                alt="profile picture"
-              />
-              <span class="sidebar-right__hot-question">
-                What are the best mobile apps for travelling?</span
-              >
-            </li>
-            <li class="sidebar-right__hot-item">
-              <img
-                class="sidebar-right__hot-img"
-                src="https://picsum.photos/200"
-                alt="profile picture"
-              />
-              <span class="sidebar-right__hot-question"
-                >Why isn't music free?</span
-              >
-            </li>
+            <template class="sidebar-right__hot-item-template">
+              <li class="sidebar-right__hot-item">
+                <img
+                  class="sidebar-right__hot-img"
+                  src=""
+                  alt="profile picture"
+                />
+                <span class="sidebar-right__hot-question"></span>
+              </li>
+            </template>
           </ul>
         </section>
       </aside>
