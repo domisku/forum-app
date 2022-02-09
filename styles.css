@@ -588,7 +588,8 @@ h6 {
   margin: 0;
   background-color: var(--blue-600);
   color: var(--gray-200);
-  width: 10rem;
+  width: 200%;
+  min-width: 15rem;
   z-index: 1;
 }
 
@@ -604,8 +605,8 @@ h6 {
     opacity: 0;
     transform: translateX(-10rem);
   }
-  70% {
-    transform: translateX(5%);
+  80% {
+    transform: translateX(2%);
   }
   100% {
     opacity: 1;
