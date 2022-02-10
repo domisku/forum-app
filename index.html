@@ -124,7 +124,7 @@
               id="category-filter"
             >
               <option value="" disabled selected>Filter by category</option>
-              <option value="all">All categories</option>
+              <option value="all">All Questions</option>
             </select>
           </section>
           <section class="main-header__bottom">
@@ -190,6 +190,17 @@
             </ul>
           </article>
         </template>
+        <footer class="pagination">
+          <div class="pagination__text">
+            Viewing results <span class="pagination__from"></span> -
+            <span class="pagination__to"></span>
+          </div>
+          <nav class="pagination__nav">
+            <button class="pagination__prev">Previous</button>
+            <span class="pagination__current"></span>
+            <button class="pagination__next">Next</button>
+          </nav>
+        </footer>
       </main>
       <aside class="sidebar-right">
         <section class="sidebar-right__stats">

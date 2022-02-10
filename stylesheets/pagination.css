@@ -1,0 +1,15 @@
+.pagination {
+  height: 5rem;
+  background-color: var(--blue-100);
+  display: none;
+}
+
+.pagination__text {
+  font-size: large;
+}
+
+.pagination__from {
+}
+
+.pagination__to {
+}

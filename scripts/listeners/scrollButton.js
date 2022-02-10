@@ -21,6 +21,8 @@ export default function connectScrollEventListeners() {
 
   buttons.addEventListener("click", (event) => {
     const pressedButton = event.target.closest("button");
+    if (!pressedButton) return;
+
     if (pressedButton.dataset.direction === "up") {
       window.scroll({
         left: 0,

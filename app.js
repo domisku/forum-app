@@ -1,7 +1,7 @@
 import fetchQuestions from "./scripts/fetchers/fetchQuestions.js";
+
 import connectHamburgerListeners from "./scripts/listeners/hamburgerMenu.js";
 import connectScrollEventListeners from "./scripts/listeners/scrollButton.js";
-
 import listenForFilterChange from "./scripts/listeners/filterChange.js";
 import listenForSelectedCategoryChange from "./scripts/listeners/selectedCategoryChange.js";
 import listenForSelectedPerPageChange from "./scripts/listeners/selectedPerPageChange.js";
