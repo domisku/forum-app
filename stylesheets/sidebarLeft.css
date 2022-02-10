@@ -47,6 +47,10 @@
   cursor: pointer;
 }
 
+.sidebar-left__item:hover {
+  color: var(--blue-300);
+}
+
 .sidebar-left__item-text {
   padding: 0 1rem;
 }
@@ -72,6 +76,7 @@
   background-position: -349px -142px;
   width: 38px;
   height: 37px;
+  transform: scale(0.8);
 }
 
 .media-links__facebook:hover {
@@ -84,7 +89,7 @@
   background-position: -864px -144px;
   width: 38px;
   height: 37px;
-  transform: translateY(2px);
+  transform: translateY(2px) scale(0.8);
 }
 
 .media-links__twitter:hover {
@@ -95,7 +100,6 @@
   background-position: -218px -148px;
   width: 26px;
   height: 26px;
-  transform: scale(1.2);
 }
 
 .media-links__google:hover {
