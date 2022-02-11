@@ -2,12 +2,14 @@ import fetchFromDB from "../fetchers/fetchFromDB.js";
 import renderQuestions from "../rendering/questions.js";
 import filters from "../store/filters.js";
 import { constructParams } from "../store/filters.js";
+import { resetPagination } from "./pagination.js";
 
 export default function listenForSortChange() {
   const articleSortList = document.querySelector(".main-header__list");
 
   articleSortList.addEventListener("click", async (event) => {
     if (!event.target.classList.contains("main-header__item")) return;
+
     const clickedSort = event.target;
     const articleSort = Array.from(articleSortList.children);
     clearModifiers();
@@ -37,8 +39,8 @@ export default function listenForSortChange() {
 
     const params = constructParams(filters);
 
-    const sortedQuestions = await fetchFromDB("questions", params);
+    const questions = await fetchFromDB("questions", params);
 
-    renderQuestions(sortedQuestions);
+    renderQuestions(questions);
   });
 }

@@ -1,7 +1,7 @@
 import convertToYMD from "../utils/date/convertToYMD.js";
 import capitalizeFirstLetter from "../utils/string/capitalizeFirst.js";
 
-const mainContent = document.querySelector(".main");
+const mainContentHeader = document.querySelector(".main-header");
 const questionTemplate = document.querySelector(".question-template");
 
 export default function renderQuestion(question, author) {
@@ -54,5 +54,5 @@ export default function renderQuestion(question, author) {
     tagList.appendChild(tag);
   });
 
-  mainContent.appendChild(clone);
+  mainContentHeader.after(clone);
 }

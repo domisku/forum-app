@@ -7,6 +7,7 @@ import connectScrollEventListeners from "./scripts/listeners/scrollButton.js";
 import listenForSortChange from "./scripts/listeners/sortChange.js";
 import listenForSelectedCategoryChange from "./scripts/listeners/selectedCategoryChange.js";
 import listenForSelectedPerPageChange from "./scripts/listeners/selectedPerPageChange.js";
+import listenForPaginationChange from "./scripts/listeners/pagination.js";
 
 import renderCategoryOptions from "./scripts/rendering/categoryOptions.js";
 import renderHotQuestions from "./scripts/rendering/hotQuestions.js";
@@ -21,7 +22,12 @@ renderDynamicContent();
 
 async function renderDynamicContent() {
   const params = constructParams(filters);
-  const questionsCollection = await fetchFromDB("questions", params);
+  const { questions: questionsCollection, lastPage } = await fetchFromDB(
+    "questions",
+    params,
+    true
+  );
+  filters.lastPage = lastPage;
   const usersCollection = await fetchFromDB("users");
   const unfilteredQuestionsCollection = await fetchFromDB("questions");
 
@@ -33,6 +39,7 @@ async function renderDynamicContent() {
 
   renderQuestions(questionsCollection);
 
+  listenForPaginationChange();
   listenForSortChange();
   listenForSelectedCategoryChange();
   listenForSelectedPerPageChange();
