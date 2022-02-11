@@ -1,8 +1,10 @@
-import fetchQuestions from "./scripts/fetchers/fetchQuestions.js";
+import fetchFromDB from "./scripts/fetchers/fetchFromDB.js";
+import filters from "./scripts/store/filters.js";
+import { constructParams } from "./scripts/store/filters.js";
 
 import connectHamburgerListeners from "./scripts/listeners/hamburgerMenu.js";
 import connectScrollEventListeners from "./scripts/listeners/scrollButton.js";
-import listenForFilterChange from "./scripts/listeners/filterChange.js";
+import listenForSortChange from "./scripts/listeners/sortChange.js";
 import listenForSelectedCategoryChange from "./scripts/listeners/selectedCategoryChange.js";
 import listenForSelectedPerPageChange from "./scripts/listeners/selectedPerPageChange.js";
 
@@ -13,28 +15,25 @@ import renderQuestions from "./scripts/rendering/questions.js";
 import renderQuestionsCount from "./scripts/rendering/questionsCount.js";
 import renderTagCount from "./scripts/rendering/tagCount.js";
 
-import convertToJavascriptTime from "./scripts/utils/date/toJavascriptTime.js";
-
 connectScrollEventListeners();
 connectHamburgerListeners();
 renderDynamicContent();
 
 async function renderDynamicContent() {
-  const questions = await fetchQuestions();
+  const params = constructParams(filters);
+  const questionsCollection = await fetchFromDB("questions", params);
+  const usersCollection = await fetchFromDB("users");
+  const unfilteredQuestionsCollection = await fetchFromDB("questions");
 
-  questions.sort(
-    (question, nextQuestion) =>
-      convertToJavascriptTime(nextQuestion.dateCreated) -
-      convertToJavascriptTime(question.dateCreated)
-  );
+  renderMemberCount(usersCollection);
+  renderQuestionsCount(unfilteredQuestionsCollection);
+  renderCategoryOptions(questionsCollection);
+  renderTagCount(unfilteredQuestionsCollection);
+  renderHotQuestions(usersCollection);
 
-  renderCategoryOptions(questions);
-  renderQuestions(questions);
-  listenForFilterChange(questions);
-  listenForSelectedCategoryChange(questions);
-  listenForSelectedPerPageChange(questions);
-  renderTagCount(questions);
-  renderQuestionsCount(questions);
-  renderMemberCount(questions);
-  renderHotQuestions(questions);
+  renderQuestions(questionsCollection);
+
+  listenForSortChange();
+  listenForSelectedCategoryChange();
+  listenForSelectedPerPageChange();
 }

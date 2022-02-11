@@ -1,17 +1,18 @@
+import fetchFromDB from "../fetchers/fetchFromDB.js";
 import renderQuestions from "../rendering/questions.js";
-import capitalizeFirstLetter from "../utils/string/capitalizeFirst.js";
+import filters, { constructParams } from "../store/filters.js";
 
-export default function listenForSelectedCategoryChange(questions) {
+export default function listenForSelectedCategoryChange() {
   const select = document.querySelector("#category-filter");
-  const heading = document.querySelector(".main-header__title");
 
-  select.addEventListener("change", () => {
-    renderQuestions(questions);
+  select.addEventListener("change", async () => {
+    const selectedCategory = select.options[select.selectedIndex].value;
 
-    let selectedOption = select.options[select.selectedIndex].value;
+    if (selectedCategory === "all") filters.category = "";
+    else filters.category = selectedCategory;
 
-    if (selectedOption === "all") selectedOption = "All Questions";
-
-    heading.textContent = capitalizeFirstLetter(selectedOption);
+    const params = constructParams(filters);
+    const filteredQuestions = await fetchFromDB("questions", params);
+    renderQuestions(filteredQuestions);
   });
 }

@@ -1,10 +1,10 @@
-import reformatDate from "../utils/date/reformatDate.js";
+import convertToYMD from "../utils/date/convertToYMD.js";
 import capitalizeFirstLetter from "../utils/string/capitalizeFirst.js";
 
 const mainContent = document.querySelector(".main");
 const questionTemplate = document.querySelector(".question-template");
 
-export default function renderQuestion(question) {
+export default function renderQuestion(question, author) {
   const clone = questionTemplate.content.cloneNode(true);
 
   const username = clone.querySelector(".question__username");
@@ -19,10 +19,10 @@ export default function renderQuestion(question) {
   const tagList = clone.querySelector(".question__tags");
   const status = clone.querySelector(".question__status");
 
-  username.textContent = question.user;
-  title.textContent = question.question;
-  img.src = question.imgUrl;
-  date.textContent = reformatDate(question.dateCreated);
+  username.textContent = author.username;
+  title.textContent = question.title;
+  img.src = author.profileImgUrl;
+  date.textContent = convertToYMD(question.dateCreated);
   views.textContent = question.views;
   answers.textContent = question.answers;
   votes.textContent = question.votes;
@@ -33,8 +33,8 @@ export default function renderQuestion(question) {
 
   category.textContent = capitalizeFirstLetter(question.category);
 
-  status.textContent = question.status;
-  switch (question.status) {
+  status.textContent = author.status;
+  switch (author.status) {
     case "professor":
       status.classList.add("question__status--professor");
       break;

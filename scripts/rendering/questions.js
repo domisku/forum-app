@@ -1,27 +1,18 @@
-import findActiveFilter from "../utils/UI/findActiveFilter.js";
+import fetchFromDB from "../fetchers/fetchFromDB.js";
 import renderQuestion from "./question.js";
 
-export default function renderQuestions(questions) {
+export default async function renderQuestions(questions) {
   if (!questions) return;
+
+  const users = await fetchFromDB("users");
 
   const mainContent = document.querySelector(".main");
   const articles = mainContent.querySelectorAll(".question");
   articles.forEach((article) => article.remove());
 
-  const categoryFilter = findActiveFilter("#category-filter");
-  const questionPerPageCount = +findActiveFilter("#count-filter__select");
+  for (let entry of questions) {
+    const author = users.find((user) => user.userId === entry.userId);
 
-  let filteredQuestions;
-
-  if (categoryFilter && categoryFilter !== "all") {
-    filteredQuestions = questions.filter(
-      (question) => question.category === categoryFilter
-    );
-  } else filteredQuestions = questions;
-
-  for (let [index, entry] of Object.entries(filteredQuestions)) {
-    if (index >= questionPerPageCount) break;
-
-    renderQuestion(entry);
+    renderQuestion(entry, author);
   }
 }
