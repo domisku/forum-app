@@ -2,7 +2,6 @@ import fetchFromDB from "../fetchers/fetchFromDB.js";
 import renderQuestions from "../rendering/questions.js";
 import filters from "../store/filters.js";
 import { constructParams } from "../store/filters.js";
-import { resetPagination } from "./pagination.js";
 
 export default function listenForSortChange() {
   const articleSortList = document.querySelector(".main-header__list");

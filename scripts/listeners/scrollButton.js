@@ -1,3 +1,5 @@
+import scrollTo from "../utils/UI/scrollTo.js";
+
 export default function connectScrollEventListeners() {
   const buttons = document.querySelector(".scroll-buttons");
 
@@ -24,17 +26,9 @@ export default function connectScrollEventListeners() {
     if (!pressedButton) return;
 
     if (pressedButton.dataset.direction === "up") {
-      window.scroll({
-        left: 0,
-        top: 0,
-        behavior: "smooth",
-      });
+      scrollTo(0);
     } else {
-      window.scroll({
-        left: 0,
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
+      scrollTo(document.body.scrollHeight);
     }
   });
 }

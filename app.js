@@ -7,7 +7,7 @@ import connectScrollEventListeners from "./scripts/listeners/scrollButton.js";
 import listenForSortChange from "./scripts/listeners/sortChange.js";
 import listenForSelectedCategoryChange from "./scripts/listeners/selectedCategoryChange.js";
 import listenForSelectedPerPageChange from "./scripts/listeners/selectedPerPageChange.js";
-import listenForPaginationChange from "./scripts/listeners/pagination.js";
+import listenForPaginationChange from "./scripts/listeners/pagination/pagination.js";
 
 import renderCategoryOptions from "./scripts/rendering/categoryOptions.js";
 import renderHotQuestions from "./scripts/rendering/hotQuestions.js";

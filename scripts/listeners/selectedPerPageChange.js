@@ -1,7 +1,8 @@
 import fetchFromDB from "../fetchers/fetchFromDB.js";
 import renderQuestions from "../rendering/questions.js";
 import filters, { constructParams } from "../store/filters.js";
-import { calculateResultsIndexes, resetPagination } from "./pagination.js";
+import resetPagination from "./pagination/resetPagination.js";
+import calculateResultsIndexes from "./pagination/calculateResultsIndexes.js";
 
 export default function listenForSelectedPerPageChange() {
   const select = document.querySelector("#count-filter__select");
