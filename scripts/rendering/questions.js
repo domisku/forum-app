@@ -6,10 +6,6 @@ export default async function renderQuestions(questions) {
 
   const users = await fetchFromDB("users");
 
-  const mainContent = document.querySelector(".main");
-  const articles = mainContent.querySelectorAll(".question");
-  articles.forEach((article) => article.remove());
-
   for (let entry of questions) {
     const author = users.find((user) => user.userId === entry.userId);
 

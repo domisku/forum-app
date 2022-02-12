@@ -37,7 +37,9 @@
             <i class="fas fa-bars fa-fw fa-2xl"></i>
           </button>
           <ul class="hamburger__list">
-            <li class="hamburger__item">+ Ask a question</li>
+            <li class="hamburger__item" id="hamburgerAskQuestion">
+              + Ask a question
+            </li>
             <li class="hamburger__item">Home</li>
             <li class="hamburger__item">
               About us<i class="fa fa-caret-down fa-fw"></i>
@@ -45,7 +47,12 @@
             <li class="hamburger__item">Blog</li>
             <li class="hamburger__item">Term</li>
             <li class="hamburger__item">Contract</li>
-            <li class="hamburger__item">Questions</li>
+            <li class="hamburger__item" id="hamburgerNewQuestions">
+              New questions
+            </li>
+            <li class="hamburger__item" id="hamburgerAllQuestions">
+              All questions
+            </li>
             <li class="hamburger__item">Tags</li>
             <li class="hamburger__item">Badges</li>
             <li class="hamburger__item">Categories</li>
@@ -72,7 +79,9 @@
     <div class="content-wrapper">
       <aside class="sidebar-left">
         <section class="sidebar-left__button-container">
-          <button class="sidebar-left__button">+ Ask A Question</button>
+          <button class="sidebar-left__button" id="askQuestionPage">
+            + Ask A Question
+          </button>
         </section>
         <nav class="sidebar-left__nav">
           <ul class="sidebar-left__list">
@@ -112,110 +121,7 @@
           <span class="footer__terms">Terms & Privacy</span>
         </footer>
       </aside>
-      <main class="main">
-        <template id="mainContentHeader">
-          <header class="main-header">
-            <section class="main-header__top">
-              <h2 class="main-header__title">All Questions</h2>
-              <select
-                class="main-header__filter"
-                name="category-filter"
-                id="category-filter"
-              >
-                <option value="" disabled selected>Filter by category</option>
-                <option value="all">All Questions</option>
-              </select>
-            </section>
-            <section class="main-header__bottom">
-              <ul class="main-header__list">
-                <li
-                  class="main-header__item main-header__item--active"
-                  data-sort-type="latest"
-                >
-                  Latest
-                </li>
-                <li class="main-header__item" data-sort-type="votes">Votes</li>
-                <li class="main-header__item" data-sort-type="unanswered">
-                  Unanswered
-                </li>
-              </ul>
-              <div class="count-filter">
-                <label class="count-filter__label" for="count-filter__select"
-                  >Questions per page:</label
-                >
-                <select
-                  class="count-filter__select"
-                  name="count-filter__select"
-                  id="count-filter__select"
-                >
-                  <option value="12">12</option>
-                  <option value="24">24</option>
-                  <option value="36">36</option>
-                </select>
-              </div>
-            </section>
-          </header>
-        </template>
-        <div class="questions">
-          <template class="question-template">
-            <article class="question">
-              <section class="question__details">
-                <h3 class="question__title"></h3>
-                <p class="question__description"></p>
-                <ul class="question__tags"></ul>
-                <footer class="question__metadata">
-                  <img class="question__img" alt="profile picture" />
-                  <span class="question__username"></span>
-                  <span class="question__status"></span>
-                  <span class="question__asked-on">
-                    <span class="question__placeholder">Asked on</span>
-                    <span class="question__date"></span>
-                    in
-                    <span class="question__category"></span
-                  ></span>
-                </footer>
-              </section>
-              <ul class="question__stats">
-                <li class="question__stats-item">
-                  <span class="question__stats-views-count"></span>
-                  <span class="question__stats-views">views</span>
-                </li>
-                <li class="question__stats-item">
-                  <span class="question__stats-answers-count"></span>
-                  <span class="question__stats-answers">answers</span>
-                </li>
-                <li class="question__stats-item">
-                  <span class="question__stats-votes-count"></span>
-                  <span class="question__stats-votes">votes</span>
-                </li>
-              </ul>
-            </article>
-          </template>
-        </div>
-        <template id="paginationTemplate">
-          <footer class="pagination">
-            <div class="pagination__text">
-              Viewing results <span class="pagination__from"></span> -
-              <span class="pagination__to"></span>
-            </div>
-            <nav class="pagination__nav">
-              <button class="pagination__first" data-page="first">
-                <i class="fa-solid fa-angles-left fa-fw"></i>
-              </button>
-              <button class="pagination__prev" data-page="prev">
-                <i class="fa-solid fa-angle-left fa-fw"></i>
-              </button>
-              <span class="pagination__current"></span>
-              <button class="pagination__next" data-page="next">
-                <i class="fa-solid fa-angle-right fa-fw"></i>
-              </button>
-              <button class="pagination__last" data-page="last">
-                <i class="fa-solid fa-angles-right fa-fw"></i>
-              </button>
-            </nav>
-          </footer>
-        </template>
-      </main>
+      <main class="main"></main>
       <aside class="sidebar-right">
         <section class="sidebar-right__stats">
           <figure class="sidebar-right__questions">
@@ -233,18 +139,7 @@
         </section>
         <section class="sidebar-right__hot-questions">
           <h4 class="sidebar-right__hot-title">Hot Questions</h4>
-          <ul class="sidebar-right__hot-list">
-            <template class="sidebar-right__hot-item-template">
-              <li class="sidebar-right__hot-item">
-                <img
-                  class="sidebar-right__hot-img"
-                  src=""
-                  alt="profile picture"
-                />
-                <span class="sidebar-right__hot-question"></span>
-              </li>
-            </template>
-          </ul>
+          <ul class="sidebar-right__hot-list"></ul>
         </section>
       </aside>
     </div>
@@ -256,5 +151,115 @@
         <i class="fa-solid fa-angle-down fa-fw"></i>
       </button>
     </div>
+
+    <template id="mainContentHeader">
+      <header class="main-header">
+        <section class="main-header__top">
+          <h2 class="main-header__title">All Questions</h2>
+          <select
+            class="main-header__filter"
+            name="category-filter"
+            id="category-filter"
+          >
+            <option value="" disabled selected>Filter by category</option>
+            <option value="all">All Questions</option>
+          </select>
+        </section>
+        <section class="main-header__bottom">
+          <ul class="main-header__list">
+            <li
+              class="main-header__item main-header__item--active"
+              data-sort-type="latest"
+            >
+              Latest
+            </li>
+            <li class="main-header__item" data-sort-type="votes">Votes</li>
+            <li class="main-header__item" data-sort-type="unanswered">
+              Unanswered
+            </li>
+          </ul>
+          <div class="count-filter">
+            <label class="count-filter__label" for="count-filter__select"
+              >Questions per page:</label
+            >
+            <select
+              class="count-filter__select"
+              name="count-filter__select"
+              id="count-filter__select"
+            >
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="36">36</option>
+            </select>
+          </div>
+        </section>
+      </header>
+    </template>
+
+    <template id="paginationTemplate">
+      <footer class="pagination">
+        <div class="pagination__text">
+          Viewing results <span class="pagination__from"></span> -
+          <span class="pagination__to"></span>
+        </div>
+        <nav class="pagination__nav">
+          <button class="pagination__first" data-page="first">
+            <i class="fa-solid fa-angles-left fa-fw"></i>
+          </button>
+          <button class="pagination__prev" data-page="prev">
+            <i class="fa-solid fa-angle-left fa-fw"></i>
+          </button>
+          <span class="pagination__current"></span>
+          <button class="pagination__next" data-page="next">
+            <i class="fa-solid fa-angle-right fa-fw"></i>
+          </button>
+          <button class="pagination__last" data-page="last">
+            <i class="fa-solid fa-angles-right fa-fw"></i>
+          </button>
+        </nav>
+      </footer>
+    </template>
+
+    <template class="sidebar-right__hot-item-template">
+      <li class="sidebar-right__hot-item">
+        <img class="sidebar-right__hot-img" src="" alt="profile picture" />
+        <span class="sidebar-right__hot-question"></span>
+      </li>
+    </template>
+
+    <template class="question-template">
+      <article class="question">
+        <section class="question__details">
+          <h3 class="question__title"></h3>
+          <p class="question__description"></p>
+          <ul class="question__tags"></ul>
+          <footer class="question__metadata">
+            <img class="question__img" alt="profile picture" />
+            <span class="question__username"></span>
+            <span class="question__status"></span>
+            <span class="question__asked-on">
+              <span class="question__placeholder">Asked on</span>
+              <span class="question__date"></span>
+              in
+              <span class="question__category"></span
+            ></span>
+          </footer>
+        </section>
+        <ul class="question__stats">
+          <li class="question__stats-item">
+            <span class="question__stats-views-count"></span>
+            <span class="question__stats-views">views</span>
+          </li>
+          <li class="question__stats-item">
+            <span class="question__stats-answers-count"></span>
+            <span class="question__stats-answers">answers</span>
+          </li>
+          <li class="question__stats-item">
+            <span class="question__stats-votes-count"></span>
+            <span class="question__stats-votes">votes</span>
+          </li>
+        </ul>
+      </article>
+    </template>
   </body>
 </html>

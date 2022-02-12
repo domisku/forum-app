@@ -3,45 +3,30 @@ import calculateResultsIndexes from "../listeners/pagination/calculateResultsInd
 import renderQuestions from "../rendering/questions.js";
 import filters, { resetFilters } from "../store/filters.js";
 import { constructParams } from "../store/filters.js";
-import removeHeader from "../utils/UI/removeHeader.js";
+import renderHeader from "../utils/UI/renderHeader.js";
 import listenForPaginationChange from "../listeners/pagination/pagination.js";
 import removePagination from "../utils/UI/removePagination.js";
+import currentPage from "../store/currentPage.js";
+import removeOldPage from "../utils/UI/removeOldPage.js";
+
+const NEW_QUESTIONS = "newQuestions";
 
 export default async function newQuestions() {
+  if (currentPage.index === NEW_QUESTIONS) return;
+  currentPage.index = NEW_QUESTIONS;
+
+  removeOldPage();
+
   resetFilters(filters);
   filters.limit = 2;
   const params = constructParams(filters);
   const { questions, lastPage } = await fetchFromDB("questions", params, true);
   filters.lastPage = lastPage;
 
-  calculateResultsIndexes(2);
-
-  renderHeader();
-  renderQuestions(questions);
+  renderHeader("New Questions");
+  await renderQuestions(questions);
   renderPagination();
-}
-
-function renderHeader() {
-  removeHeader();
-
-  const mainContent = document.querySelector(".main");
-
-  const header = document.createElement("header");
-  const headerSection = document.createElement("section");
-  const headerTitle = document.createElement("h2");
-
-  header.classList.add("main-header");
-  headerSection.classList.add("main-header__top");
-  headerTitle.classList.add("main-header__title");
-
-  headerTitle.textContent = "New Questions";
-  header.style.height = "6.5rem";
-  headerSection.style.height = "100%";
-
-  headerSection.appendChild(headerTitle);
-  header.appendChild(headerSection);
-
-  mainContent.prepend(header);
+  calculateResultsIndexes(2);
 }
 
 function renderPagination() {

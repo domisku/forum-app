@@ -1,10 +1,10 @@
 import convertToYMD from "../utils/date/convertToYMD.js";
 import capitalizeFirstLetter from "../utils/string/capitalizeFirst.js";
 
-const questionsContainer = document.querySelector(".questions");
 const questionTemplate = document.querySelector(".question-template");
 
 export default function renderQuestion(question, author) {
+  const mainContentContainer = document.querySelector(".main-content");
   const clone = questionTemplate.content.cloneNode(true);
 
   const username = clone.querySelector(".question__username");
@@ -54,5 +54,5 @@ export default function renderQuestion(question, author) {
     tagList.appendChild(tag);
   });
 
-  questionsContainer.appendChild(clone);
+  mainContentContainer.appendChild(clone);
 }
