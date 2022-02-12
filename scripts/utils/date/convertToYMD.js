@@ -19,5 +19,5 @@ export default function convertToYMD(javascriptTime) {
   const month = date.getMonth();
   const day = date.getDate();
 
-  return `${monthNames[month - 1]} ${day}, ${year}`;
+  return `${monthNames[month]} ${day}, ${year}`;
 }

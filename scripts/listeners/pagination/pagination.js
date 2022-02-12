@@ -23,7 +23,6 @@ export default function listenForPaginationChange() {
     if (clickedButton.disabled) return;
 
     if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(() => scrollTo(0), 1000);
 
     switch (clickedButton.dataset.page) {
       case "first":
@@ -54,6 +53,10 @@ export default function listenForPaginationChange() {
     resetControls();
 
     calculateResultsIndexes(questions.length);
-    renderQuestions(questions);
+
+    timeout = setTimeout(() => {
+      renderQuestions(questions);
+      scrollTo(0);
+    }, 1000);
   });
 }

@@ -7,6 +7,15 @@ const filters = {
   lastPage: 1,
 };
 
+export function resetFilters(filters) {
+  filters.category = "";
+  filters.sorting = "dateCreated";
+  filters.order = "desc";
+  filters.limit = 12;
+  filters.page = 1;
+  filters.lastPage = 1;
+}
+
 export function constructParams(filters) {
   const category = filters.category ? "category=" + filters.category : "";
 
