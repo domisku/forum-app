@@ -10,6 +10,10 @@ import currentPage from "../store/currentPage.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
 import { NEW_QUESTIONS } from "./pageNameStrings/pageNameStrings.js";
 import removeListeners from "../utils/UI/removeListeners.js";
+import {
+  addLoadingSpinner,
+  removeLoadingSpinner,
+} from "../rendering/createLoadingSpinner.js";
 
 export default async function newQuestions() {
   if (currentPage.index === NEW_QUESTIONS) return;
@@ -18,16 +22,20 @@ export default async function newQuestions() {
   removeListeners();
   removeOldPage();
 
+  renderHeader("New Questions");
+  addLoadingSpinner();
+
   resetFilters(filters);
   filters.limit = 2;
   const params = constructParams(filters);
   const { questions, lastPage } = await fetchFromDB("questions", params, true);
   filters.lastPage = lastPage;
 
-  renderHeader("New Questions");
-  renderQuestions(questions);
+  await renderQuestions(questions);
   renderPagination();
   calculateResultsIndexes(2);
+
+  removeLoadingSpinner();
 }
 
 function renderPagination() {

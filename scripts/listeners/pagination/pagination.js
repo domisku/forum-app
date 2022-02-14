@@ -5,6 +5,11 @@ import scrollTo from "../../utils/UI/scrollTo.js";
 import resetPagination from "./resetPagination.js";
 import resetControls from "./resetControls.js";
 import calculateResultsIndexes from "./calculateResultsIndexes.js";
+import {
+  addLoadingSpinner,
+  removeLoadingSpinner,
+} from "../../rendering/createLoadingSpinner.js";
+import clearMainContent from "../../utils/UI/clearMainContent.js";
 
 let timeout;
 
@@ -54,9 +59,13 @@ async function pageChangeHandler(event) {
 
   calculateResultsIndexes(questions.length);
 
-  timeout = setTimeout(() => {
-    renderQuestions(questions);
-    scrollTo(0);
+  clearMainContent();
+  addLoadingSpinner();
+  scrollTo(0);
+
+  timeout = setTimeout(async () => {
+    await renderQuestions(questions);
+    removeLoadingSpinner();
   }, 1000);
 }
 

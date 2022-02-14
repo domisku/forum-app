@@ -13,6 +13,10 @@ import currentPage from "../store/currentPage.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
 import { ALL_QUESTIONS } from "./pageNameStrings/pageNameStrings.js";
 import removeListeners from "../utils/UI/removeListeners.js";
+import {
+  addLoadingSpinner,
+  removeLoadingSpinner,
+} from "../rendering/createLoadingSpinner.js";
 
 export default async function allQuestions() {
   if (currentPage.index === ALL_QUESTIONS) return;
@@ -27,8 +31,10 @@ export default async function allQuestions() {
   filters.lastPage = lastPage;
 
   renderHeader(questions);
-  renderQuestions(questions);
+  addLoadingSpinner();
+  await renderQuestions(questions);
   renderPagination();
+  removeLoadingSpinner();
 }
 
 function renderHeader(questions) {

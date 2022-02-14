@@ -7,5 +7,6 @@
 @import url(stylesheets/mainContent.css);
 @import url(stylesheets/pagination.css);
 @import url(stylesheets/scrollButtons.css);
+@import url(stylesheets/loading.css);
 
 @import url(stylesheets/mediaQueries.css);
