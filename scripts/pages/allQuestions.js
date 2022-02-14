@@ -11,13 +11,14 @@ import removeHeader from "../utils/UI/removeHeader.js";
 import removePagination from "../utils/UI/removePagination.js";
 import currentPage from "../store/currentPage.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
-
-const ALL_QUESTIONS = "allQuestions";
+import { ALL_QUESTIONS } from "./pageNameStrings/pageNameStrings.js";
+import removeListeners from "../utils/UI/removeListeners.js";
 
 export default async function allQuestions() {
   if (currentPage.index === ALL_QUESTIONS) return;
   currentPage.index = ALL_QUESTIONS;
 
+  removeListeners();
   removeOldPage();
 
   resetFilters(filters);

@@ -6,40 +6,51 @@ import { constructParams } from "../store/filters.js";
 export default function listenForSortChange() {
   const articleSortList = document.querySelector(".main-header__list");
 
-  articleSortList.addEventListener("click", async (event) => {
-    if (!event.target.classList.contains("main-header__item")) return;
+  articleSortList.addEventListener("click", sortChangeHandler);
+}
 
-    const clickedSort = event.target;
-    const articleSort = Array.from(articleSortList.children);
-    clearModifiers();
-    clickedSort.classList.add("main-header__item--active");
+async function sortChangeHandler(event) {
+  if (!event.target.classList.contains("main-header__item")) return;
 
-    switch (clickedSort.dataset.sortType) {
-      case "latest":
-        filters.sorting = "dateCreated";
-        filters.order = "desc";
-        break;
-      case "votes":
-        filters.sorting = "votes";
-        filters.order = "desc";
-        break;
-      case "unanswered":
-        filters.sorting = "answers";
-        filters.order = "asc";
-        break;
-      default:
-    }
+  const articleSortList = document.querySelector(".main-header__list");
 
-    function clearModifiers() {
-      articleSort.forEach((sort) =>
-        sort.classList.remove("main-header__item--active")
-      );
-    }
+  const clickedSort = event.target;
+  const articleSort = Array.from(articleSortList.children);
+  clearModifiers();
+  clickedSort.classList.add("main-header__item--active");
 
-    const params = constructParams(filters);
+  switch (clickedSort.dataset.sortType) {
+    case "latest":
+      filters.sorting = "dateCreated";
+      filters.order = "desc";
+      break;
+    case "votes":
+      filters.sorting = "votes";
+      filters.order = "desc";
+      break;
+    case "unanswered":
+      filters.sorting = "answers";
+      filters.order = "asc";
+      break;
+    default:
+  }
 
-    const questions = await fetchFromDB("questions", params);
+  function clearModifiers() {
+    articleSort.forEach((sort) =>
+      sort.classList.remove("main-header__item--active")
+    );
+  }
 
-    renderQuestions(questions);
-  });
+  const params = constructParams(filters);
+
+  const questions = await fetchFromDB("questions", params);
+
+  renderQuestions(questions);
+}
+
+export function removeSortListener() {
+  const articleSortList = document.querySelector(".main-header__list");
+
+  if (articleSortList)
+    articleSortList.removeEventListener("click", sortChangeHandler);
 }

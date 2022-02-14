@@ -7,20 +7,24 @@ import calculateResultsIndexes from "./pagination/calculateResultsIndexes.js";
 export default function listenForSelectedPerPageChange() {
   const select = document.querySelector("#count-filter__select");
 
-  select.addEventListener("change", async () => {
-    filters.limit = select.options[select.selectedIndex].value;
-    filters.page = 1;
+  select.addEventListener("change", perPageChangeHandler);
+}
 
-    const params = constructParams(filters);
-    const { questions, lastPage } = await fetchFromDB(
-      "questions",
-      params,
-      true
-    );
-    filters.lastPage = lastPage;
+async function perPageChangeHandler() {
+  filters.limit = select.options[select.selectedIndex].value;
+  filters.page = 1;
 
-    resetPagination();
-    calculateResultsIndexes(questions.length);
-    renderQuestions(questions);
-  });
+  const params = constructParams(filters);
+  const { questions, lastPage } = await fetchFromDB("questions", params, true);
+  filters.lastPage = lastPage;
+
+  resetPagination();
+  calculateResultsIndexes(questions.length);
+  renderQuestions(questions);
+}
+
+export function removePerPageListener() {
+  const select = document.querySelector("#count-filter__select");
+
+  if (select) select.removeEventListener("click", perPageChangeHandler);
 }

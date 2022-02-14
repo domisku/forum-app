@@ -49,6 +49,10 @@
   .footer__copyright {
     width: auto;
   }
+
+  .footer__terms {
+    width: auto;
+  }
 }
 
 @media (max-width: 992px) {

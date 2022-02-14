@@ -8,13 +8,14 @@ import listenForPaginationChange from "../listeners/pagination/pagination.js";
 import removePagination from "../utils/UI/removePagination.js";
 import currentPage from "../store/currentPage.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
-
-const NEW_QUESTIONS = "newQuestions";
+import { NEW_QUESTIONS } from "./pageNameStrings/pageNameStrings.js";
+import removeListeners from "../utils/UI/removeListeners.js";
 
 export default async function newQuestions() {
   if (currentPage.index === NEW_QUESTIONS) return;
   currentPage.index = NEW_QUESTIONS;
 
+  removeListeners();
   removeOldPage();
 
   resetFilters(filters);
@@ -24,7 +25,7 @@ export default async function newQuestions() {
   filters.lastPage = lastPage;
 
   renderHeader("New Questions");
-  await renderQuestions(questions);
+  renderQuestions(questions);
   renderPagination();
   calculateResultsIndexes(2);
 }

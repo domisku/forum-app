@@ -6,9 +6,9 @@ import resetPagination from "./resetPagination.js";
 import resetControls from "./resetControls.js";
 import calculateResultsIndexes from "./calculateResultsIndexes.js";
 
-export default function listenForPaginationChange() {
-  let timeout;
+let timeout;
 
+export default function listenForPaginationChange() {
   resetPagination();
   calculateResultsIndexes();
 
@@ -17,46 +17,51 @@ export default function listenForPaginationChange() {
 
   currentPage.textContent = filters.page;
 
-  pagination.addEventListener("click", async (event) => {
-    const clickedButton = event.target.closest("button");
-    if (!clickedButton) return;
-    if (clickedButton.disabled) return;
+  pagination.addEventListener("click", pageChangeHandler);
+}
 
-    if (timeout) clearTimeout(timeout);
+async function pageChangeHandler(event) {
+  const clickedButton = event.target.closest("button");
+  if (!clickedButton) return;
+  if (clickedButton.disabled) return;
 
-    switch (clickedButton.dataset.page) {
-      case "first":
-        filters.page = 1;
-        break;
-      case "prev":
-        filters.page--;
-        break;
-      case "next":
-        filters.page++;
-        break;
-      case "last":
-        filters.page = filters.lastPage;
-        break;
-      default:
-    }
+  if (timeout) clearTimeout(timeout);
 
-    currentPage.textContent = filters.page;
+  switch (clickedButton.dataset.page) {
+    case "first":
+      filters.page = 1;
+      break;
+    case "prev":
+      filters.page--;
+      break;
+    case "next":
+      filters.page++;
+      break;
+    case "last":
+      filters.page = filters.lastPage;
+      break;
+    default:
+  }
 
-    const params = constructParams(filters);
-    const { questions, lastPage } = await fetchFromDB(
-      "questions",
-      params,
-      true
-    );
-    filters.lastPage = lastPage;
+  const currentPage = document.querySelector(".pagination__current");
+  currentPage.textContent = filters.page;
 
-    resetControls();
+  const params = constructParams(filters);
+  const { questions, lastPage } = await fetchFromDB("questions", params, true);
+  filters.lastPage = lastPage;
 
-    calculateResultsIndexes(questions.length);
+  resetControls();
 
-    timeout = setTimeout(() => {
-      renderQuestions(questions);
-      scrollTo(0);
-    }, 1000);
-  });
+  calculateResultsIndexes(questions.length);
+
+  timeout = setTimeout(() => {
+    renderQuestions(questions);
+    scrollTo(0);
+  }, 1000);
+}
+
+export function removePageChangeListener() {
+  const pagination = document.querySelector(".pagination__nav");
+
+  if (pagination) pagination.removeEventListener("click", pageChangeHandler);
 }

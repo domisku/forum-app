@@ -8,23 +8,27 @@ import calculateResultsIndexes from "./pagination/calculateResultsIndexes.js";
 export default function listenForSelectedCategoryChange() {
   const select = document.querySelector("#category-filter");
 
-  select.addEventListener("change", async () => {
-    const selectedCategory = select.options[select.selectedIndex].value;
+  select.addEventListener("change", categoryChangeHandler);
+}
 
-    if (selectedCategory === "all") filters.category = "";
-    else filters.category = selectedCategory;
+export async function categoryChangeHandler() {
+  const selectedCategory = select.options[select.selectedIndex].value;
 
-    resetPagination();
-    const params = constructParams(filters);
-    const { questions, lastPage } = await fetchFromDB(
-      "questions",
-      params,
-      true
-    );
-    filters.lastPage = lastPage;
+  if (selectedCategory === "all") filters.category = "";
+  else filters.category = selectedCategory;
 
-    resetControls();
-    calculateResultsIndexes(questions.length);
-    renderQuestions(questions);
-  });
+  resetPagination();
+  const params = constructParams(filters);
+  const { questions, lastPage } = await fetchFromDB("questions", params, true);
+  filters.lastPage = lastPage;
+
+  resetControls();
+  calculateResultsIndexes(questions.length);
+  renderQuestions(questions);
+}
+
+export function removeCategoryListener() {
+  const select = document.querySelector("#category-filter");
+
+  if (select) select.removeEventListener("click", categoryChangeHandler);
 }
