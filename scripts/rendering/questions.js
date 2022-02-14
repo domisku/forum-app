@@ -1,4 +1,4 @@
-import fetchFromDB from "../fetchers/fetchFromDB.js";
+import fetchFromDB from "../services/fetchFromDB.js";
 import renderQuestion from "./question.js";
 
 export default async function renderQuestions(questions) {
@@ -9,7 +9,7 @@ export default async function renderQuestions(questions) {
   clearMainContent();
 
   for (let entry of questions) {
-    const author = users.find((user) => user.userId === entry.userId);
+    const author = users.find((user) => user.id === entry.userId);
 
     renderQuestion(entry, author);
   }

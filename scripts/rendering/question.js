@@ -47,12 +47,14 @@ export default function renderQuestion(question, author) {
     default:
   }
 
-  question.tags.forEach((tagname) => {
-    const tag = document.createElement("li");
-    tag.classList.add("question__tag");
-    tag.textContent = tagname;
-    tagList.appendChild(tag);
-  });
+  if (question.tags[0]) {
+    question.tags.forEach((tagname) => {
+      const tag = document.createElement("li");
+      tag.classList.add("question__tag");
+      tag.textContent = tagname;
+      tagList.appendChild(tag);
+    });
+  }
 
   mainContentContainer.appendChild(clone);
 }

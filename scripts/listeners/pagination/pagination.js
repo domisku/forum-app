@@ -1,4 +1,4 @@
-import fetchFromDB from "../../fetchers/fetchFromDB.js";
+import fetchFromDB from "../../services/fetchFromDB.js";
 import filters, { constructParams } from "../../store/filters.js";
 import renderQuestions from "../../rendering/questions.js";
 import scrollTo from "../../utils/UI/scrollTo.js";

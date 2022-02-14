@@ -3,6 +3,7 @@ import renderHeader from "../utils/UI/renderHeader.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
 import { ASK_QUESTION } from "./pageNameStrings/pageNameStrings.js";
 import removeListeners from "../utils/UI/removeListeners.js";
+import renderQuestionForm from "../rendering/renderQuestionForm.js";
 
 export default function askQuestion() {
   if (currentPage.index === ASK_QUESTION) return;
@@ -14,5 +15,3 @@ export default function askQuestion() {
   renderHeader("Ask a Question");
   renderQuestionForm();
 }
-
-function renderQuestionForm() {}

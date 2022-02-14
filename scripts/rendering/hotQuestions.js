@@ -1,4 +1,4 @@
-import fetchFromDB from "../fetchers/fetchFromDB.js";
+import fetchFromDB from "../services/fetchFromDB.js";
 
 export default async function renderHotQuestions(users) {
   const questions = await fetchFromDB(
@@ -15,7 +15,7 @@ export default async function renderHotQuestions(users) {
   for (let question of questions) {
     if (i === 5) break;
 
-    const author = users.find((user) => user.userId === question.userId);
+    const author = users.find((user) => user.id === question.userId);
 
     const clone = hotQuestionTemplate.content.cloneNode(true);
     const userImg = clone.querySelector(".sidebar-right__hot-img");

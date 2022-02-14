@@ -1,4 +1,4 @@
-import fetchFromDB from "./scripts/fetchers/fetchFromDB.js";
+import fetchFromDB from "./scripts/services/fetchFromDB.js";
 import filters from "./scripts/store/filters.js";
 import { constructParams } from "./scripts/store/filters.js";
 
@@ -10,7 +10,7 @@ import renderHotQuestions from "./scripts/rendering/hotQuestions.js";
 import renderMemberCount from "./scripts/rendering/memberCount.js";
 import renderQuestionsCount from "./scripts/rendering/questionsCount.js";
 import renderTagCount from "./scripts/rendering/tagCount.js";
-import allQuestions from "./scripts/pages/allQuestions.js";
+import askQuestion from "./scripts/pages/askQuestion.js";
 
 connectLeftSidebarListeners();
 connectScrollEventListeners();
@@ -29,5 +29,6 @@ async function renderDynamicContent() {
   renderTagCount(unfilteredQuestionsCollection);
   renderHotQuestions(usersCollection);
 
-  allQuestions();
+  // allQuestions();
+  askQuestion();
 }
