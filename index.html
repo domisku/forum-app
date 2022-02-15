@@ -266,31 +266,35 @@
 
     <template id="askQuestionTemplate">
       <form class="question-form">
-        <div class="question-form__input-wrapper">
+        <div id="formNameWrapper" class="question-form__input-wrapper">
           <input
             id="inputName"
             type="text"
             name="name"
             class="question-form__input"
+            maxlength="40"
           />
           <label for="inputName" class="question-form__label">Name</label>
         </div>
-        <div class="question-form__input-wrapper">
+        <div id="formTitleWrapper" class="question-form__input-wrapper">
           <input
             id="inputTitle"
             type="text"
             name="title"
             class="question-form__input"
+            maxlength="140"
           />
           <label for="inputTitle" class="question-form__label">Title</label>
         </div>
         <div
+          id="formDescriptionWrapper"
           class="question-form__input-wrapper question-form__input-wrapper--textarea"
         >
           <textarea
             id="inputDescription"
             class="question-form__input question-form__input--textarea"
             name="description"
+            maxlength="5000"
           ></textarea>
           <label
             for="inputDescription"
@@ -298,17 +302,16 @@
             >Description</label
           >
         </div>
-        <div class="question-form__input-wrapper">
+        <div id="formDateWrapper" class="question-form__input-wrapper">
           <div class="question-form__date-wrapper">
             <input
               id="inputYear"
               type="number"
               name="year"
               class="question-form__input"
-              min="1970"
             />
             <label for="inputYear" class="question-form__date-label"
-              >Year <i>(yyyy)</i></label
+              >Year</label
             >
           </div>
           <div class="question-form__date-wrapper">
@@ -317,11 +320,9 @@
               type="number"
               name="month"
               class="question-form__input"
-              min="1"
-              max="12"
             />
             <label for="inputMonth" class="question-form__date-label"
-              >Month <i>(mm)</i></label
+              >Month</label
             >
           </div>
           <div class="question-form__date-wrapper">
@@ -330,34 +331,32 @@
               type="number"
               name="day"
               class="question-form__input"
-              min="1"
-              max="31"
             />
-            <label for="inputDay" class="question-form__date-label"
-              >Day <i>(dd)</i></label
-            >
+            <label for="inputDay" class="question-form__date-label">Day</label>
           </div>
         </div>
-        <div class="question-form__input-wrapper">
+        <div id="formCategoryWrapper" class="question-form__input-wrapper">
           <input
             id="inputCategory"
             type="text"
             name="category"
             class="question-form__input"
+            maxlength="40"
           />
           <label for="inputCategory" class="question-form__label"
             >Category</label
           >
         </div>
-        <div class="question-form__input-wrapper">
+        <div id="formTagsWrapper" class="question-form__input-wrapper">
           <input
             id="inputTags"
             type="text"
             name="tags"
             class="question-form__input"
+            maxlength="140"
           />
           <label for="inputTags" class="question-form__label"
-            >Tags <i>(comma-seperated)</i></label
+            >Tags <i>(optional)</i></label
           >
         </div>
         <div class="question-form__buttons-wrapper">

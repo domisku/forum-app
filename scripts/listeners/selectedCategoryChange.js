@@ -12,6 +12,7 @@ export default function listenForSelectedCategoryChange() {
 }
 
 export async function categoryChangeHandler() {
+  const select = document.querySelector("#category-filter");
   const selectedCategory = select.options[select.selectedIndex].value;
 
   if (selectedCategory === "all") filters.category = "";

@@ -6,6 +6,7 @@ export default async function renderHotQuestions(users) {
     "_sort=views&_order=desc&_limit=5"
   );
 
+  clearHotQuestions();
   const hotQuestionList = document.querySelector(".sidebar-right__hot-list");
   const hotQuestionTemplate = document.querySelector(
     ".sidebar-right__hot-item-template"
@@ -28,4 +29,12 @@ export default async function renderHotQuestions(users) {
 
     i++;
   }
+}
+
+function clearHotQuestions() {
+  const hotQuestionItem = document.querySelectorAll(".sidebar-right__hot-item");
+
+  if (!hotQuestionItem) return;
+
+  hotQuestionItem.forEach((item) => item.remove());
 }

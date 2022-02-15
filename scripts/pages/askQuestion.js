@@ -3,7 +3,7 @@ import renderHeader from "../utils/UI/renderHeader.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
 import { ASK_QUESTION } from "./pageNameStrings/pageNameStrings.js";
 import removeListeners from "../utils/UI/removeListeners.js";
-import renderQuestionForm from "../rendering/renderQuestionForm.js";
+import renderQuestionForm from "../rendering/questionForm/questionForm.js";
 
 export default function askQuestion() {
   if (currentPage.index === ASK_QUESTION) return;

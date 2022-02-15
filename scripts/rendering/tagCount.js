@@ -1,7 +1,11 @@
 export default function renderTagCount(questions) {
+  clearOldTags();
+
   const tagMap = {};
 
   for (let question of questions) {
+    if (!question.tags[0]) continue;
+
     question.tags.forEach((tag) => {
       tagMap[tag] ? tagMap[tag]++ : (tagMap[tag] = 1);
     });
@@ -49,4 +53,13 @@ function createTagElements(sortedTags, showAll = false) {
     tagsList.appendChild(tagElement);
     index++;
   }
+}
+
+function clearOldTags() {
+  const oldToggleTagsButton = document.querySelector(".sidebar-right__button");
+
+  if (oldToggleTagsButton) oldToggleTagsButton.remove();
+
+  const tagElements = document.querySelectorAll(".sidebar-right__tags-item");
+  if (tagElements) tagElements.forEach((element) => element.remove());
 }

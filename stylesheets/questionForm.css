@@ -5,7 +5,8 @@
 .question-form__input-wrapper {
   position: relative;
   height: 3rem;
-  margin: 2rem 0;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   width: 100%;
@@ -70,6 +71,14 @@
   box-shadow: 0 0 5px 1px var(--blue-300);
 }
 
+.question-form__input--invalid {
+  box-shadow: 0 0 5px 1px var(--error);
+}
+
+.question-form__input--invalid:focus {
+  box-shadow: 0 0 5px 1px var(--error);
+}
+
 .question-form__label--was-focused {
   animation: moveout 500ms ease-out forwards;
 }
@@ -126,6 +135,10 @@
   text-decoration: underline 2px;
 }
 
+.question-form__error-label {
+  color: var(--error);
+}
+
 @keyframes moveout {
   0% {
     font-size: 11pt;
@@ -135,5 +148,11 @@
   100% {
     font-size: 11pt;
     transform: translate(10%, -150%);
+  }
+}
+
+@media (max-width: 576px) {
+  .question-form__date-wrapper {
+    width: 30%;
   }
 }

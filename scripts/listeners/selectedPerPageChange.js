@@ -11,6 +11,7 @@ export default function listenForSelectedPerPageChange() {
 }
 
 async function perPageChangeHandler() {
+  const select = document.querySelector("#count-filter__select");
   filters.limit = select.options[select.selectedIndex].value;
   filters.page = 1;
 
