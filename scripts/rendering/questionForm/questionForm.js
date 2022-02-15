@@ -9,6 +9,7 @@ import {
 } from "../createLoadingSpinner.js";
 import sleep from "../../utils/sleep/sleep.js";
 import allQuestions from "../../pages/allQuestions.js";
+import showAlert from "../../utils/UI/alert.js";
 
 export default function renderQuestionForm() {
   const mainContent = document.querySelector(".main-content");
@@ -60,18 +61,25 @@ async function formSubmitHandler(event) {
   await renderDynamicContent();
 
   removeLoadingSpinner();
+  showAlert("Your question was added successfully!");
   allQuestions();
 }
 
 export function removeFormListeners() {
-  const inputs = clone.querySelectorAll(".question-form__input");
-  inputs.forEach((input) => {
-    input.removeEventListener("focus", focusInputHandler);
-  });
+  const inputs = document.querySelectorAll(".question-form__input");
+  if (inputs) {
+    inputs.forEach((input) => {
+      input.removeEventListener("focus", focusInputHandler);
+    });
+  }
 
-  const form = clone.querySelector(".question-form");
-  form.removeEventListener("submit", formSubmitHandler);
+  const form = document.querySelector(".question-form");
+  if (form) {
+    form.removeEventListener("submit", formSubmitHandler);
+  }
 
-  const clearButton = clone.querySelector("#resetFormButton");
-  clearButton.removeEventListener("click", clearFormDataHandler);
+  const clearButton = document.querySelector("#resetFormButton");
+  if (clearButton) {
+    clearButton.removeEventListener("click", clearFormDataHandler);
+  }
 }
