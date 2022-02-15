@@ -11,12 +11,23 @@ export default function createLoadingSpinner() {
 }
 
 export function addLoadingSpinner() {
-  const mainContent = document.querySelector(".main-content");
+  const overlay = document.querySelector(".overlay-root");
+  const modalRoot = document.querySelector(".modal-root");
+
+  overlay.classList.add("overlay-root--show");
+  modalRoot.classList.add("modal-root--show");
+
   const spinner = createLoadingSpinner();
-  mainContent.appendChild(spinner);
+  modalRoot.appendChild(spinner);
 }
 
 export function removeLoadingSpinner() {
-  const spinner = document.querySelector(".main-content .loading");
+  const overlay = document.querySelector(".overlay-root");
+  const modalRoot = document.querySelector(".modal-root");
+
+  overlay.classList.remove("overlay-root--show");
+  modalRoot.classList.remove("modal-root--show");
+
+  const spinner = document.querySelector(".modal-root .loading");
   if (spinner) spinner.remove();
 }

@@ -59,13 +59,12 @@ async function pageChangeHandler(event) {
 
   calculateResultsIndexes(questions.length);
 
-  clearMainContent();
   addLoadingSpinner();
-  scrollTo(0);
 
   timeout = setTimeout(async () => {
     await renderQuestions(questions);
     removeLoadingSpinner();
+    scrollTo(0);
   }, 1000);
 }
 

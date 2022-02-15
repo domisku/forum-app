@@ -14,16 +14,19 @@ import {
   addLoadingSpinner,
   removeLoadingSpinner,
 } from "../rendering/createLoadingSpinner.js";
+import sleep from "../utils/sleep/sleep.js";
 
 export default async function newQuestions() {
   if (currentPage.index === NEW_QUESTIONS) return;
   currentPage.index = NEW_QUESTIONS;
 
+  addLoadingSpinner();
+  await sleep(800);
+
   removeListeners();
   removeOldPage();
 
   renderHeader("New Questions");
-  addLoadingSpinner();
 
   resetFilters(filters);
   filters.limit = 2;

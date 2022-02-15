@@ -17,10 +17,14 @@ import {
   addLoadingSpinner,
   removeLoadingSpinner,
 } from "../rendering/createLoadingSpinner.js";
+import sleep from "../utils/sleep/sleep.js";
 
 export default async function allQuestions() {
   if (currentPage.index === ALL_QUESTIONS) return;
   currentPage.index = ALL_QUESTIONS;
+
+  addLoadingSpinner();
+  await sleep(800);
 
   removeListeners();
   removeOldPage();
@@ -31,7 +35,6 @@ export default async function allQuestions() {
   filters.lastPage = lastPage;
 
   renderHeader(questions);
-  addLoadingSpinner();
   await renderQuestions(questions);
   renderPagination();
   removeLoadingSpinner();

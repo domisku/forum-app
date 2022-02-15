@@ -19,6 +19,8 @@
     <script src="app.js" type="module"></script>
   </head>
   <body>
+    <div class="overlay-root"></div>
+    <div class="modal-root"></div>
     <header class="header">
       <h1 class="header__title"><b>Forum</b>App</h1>
       <form class="search-form">
@@ -306,7 +308,7 @@
               min="1970"
             />
             <label for="inputYear" class="question-form__date-label"
-              ><i>Year (yyyy)</i></label
+              >Year <i>(yyyy)</i></label
             >
           </div>
           <div class="question-form__date-wrapper">
@@ -319,7 +321,7 @@
               max="12"
             />
             <label for="inputMonth" class="question-form__date-label"
-              ><i>Month (mm)</i></label
+              >Month <i>(mm)</i></label
             >
           </div>
           <div class="question-form__date-wrapper">
@@ -332,7 +334,7 @@
               max="31"
             />
             <label for="inputDay" class="question-form__date-label"
-              ><i>Day (dd)</i></label
+              >Day <i>(dd)</i></label
             >
           </div>
         </div>
