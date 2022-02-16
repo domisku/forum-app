@@ -6,6 +6,8 @@ import removeListeners from "../utils/UI/removeListeners.js";
 import renderEditForm from "../rendering/questionForm/editForm.js";
 
 export default function editQuestion(id, userId) {
+  if (id === undefined || userId === undefined) return;
+
   if (currentPage.index === EDIT_QUESTION) return;
   currentPage.index = EDIT_QUESTION;
 

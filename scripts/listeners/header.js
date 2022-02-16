@@ -1,4 +1,4 @@
-import allQuestions from "../pages/allQuestions.js";
+import navigate from "../routing/navigate.js";
 
 export default function connectHeaderListeners() {
   const homeLink = document.querySelector(".header__title");
@@ -11,5 +11,5 @@ export default function connectHeaderListeners() {
 }
 
 function goHome() {
-  allQuestions();
+  navigate("/");
 }

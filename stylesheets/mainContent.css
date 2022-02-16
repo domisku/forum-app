@@ -223,3 +223,7 @@
   color: white;
   cursor: pointer;
 }
+
+.error-image {
+  width: 100%;
+}

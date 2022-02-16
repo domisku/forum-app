@@ -1,6 +1,4 @@
-import newQuestions from "../pages/newQuestions.js";
-import allQuestions from "../pages/allQuestions.js";
-import askQuestion from "../pages/askQuestion.js";
+import navigate from "../routing/navigate.js";
 
 export default function connectHamburgerListeners() {
   const button = document.querySelector(".hamburger__button");
@@ -22,7 +20,7 @@ export default function connectHamburgerListeners() {
   const allQuestionsPageLink = document.querySelector("#hamburgerAllQuestions");
   const askQuestionPageLink = document.querySelector("#hamburgerAskQuestion");
 
-  newQuestionsPageLink.addEventListener("click", newQuestions);
-  allQuestionsPageLink.addEventListener("click", allQuestions);
-  askQuestionPageLink.addEventListener("click", askQuestion);
+  newQuestionsPageLink.addEventListener("click", () => navigate("/new"));
+  allQuestionsPageLink.addEventListener("click", () => navigate("/"));
+  askQuestionPageLink.addEventListener("click", () => navigate("/ask"));
 }

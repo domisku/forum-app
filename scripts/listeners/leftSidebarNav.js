@@ -1,13 +1,11 @@
-import newQuestions from "../pages/newQuestions.js";
-import allQuestions from "../pages/allQuestions.js";
-import askQuestion from "../pages/askQuestion.js";
+import navigate from "../routing/navigate.js";
 
 export default function connectLeftSidebarListeners() {
   const newQuestionsPageLink = document.querySelector("#newQuestionsPage");
   const allQuestionsPageLink = document.querySelector("#allQuestionsPage");
   const askQuestionPageLink = document.querySelector("#askQuestionPage");
 
-  newQuestionsPageLink.addEventListener("click", newQuestions);
-  allQuestionsPageLink.addEventListener("click", allQuestions);
-  askQuestionPageLink.addEventListener("click", askQuestion);
+  newQuestionsPageLink.addEventListener("click", () => navigate("/new"));
+  allQuestionsPageLink.addEventListener("click", () => navigate("/"));
+  askQuestionPageLink.addEventListener("click", () => navigate("/ask"));
 }

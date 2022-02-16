@@ -1,4 +1,5 @@
-import editQuestion from "../pages/editQuestion.js";
+import goToEditForm from "../routing/gotToEditForm.js";
+import navigate from "../routing/navigate.js";
 import convertToMDY from "../utils/date/convertToMDY.js";
 import capitalizeFirstLetter from "../utils/string/capitalizeFirst.js";
 
@@ -69,7 +70,7 @@ function articleClickHandler(event) {
   const article = event.target.closest(".question");
 
   if (article) {
-    editQuestion(+article.id, +article.dataset.userId);
+    navigate("/edit", { id: +article.id, userId: +article.dataset.userId });
   }
 }
 

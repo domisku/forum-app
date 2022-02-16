@@ -11,6 +11,7 @@ import deleteData from "../../services/deleteData.js";
 import updateData from "../../services/updateData.js";
 import transformEditedData from "./transformEditedData.js";
 import fillQuestionData from "./fillQuestionData.js";
+import { navigateAndReplace } from "../../routing/navigate.js";
 
 export default async function renderEditForm(id, userId) {
   const mainContent = document.querySelector(".main-content");
@@ -62,7 +63,7 @@ async function deleteQuestionHandler(event) {
   await sleep(800);
   await renderDynamicContent();
   removeLoadingSpinner();
-  await allQuestions();
+  await navigateAndReplace("/");
 
   showAlert("Your question was deleted!");
 }
@@ -85,7 +86,7 @@ async function formSubmitHandler(event) {
   await sleep(800);
   await renderDynamicContent();
   removeLoadingSpinner();
-  await allQuestions();
+  await navigateAndReplace("/");
   showAlert("Your question was updated successfully!");
 }
 

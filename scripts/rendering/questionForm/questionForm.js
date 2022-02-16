@@ -10,6 +10,7 @@ import {
 import sleep from "../../utils/sleep/sleep.js";
 import allQuestions from "../../pages/allQuestions.js";
 import showAlert from "../../utils/UI/alert.js";
+import { navigateAndReplace } from "../../routing/navigate.js";
 
 export default function renderQuestionForm() {
   const mainContent = document.querySelector(".main-content");
@@ -61,8 +62,8 @@ async function formSubmitHandler(event) {
   await renderDynamicContent();
 
   removeLoadingSpinner();
+  await navigateAndReplace("/");
   showAlert("Your question was added successfully!");
-  allQuestions();
 }
 
 export function removeFormListeners() {
