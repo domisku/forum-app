@@ -84,6 +84,11 @@
   justify-content: space-between;
 }
 
+.question:hover {
+  cursor: pointer;
+  background-color: var(--blue-50);
+}
+
 .question__details {
   width: 60%;
 }

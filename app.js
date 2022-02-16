@@ -3,7 +3,7 @@ import connectHamburgerListeners from "./scripts/listeners/hamburgerMenu.js";
 import connectScrollEventListeners from "./scripts/listeners/scrollButton.js";
 
 import renderDynamicContent from "./scripts/rendering/renderDynamicContent.js";
-import askQuestion from "./scripts/pages/askQuestion.js";
+import allQuestions from "./scripts/pages/allQuestions.js";
 
 bootstrapApp();
 
@@ -13,6 +13,5 @@ async function bootstrapApp() {
   connectHamburgerListeners();
   await renderDynamicContent();
 
-  // allQuestions();
-  askQuestion();
+  allQuestions();
 }

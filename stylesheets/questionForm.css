@@ -135,6 +135,15 @@
   text-decoration: underline 2px;
 }
 
+.question-form__button--delete {
+  background-color: white;
+  color: var(--error);
+}
+
+.question-form__button--delete:hover {
+  text-decoration: underline 2px;
+}
+
 .question-form__error-label {
   color: var(--error);
 }

@@ -1,4 +1,5 @@
-import convertToYMD from "../utils/date/convertToYMD.js";
+import editQuestion from "../pages/editQuestion.js";
+import convertToMDY from "../utils/date/convertToMDY.js";
 import capitalizeFirstLetter from "../utils/string/capitalizeFirst.js";
 
 const questionTemplate = document.querySelector(".question-template");
@@ -7,6 +8,9 @@ export default function renderQuestion(question, author) {
   const mainContentContainer = document.querySelector(".main-content");
   const clone = questionTemplate.content.cloneNode(true);
 
+  mainContentContainer.addEventListener("click", articleClickHandler);
+
+  const article = clone.querySelector(".question");
   const username = clone.querySelector(".question__username");
   const title = clone.querySelector(".question__title");
   const description = clone.querySelector(".question__description");
@@ -19,10 +23,12 @@ export default function renderQuestion(question, author) {
   const tagList = clone.querySelector(".question__tags");
   const status = clone.querySelector(".question__status");
 
+  article.id = question.id;
+  article.dataset.userId = author.id;
   username.textContent = author.username;
   title.textContent = question.title;
   img.src = author.profileImgUrl;
-  date.textContent = convertToYMD(question.dateCreated);
+  date.textContent = convertToMDY(question.dateCreated);
   views.textContent = question.views;
   answers.textContent = question.answers;
   votes.textContent = question.votes;
@@ -57,4 +63,20 @@ export default function renderQuestion(question, author) {
   }
 
   mainContentContainer.appendChild(clone);
+}
+
+function articleClickHandler(event) {
+  const article = event.target.closest(".question");
+
+  if (article) {
+    editQuestion(+article.id, +article.dataset.userId);
+  }
+}
+
+export function removeArticlesListener() {
+  const mainContentContainer = document.querySelector(".main-content");
+
+  if (mainContentContainer) {
+    mainContentContainer.removeEventListener("click", articleClickHandler);
+  }
 }

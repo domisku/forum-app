@@ -4,7 +4,7 @@ export default function showAlert(message) {
   alertRoot.textContent = message;
   alertRoot.addEventListener("click", hideAlert);
 
-  setTimeout(() => hideAlert(), 3500);
+  setTimeout(() => hideAlert(), 4000);
 
   function hideAlert() {
     alertRoot.classList.remove("alert-root--show");
