@@ -297,20 +297,6 @@
       "dateCreated": 61678800000
     },
     {
-      "id": 11,
-      "userId": 5,
-      "category": "animals",
-      "title": "Dignissimos",
-      "description": "Accusantium impedit perferendis ea at sint dolorem id numquam. Enim consequuntur rem ipsum architecto. Non dicta id deserunt maiores debitis molestiae ut.",
-      "tags": [
-        "ut"
-      ],
-      "views": 6,
-      "answers": 8,
-      "votes": 53,
-      "dateCreated": 1223758800000
-    },
-    {
       "id": 12,
       "userId": 3,
       "category": "chemistry",
@@ -333,7 +319,7 @@
       "id": 13,
       "userId": 14,
       "category": "engineering",
-      "title": "Ea ipsum distinctio quod",
+      "title": "Ea ipsum distinctio",
       "description": "Maiores sapiente atque. Minus recusandae nobis dicta error sed aperiam earum aut. Voluptatibus quasi nobis explicabo molestias in. Laboriosam sapiente voluptatem non.",
       "tags": [
         "odit",
@@ -345,7 +331,7 @@
       "views": 113,
       "answers": 16,
       "votes": 45,
-      "dateCreated": 1186952400000
+      "dateCreated": 1189630800000
     },
     {
       "id": 14,
@@ -769,25 +755,6 @@
       "answers": 9,
       "votes": 21,
       "dateCreated": 807570000000
-    },
-    {
-      "id": 44,
-      "userId": 14,
-      "category": "engineering",
-      "title": "Nemo distinctio ullam dolore",
-      "description": "Officiis et voluptas laudantium minus pariatur dolores fugiat quo rerum. Veniam et quis enim esse vero. Minima labore quas et nesciunt aperiam reprehenderit velit distinctio quia. Assumenda repudiandae cumque nulla similique ad saepe.",
-      "tags": [
-        "qui",
-        "excepturi",
-        "consectetur",
-        "quo",
-        "provident",
-        "ex"
-      ],
-      "views": 21,
-      "answers": 3,
-      "votes": 84,
-      "dateCreated": 1198101600000
     },
     {
       "id": 45,

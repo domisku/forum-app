@@ -4,8 +4,7 @@ import renderQuestions from "../rendering/questions.js";
 import filters, { resetFilters } from "../store/filters.js";
 import { constructParams } from "../store/filters.js";
 import renderHeader from "../utils/UI/renderHeader.js";
-import listenForPaginationChange from "../listeners/pagination/pagination.js";
-import removePagination from "../utils/UI/removePagination.js";
+import renderPagination from "../rendering/pagination.js";
 import currentPage from "../store/currentPage.js";
 import removeOldPage from "../utils/UI/removeOldPage.js";
 import { NEW_QUESTIONS } from "./pageNameStrings/pageNameStrings.js";
@@ -39,16 +38,4 @@ export default async function newQuestions() {
   calculateResultsIndexes(2);
 
   removeLoadingSpinner();
-}
-
-function renderPagination() {
-  removePagination();
-
-  const paginationTemplate = document.querySelector("#paginationTemplate");
-  const clone = paginationTemplate.content.cloneNode(true);
-  const mainContent = document.querySelector(".main");
-
-  mainContent.appendChild(clone);
-
-  listenForPaginationChange();
 }
