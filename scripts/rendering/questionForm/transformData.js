@@ -17,7 +17,7 @@ export default function transformData(data) {
     category: data.category,
     title: data.title,
     description: data.description,
-    tags: splitByComma(data.tags),
+    tags: splitByComma(data.tags).filter((tag) => tag.trim() !== ""),
     views: 0,
     answers: 0,
     votes: 0,

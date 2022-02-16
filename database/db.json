@@ -160,24 +160,6 @@
       "dateCreated": 317163600000
     },
     {
-      "id": 3,
-      "userId": 13,
-      "category": "business",
-      "title": "Ipsam aut aspernatur dolor ea maxime molestiae occaecati ab",
-      "description": "Iusto assumenda eius voluptates vel nisi ut. Non eum blanditiis omnis exercitationem reprehenderit. Doloremque quisquam accusantium saepe ut veniam sapiente illo corrupti.",
-      "tags": [
-        "iusto",
-        "explicabo",
-        "aut",
-        "quos",
-        "possimus"
-      ],
-      "views": 97,
-      "answers": 15,
-      "votes": -3,
-      "dateCreated": 1161032400000
-    },
-    {
       "id": 4,
       "userId": 7,
       "category": "biology",
@@ -314,24 +296,6 @@
       "answers": 9,
       "votes": 74,
       "dateCreated": 182898000000
-    },
-    {
-      "id": 13,
-      "userId": 14,
-      "category": "engineering",
-      "title": "Ea ipsum distinctio",
-      "description": "Maiores sapiente atque. Minus recusandae nobis dicta error sed aperiam earum aut. Voluptatibus quasi nobis explicabo molestias in. Laboriosam sapiente voluptatem non.",
-      "tags": [
-        "odit",
-        "omnis",
-        "exercitationem",
-        "qui",
-        "ducimus"
-      ],
-      "views": 113,
-      "answers": 16,
-      "votes": 45,
-      "dateCreated": 1189630800000
     },
     {
       "id": 14,
@@ -894,7 +858,7 @@
       "views": 196,
       "answers": 14,
       "votes": 70,
-      "dateCreated": 1074808800000
+      "dateCreated": 1077487200000
     },
     {
       "id": 56,
@@ -1048,22 +1012,6 @@
       "dateCreated": 653950800000
     },
     {
-      "id": 66,
-      "userId": 6,
-      "category": "gardening",
-      "title": "Velit et et at fugiat in accusantium accusamus enim",
-      "description": "Unde non fugit nihil. Sunt quis adipisci. Temporibus quisquam quod tempore qui nesciunt. Quam deserunt vel officia praesentium illum et. Ab velit et et porro in cum veritatis ad dolor. Deserunt fuga ratione aliquid aperiam sit.",
-      "tags": [
-        "exercitationem",
-        "possimus",
-        "ducimus"
-      ],
-      "views": 173,
-      "answers": 18,
-      "votes": 21,
-      "dateCreated": 1135807200000
-    },
-    {
       "id": 67,
       "userId": 13,
       "category": "chemistry",
@@ -1173,22 +1121,6 @@
       "answers": 7,
       "votes": 65,
       "dateCreated": 818632800000
-    },
-    {
-      "id": 74,
-      "userId": 18,
-      "category": "gardening",
-      "title": "Facilis rerum nostrum qui",
-      "description": "Similique aut reprehenderit quos vero aliquam inventore quia. Aut mollitia nihil quis tenetur enim facilis voluptatibus. Qui laboriosam aut ratione. Asperiores velit eos reprehenderit veritatis quibusdam et odio.",
-      "tags": [
-        "aut",
-        "rem",
-        "eligendi"
-      ],
-      "views": 52,
-      "answers": 19,
-      "votes": 44,
-      "dateCreated": 1160341200000
     },
     {
       "id": 75,
@@ -1404,25 +1336,6 @@
       "dateCreated": 1062104400000
     },
     {
-      "id": 88,
-      "userId": 5,
-      "category": "animals",
-      "title": "Culpa quam laudantium et laudantium ut quae earum",
-      "description": "Iusto enim ut et unde est. Optio ut magni. Praesentium et iusto labore veritatis rerum dicta soluta. Rerum ut et laudantium minima error id reprehenderit. Et cumque animi omnis sapiente quis sit quos.",
-      "tags": [
-        "omnis",
-        "consequatur",
-        "veniam",
-        "qui",
-        "praesentium",
-        "repellendus"
-      ],
-      "views": 117,
-      "answers": 10,
-      "votes": 2,
-      "dateCreated": 1156194000000
-    },
-    {
       "id": 89,
       "userId": 4,
       "category": "gardening",
@@ -1578,21 +1491,6 @@
       "answers": 11,
       "votes": 46,
       "dateCreated": 652568400000
-    },
-    {
-      "id": 98,
-      "userId": 14,
-      "category": "math",
-      "title": "Tenetur qui aliquam corporis",
-      "description": "Minus eos sapiente sed sint ipsa nulla culpa. Deleniti consectetur nulla et. Voluptatem sed unde voluptates. Explicabo magnam doloremque eum nobis enim neque.",
-      "tags": [
-        "ipsam",
-        "nemo"
-      ],
-      "views": 184,
-      "answers": 12,
-      "votes": 73,
-      "dateCreated": 1144443600000
     },
     {
       "id": 99,

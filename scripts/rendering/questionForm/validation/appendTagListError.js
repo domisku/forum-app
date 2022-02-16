@@ -5,7 +5,7 @@ export default function appendTaglistError() {
   input.classList.add("question-form__input--invalid");
 
   const error = createError(
-    `Please enter a valid taglist, eg.: black, phone, tiger`
+    `Please enter a valid taglist (no special symbols), eg.: black, phone, tiger`
   );
   error.setAttribute("for", `inputTags`);
   error.classList.add("question-form__error-label");
