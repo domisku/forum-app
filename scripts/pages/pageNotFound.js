@@ -11,7 +11,6 @@ import sleep from "../utils/sleep/sleep.js";
 import renderErrorImage from "../rendering/renderErrorImage.js";
 
 export default async function pageNotFound() {
-  console.log("ran");
   if (currentPage.index === PAGE_NOT_FOUND) return;
   currentPage.index = PAGE_NOT_FOUND;
 

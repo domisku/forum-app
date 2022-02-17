@@ -1,30 +1,55 @@
-let timeout, hideTimeout;
+import sleep from "../sleep/sleep.js";
 
-export default function showAlert(message) {
+let timeout, hideTimeout, timerOn, hideTimerOn;
+
+export default async function showAlert(message) {
   const alertRoot = document.querySelector(".alert-root");
 
-  (function rushPreviousAlert() {
-    if (timeout) {
+  await rushPreviousAlert();
+  async function rushPreviousAlert() {
+    if (timerOn) {
       clearTimeout(timeout);
-      hideAlert();
-    } else if (hideTimeout) {
-      clearTimeout(hideTimeout);
-      alertRoot.classList.remove("alert-root--hide");
+      playRemoveAnimation();
+      await sleep(700);
+      removeAlert();
+      timerOn = false;
     }
-  })();
+
+    if (hideTimerOn) {
+      clearTimeout(hideTimeout);
+      await sleep(700);
+      removeAlert();
+      hideTimerOn = false;
+    }
+  }
 
   alertRoot.classList.add("alert-root--show");
   alertRoot.textContent = message;
   alertRoot.addEventListener("click", hideAlert);
 
-  timeout = setTimeout(() => hideAlert(), 4000);
+  timerOn = true;
+  timeout = setTimeout(() => {
+    hideAlert();
+    timerOn = false;
+  }, 4000);
 
   function hideAlert() {
+    playRemoveAnimation();
+
+    hideTimerOn = true;
+    hideTimeout = setTimeout(() => {
+      removeAlert();
+      hideTimerOn = false;
+    }, 700);
+  }
+
+  function playRemoveAnimation() {
     alertRoot.classList.remove("alert-root--show");
     alertRoot.classList.add("alert-root--hide");
-    hideTimeout = setTimeout(
-      () => alertRoot.classList.remove("alert-root--hide"),
-      700
-    );
+  }
+
+  function removeAlert() {
+    alertRoot.classList.remove("alert-root--hide");
+    alertRoot.textContent = "";
   }
 }
