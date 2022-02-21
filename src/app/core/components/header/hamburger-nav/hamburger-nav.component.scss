@@ -1,0 +1,69 @@
+@use "src/app/shared/styles/variables/breakpoints.scss" as *;
+
+.hamburger {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  &__button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-600);
+    color: var(--gray-200);
+    cursor: pointer;
+    border: none;
+  }
+
+  &__list {
+    position: absolute;
+    right: 0;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--blue-600);
+    color: var(--gray-200);
+    width: 200%;
+    min-width: 15rem;
+    z-index: 1;
+
+    &--show {
+      display: flex;
+      flex-direction: column;
+      transform-origin: top;
+      animation: slideX 350ms ease-out;
+    }
+  }
+
+  &__item {
+    padding: 1rem;
+    border-bottom: 2px solid var(--gray-200);
+    cursor: pointer;
+
+    &:first-of-type {
+      background: var(--blue-300);
+      color: white;
+    }
+  }
+}
+
+@keyframes slideX {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(2%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: $xl) {
+  .hamburger {
+    display: block;
+  }
+}

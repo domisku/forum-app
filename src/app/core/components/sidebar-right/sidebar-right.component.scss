@@ -1,0 +1,23 @@
+@use "src/app/shared/styles/variables/breakpoints.scss" as *;
+
+:host {
+  position: sticky;
+  top: 0;
+  height: fit-content;
+  grid-column: 9 / span 2;
+  background-color: var(--blue-100);
+}
+
+@media (max-width: $large) {
+  :host {
+    grid-column: 3 / span 8;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: $small) {
+  :host {
+    grid-column: 1 / span 10;
+    grid-row: 2;
+  }
+}

@@ -1,1 +1,12 @@
-<p>header-nav works!</p>
+<nav class="header-nav">
+  <app-hamburger-nav></app-hamburger-nav>
+  <ul class="header-nav__items">
+    <li class="header-nav__item" id="headerHome">Home</li>
+    <li class="header-nav__item">
+      About us<fa-icon [icon]="faCaretDown" [fixedWidth]="true"></fa-icon>
+    </li>
+    <li class="header-nav__item">Blog</li>
+    <li class="header-nav__item">Term</li>
+    <li class="header-nav__item">Contact</li>
+  </ul>
+</nav>

@@ -1,1 +1,34 @@
-<p>question works!</p>
+<template class="question-template">
+  <article class="question">
+    <section class="question__details">
+      <h3 class="question__title"></h3>
+      <p class="question__description"></p>
+      <ul class="question__tags"></ul>
+      <footer class="question__metadata">
+        <img class="question__img" alt="profile picture" />
+        <span class="question__username"></span>
+        <span class="question__status"></span>
+        <span class="question__asked-on">
+          <span class="question__placeholder">Asked on</span>
+          <span class="question__date"></span>
+          in
+          <span class="question__category"></span
+        ></span>
+      </footer>
+    </section>
+    <ul class="question__stats">
+      <li class="question__stats-item">
+        <span class="question__stats-views-count"></span>
+        <span class="question__stats-views">views</span>
+      </li>
+      <li class="question__stats-item">
+        <span class="question__stats-answers-count"></span>
+        <span class="question__stats-answers">answers</span>
+      </li>
+      <li class="question__stats-item">
+        <span class="question__stats-votes-count"></span>
+        <span class="question__stats-votes">votes</span>
+      </li>
+    </ul>
+  </article>
+</template>

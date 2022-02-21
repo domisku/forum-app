@@ -1,1 +1,21 @@
-<p>hamburger-nav works!</p>
+<aside class="hamburger">
+  <button class="hamburger__button">
+    <fa-icon [icon]="faBars" size="2x" [fixedWidth]="true"></fa-icon>
+  </button>
+  <ul class="hamburger__list">
+    <li class="hamburger__item" id="hamburgerAskQuestion">+ Ask a question</li>
+    <li class="hamburger__item" id="hamburgerHome">Home</li>
+    <li class="hamburger__item">
+      About us<fa-icon [icon]="faCaretDown" [fixedWidth]="true"></fa-icon>
+    </li>
+    <li class="hamburger__item">Blog</li>
+    <li class="hamburger__item">Term</li>
+    <li class="hamburger__item">Contract</li>
+    <li class="hamburger__item" id="hamburgerNewQuestions">New questions</li>
+    <li class="hamburger__item" id="hamburgerAllQuestions">All questions</li>
+    <li class="hamburger__item">Tags</li>
+    <li class="hamburger__item">Badges</li>
+    <li class="hamburger__item">Categories</li>
+    <li class="hamburger__item">Users</li>
+  </ul>
+</aside>

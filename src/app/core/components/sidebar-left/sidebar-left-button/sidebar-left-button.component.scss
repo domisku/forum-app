@@ -1,0 +1,41 @@
+@use "src/app/shared/styles/mixins/flex.scss";
+
+.sidebar-left__button-container {
+  @include flex.center;
+  height: 10rem;
+  border-bottom: 2px solid var(--blue-100);
+}
+
+.sidebar-left__button {
+  position: relative;
+  height: 30%;
+  width: 70%;
+  text-transform: uppercase;
+  background-color: var(--blue-300);
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.sidebar-left__button::after {
+  position: absolute;
+  content: "";
+  background-color: var(--blue-200);
+  border-radius: 0.2rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease-out;
+}
+
+.sidebar-left__button:hover::after {
+  transform: scaleX(1);
+}

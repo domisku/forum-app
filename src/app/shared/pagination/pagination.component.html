@@ -1,1 +1,23 @@
-<p>pagination works!</p>
+<template id="paginationTemplate">
+  <footer class="pagination">
+    <div class="pagination__text">
+      Viewing results <span class="pagination__from"></span> -
+      <span class="pagination__to"></span>
+    </div>
+    <nav class="pagination__nav">
+      <button class="pagination__first" data-page="first">
+        <i class="fa-solid fa-angles-left fa-fw"></i>
+      </button>
+      <button class="pagination__prev" data-page="prev">
+        <i class="fa-solid fa-angle-left fa-fw"></i>
+      </button>
+      <span class="pagination__current"></span>
+      <button class="pagination__next" data-page="next">
+        <i class="fa-solid fa-angle-right fa-fw"></i>
+      </button>
+      <button class="pagination__last" data-page="last">
+        <i class="fa-solid fa-angles-right fa-fw"></i>
+      </button>
+    </nav>
+  </footer>
+</template>

@@ -1,0 +1,43 @@
+.sidebar-right {
+  &__hot-questions {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  &__hot-title {
+    border-bottom: 2px solid var(--gray-200);
+    text-transform: uppercase;
+    padding-bottom: 0.6rem;
+    margin: 0;
+  }
+
+  &__hot-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__hot-item {
+    display: flex;
+    align-items: center;
+    padding: 0.1rem 0.6rem;
+    margin-top: 1rem;
+  }
+
+  &__hot-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  &__hot-question {
+    margin-left: 1rem;
+    color: var(--blue-300);
+    font-weight: 600;
+
+    &::after {
+      content: "?";
+    }
+  }
+}

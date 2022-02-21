@@ -1,0 +1,43 @@
+<template id="mainContentHeader">
+  <header class="main-header">
+    <section class="main-header__top">
+      <h2 class="main-header__title">All Questions</h2>
+      <select
+        class="main-header__filter"
+        name="category-filter"
+        id="category-filter"
+      >
+        <option value="" disabled selected>Filter by category</option>
+        <option value="all">All Questions</option>
+      </select>
+    </section>
+    <section class="main-header__bottom">
+      <ul class="main-header__list">
+        <li
+          class="main-header__item main-header__item--active"
+          data-sort-type="latest"
+        >
+          Latest
+        </li>
+        <li class="main-header__item" data-sort-type="votes">Votes</li>
+        <li class="main-header__item" data-sort-type="unanswered">
+          Unanswered
+        </li>
+      </ul>
+      <div class="count-filter">
+        <label class="count-filter__label" for="count-filter__select"
+          >Questions per page:</label
+        >
+        <select
+          class="count-filter__select"
+          name="count-filter__select"
+          id="count-filter__select"
+        >
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="36">36</option>
+        </select>
+      </div>
+    </section>
+  </header>
+</template>

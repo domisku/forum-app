@@ -1,0 +1,81 @@
+@use "src/app/shared/styles/mixins/flex.scss";
+@use "src/app/shared/styles/variables/breakpoints.scss" as *;
+
+.main-header {
+  height: 10rem;
+
+  &__top {
+    height: 65%;
+    border-bottom: 2px solid var(--blue-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  &__bottom {
+    height: 35%;
+    border-bottom: 2px solid var(--blue-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+
+  &__item {
+    @include flex.center;
+    margin-right: 2rem;
+    height: 100%;
+    border-bottom: 4px solid transparent;
+    color: var(--gray-400);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--blue-300);
+    }
+
+    &--active {
+      border-bottom: 4px solid var(--orange);
+    }
+  }
+
+  &__filter {
+    width: 30%;
+  }
+}
+
+.count-filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
+
+  &__select {
+    width: 25%;
+    min-width: 3.6rem;
+    margin-left: 1rem;
+  }
+}
+
+.main-header__filter,
+.count-filter__select {
+  background-color: var(--blue-100);
+  color: var(--gray-400);
+  padding: 0.6rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--gray-300);
+}
+
+@media (max-width: $small) {
+  .count-filter__label {
+    display: none;
+  }
+}

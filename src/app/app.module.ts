@@ -25,6 +25,9 @@ import { HotQuestionsComponent } from './core/components/sidebar-right/hot-quest
 import { AlertComponent } from './shared/UI/alert/alert.component';
 import { LoadingSpinnerComponent } from './shared/UI/loading-spinner/loading-spinner.component';
 import { OverlayComponent } from './shared/UI/overlay/overlay.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ScrollButtonsComponent } from './shared/UI/scroll-buttons/scroll-buttons.component';
+import { AllQuestionsHeaderComponent } from './all-questions/all-questions-header/all-questions-header.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +54,10 @@ import { OverlayComponent } from './shared/UI/overlay/overlay.component';
     AlertComponent,
     LoadingSpinnerComponent,
     OverlayComponent,
+    ScrollButtonsComponent,
+    AllQuestionsHeaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })

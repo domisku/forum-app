@@ -1,0 +1,36 @@
+@use "src/app/shared/styles/variables/breakpoints.scss" as *;
+
+.sidebar-right {
+  &__stats {
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__questions {
+    border-left: 4px solid var(--blue-300);
+    padding-left: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  &__members {
+    border-left: 4px solid var(--orange);
+    padding-left: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  &__total {
+    font-weight: 600;
+    font-size: 2.3rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: $large) {
+  .sidebar-right__stats {
+    height: 7.5rem;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}

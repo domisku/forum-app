@@ -1,0 +1,25 @@
+@use "/src/app/shared/styles/mixins/flex.scss";
+
+.loading {
+  width: 100%;
+  height: 100%;
+  @include flex.center;
+
+  &__spinner {
+    border-radius: 50%;
+    border: 5px solid var(--blue-100);
+    border-top: 5px solid var(--blue-300);
+    height: 60%;
+    width: 60%;
+    animation: spin 800ms linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

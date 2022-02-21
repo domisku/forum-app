@@ -1,0 +1,72 @@
+@use "src/app/shared/styles/variables/breakpoints.scss" as *;
+
+.sidebar-right {
+  &__tags {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__tags-title {
+    border-bottom: 2px solid var(--gray-200);
+    text-transform: uppercase;
+    padding-bottom: 0.6rem;
+    margin: 0;
+  }
+
+  &__tags-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__tags-item {
+    position: relative;
+    width: fit-content;
+    color: var(--gray-400);
+    background-color: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    border-radius: 1rem;
+    padding: 0.1rem 0.6rem;
+    margin-top: 1rem;
+    transition: background-color 150ms ease-in, color 150ms ease-in;
+
+    &[data-count]::after {
+      content: attr(data-count);
+      position: absolute;
+      width: 2rem;
+      right: -2.6rem;
+      color: var(--gray-400);
+    }
+
+    &:hover {
+      background-color: var(--gray-300);
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &__button {
+    color: var(--blue-300);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: auto;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: $large) {
+  .sidebar-right__tags-item {
+    margin-right: 3rem;
+  }
+
+  .sidebar-right__tags-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

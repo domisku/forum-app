@@ -1,0 +1,49 @@
+@use "src/app/shared/styles/mixins/flex.scss";
+@use "src/app/shared/styles/variables/breakpoints.scss" as *;
+
+:host {
+  grid-column: 6 / span 3;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header-nav {
+  width: 100%;
+
+  &__items {
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    @include flex.center;
+    background-color: var(--blue-600);
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    flex: 1;
+    @include flex.center;
+    color: var(--gray-200);
+    cursor: pointer;
+    height: 100%;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: $xl) {
+  :host {
+    grid-column: 8 / span 1;
+  }
+
+  .header-nav__items {
+    flex-direction: column;
+    display: none;
+  }
+}
+
+@media (max-width: $small) {
+  :host {
+    grid-column: 9 / span 1;
+  }
+}
