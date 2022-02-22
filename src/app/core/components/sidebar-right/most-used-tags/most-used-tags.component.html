@@ -1,4 +1,19 @@
 <section class="sidebar-right__tags">
   <h4 class="sidebar-right__tags-title">Most Used Tags</h4>
-  <ul class="sidebar-right__tags-list"></ul>
+  <ul *ngIf="shownTags" class="sidebar-right__tags-list">
+    <li
+      *ngFor="let tag of shownTags"
+      class="sidebar-right__tags-item"
+      attr.data-count="x {{ tag[1] }}"
+    >
+      {{ tag[0] }}
+    </li>
+  </ul>
+  <button
+    *ngIf="shownTags"
+    (click)="onButtonClick()"
+    class="sidebar-right__button"
+  >
+    {{ buttonText }}
+  </button>
 </section>
