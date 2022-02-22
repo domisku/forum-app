@@ -1,34 +1,52 @@
-<template class="question-template">
-  <article class="question">
-    <section class="question__details">
-      <h3 class="question__title"></h3>
-      <p class="question__description"></p>
-      <ul class="question__tags"></ul>
-      <footer class="question__metadata">
-        <img class="question__img" alt="profile picture" />
-        <span class="question__username"></span>
-        <span class="question__status"></span>
-        <span class="question__asked-on">
-          <span class="question__placeholder">Asked on</span>
-          <span class="question__date"></span>
-          in
-          <span class="question__category"></span
-        ></span>
-      </footer>
-    </section>
-    <ul class="question__stats">
-      <li class="question__stats-item">
-        <span class="question__stats-views-count"></span>
-        <span class="question__stats-views">views</span>
-      </li>
-      <li class="question__stats-item">
-        <span class="question__stats-answers-count"></span>
-        <span class="question__stats-answers">answers</span>
-      </li>
-      <li class="question__stats-item">
-        <span class="question__stats-votes-count"></span>
-        <span class="question__stats-votes">votes</span>
+<article *ngFor="let question of questions; index as index" class="question">
+  <section class="question__details">
+    <h3 class="question__title">{{ question.title }}</h3>
+    <p class="question__description">{{ question.description }}</p>
+    <ul class="question__tags">
+      <li *ngFor="let tag of question.tags" class="question__tag">
+        {{ tag }}
       </li>
     </ul>
-  </article>
-</template>
+    <footer class="question__metadata">
+      <img
+        class="question__img"
+        alt="profile picture"
+        [src]="authors[index].profileImgUrl"
+      />
+      <span class="question__username">{{ authors[index].username }}</span>
+      <span
+        class="question__status"
+        [ngClass]="{
+          'question__status--professor': authors[index].status === 'professor',
+          'question__status--reviewer': authors[index].status === 'reviewer',
+          'question__status--train': authors[index].status === 'train'
+        }"
+        >{{ authors[index].status }}</span
+      >
+      <span class="question__asked-on">
+        <span class="question__placeholder">Asked on </span>
+        <span class="question__date">{{
+          question.dateCreated | date: "longDate"
+        }}</span>
+        in
+        <span class="question__category">{{
+          question.category | titlecase
+        }}</span></span
+      >
+    </footer>
+  </section>
+  <ul class="question__stats">
+    <li class="question__stats-item">
+      <span class="question__stats-views-count">{{ question.views }}</span>
+      <span class="question__stats-views">views</span>
+    </li>
+    <li class="question__stats-item">
+      <span class="question__stats-answers-count">{{ question.answers }}</span>
+      <span class="question__stats-answers">answers</span>
+    </li>
+    <li class="question__stats-item">
+      <span class="question__stats-votes-count">{{ question.votes }}</span>
+      <span class="question__stats-votes">votes</span>
+    </li>
+  </ul>
+</article>

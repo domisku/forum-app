@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DeleteService } from './delete.service';
+import { StoreService } from './store.service';
 
-describe('DeleteService', () => {
-  let service: DeleteService;
+describe('StoreService', () => {
+  let service: StoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DeleteService);
+    service = TestBed.inject(StoreService);
   });
 
   it('should be created', () => {

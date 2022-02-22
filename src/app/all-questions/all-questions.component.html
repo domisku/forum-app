@@ -1,1 +1,8 @@
-<p>all-questions works!</p>
+<app-all-questions-header
+  (onFilterChange)="filterChanged()"
+></app-all-questions-header>
+<app-question
+  *ngIf="authors"
+  [questions]="questions"
+  [authors]="authors"
+></app-question>

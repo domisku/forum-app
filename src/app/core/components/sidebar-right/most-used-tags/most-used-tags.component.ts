@@ -1,42 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import Question from 'src/app/core/models/question.model';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
-import { GetService } from 'src/app/core/services/get.service';
+import Question from 'src/app/core/recources/models/question.model';
+import { QuestionsService } from 'src/app/core/recources/services/questions.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-most-used-tags',
   templateUrl: './most-used-tags.component.html',
   styleUrls: ['./most-used-tags.component.scss'],
 })
 export class MostUsedTagsComponent implements OnInit {
-  tagMap: { [key: string]: number } = {};
-  sortedTags: [string, number][] | null = null;
-  shownTags: [string, number][] | null = null;
-  showMoreTags = false;
+  private sortedTags!: [string, number][];
+  private showMoreTags = false;
+
+  shownTags?: [string, number][];
   buttonText = 'See more tags';
 
-  constructor(private getService: GetService) {}
+  constructor(private questionsService: QuestionsService) {}
 
   ngOnInit(): void {
-    this.getService
-      .getQuestions()
+    this.questionsService
+      .get()
+      .pipe(untilDestroyed(this))
       .subscribe((questions) => this.countTags(questions));
-  }
-
-  countTags(questions: Question[]) {
-    for (let question of questions) {
-      if (!question.tags[0]) continue;
-
-      question.tags.forEach((tag) => {
-        this.tagMap[tag] ? this.tagMap[tag]++ : (this.tagMap[tag] = 1);
-      });
-    }
-
-    this.sortedTags = Object.entries(this.tagMap).sort(
-      (cur, next) => next[1] - cur[1]
-    );
-
-    this.shownTags = this.sortedTags.slice(0, 8);
   }
 
   onButtonClick() {
@@ -46,7 +33,25 @@ export class MostUsedTagsComponent implements OnInit {
       this.shownTags = this.sortedTags;
     } else {
       this.buttonText = 'See more tags';
-      this.shownTags = this.sortedTags ? this.sortedTags.slice(0, 8) : null;
+      this.shownTags = this.sortedTags.slice(0, 8);
     }
+  }
+
+  private countTags(questions: Question[]) {
+    const tagMap: { [key: string]: number } = {};
+
+    for (let question of questions) {
+      if (!question.tags[0]) continue;
+
+      question.tags.forEach((tag) => {
+        tagMap[tag] ? tagMap[tag]++ : (tagMap[tag] = 1);
+      });
+    }
+
+    this.sortedTags = Object.entries(tagMap).sort(
+      (cur, next) => next[1] - cur[1]
+    );
+
+    this.shownTags = this.sortedTags.slice(0, 8);
   }
 }
