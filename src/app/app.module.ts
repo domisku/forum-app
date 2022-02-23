@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllQuestionsComponent } from './all-questions/all-questions.component';
-import { NewQuestionComponent } from './new-question/new-question.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
@@ -28,12 +27,13 @@ import { OverlayComponent } from './shared/UI/overlay/overlay.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ScrollButtonsComponent } from './shared/UI/scroll-buttons/scroll-buttons.component';
 import { AllQuestionsHeaderComponent } from './all-questions/all-questions-header/all-questions-header.component';
+import { NewQuestionsComponent } from './new-questions/new-questions.component';
+import { ContentHeaderComponent } from './shared/content-header/content-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AllQuestionsComponent,
-    NewQuestionComponent,
     AskQuestionComponent,
     EditQuestionComponent,
     PaginationComponent,
@@ -55,6 +55,8 @@ import { AllQuestionsHeaderComponent } from './all-questions/all-questions-heade
     OverlayComponent,
     ScrollButtonsComponent,
     AllQuestionsHeaderComponent,
+    NewQuestionsComponent,
+    ContentHeaderComponent,
   ],
   imports: [
     BrowserModule,

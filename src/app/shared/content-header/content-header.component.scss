@@ -1,0 +1,12 @@
+.main-header {
+  height: 6.5rem;
+  border-bottom: 2px solid var(--blue-100);
+  padding: 0 1rem;
+
+  &__title {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}

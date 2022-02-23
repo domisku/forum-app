@@ -39,10 +39,6 @@ export class PaginationComponent implements OnInit {
     this.storeService.setLastPage();
   }
 
-  updatePageNum() {
-    this.currentPage = this.storeService.filters.page;
-  }
-
   onNavigateFirst() {
     this.storeService.filters.page = 1;
     this.updatePageNum();
@@ -67,7 +63,11 @@ export class PaginationComponent implements OnInit {
     this.onPageChange.emit();
   }
 
-  calculateResultsIndexes() {
+  private updatePageNum() {
+    this.currentPage = this.storeService.filters.page;
+  }
+
+  private calculateResultsIndexes() {
     const limit = this.storeService.filters.limit;
     const currentPage = this.storeService.filters.page;
 

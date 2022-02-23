@@ -1,0 +1,11 @@
+<app-content-header [headerTitle]="'New Questions'"></app-content-header>
+<app-question
+  *ngIf="authors"
+  [questions]="questions"
+  [authors]="authors"
+></app-question>
+<app-pagination
+  *ngIf="authors"
+  (onPageChange)="pageChanged()"
+  [resultsCount]="authors.length"
+></app-pagination>
