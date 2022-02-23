@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 import Question from '../core/recources/models/question.model';
@@ -6,6 +6,7 @@ import User from '../core/recources/models/user.model';
 import { QuestionsService } from '../core/recources/services/questions.service';
 import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
+import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 @UntilDestroy()
 @Component({
@@ -16,6 +17,9 @@ import { UsersService } from '../core/recources/services/users.service';
 export class AllQuestionsComponent implements OnInit {
   questions?: Question[];
   authors?: User[];
+
+  @ViewChild(PaginationComponent, { static: false })
+  private paginationComponent?: PaginationComponent;
 
   constructor(
     private questionsService: QuestionsService,
@@ -29,7 +33,17 @@ export class AllQuestionsComponent implements OnInit {
 
   filterChanged() {
     this.authors = undefined;
+    this.resetPagination();
     this.setQuestions();
+  }
+
+  pageChanged() {
+    this.authors = undefined;
+    this.setQuestions();
+  }
+
+  resetPagination() {
+    this.paginationComponent?.resetPagination();
   }
 
   private setQuestions() {

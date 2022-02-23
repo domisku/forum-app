@@ -5,7 +5,7 @@
       class="main-header__filter"
       name="category-filter"
       id="category-filter"
-      (change)="onSetCategory($event)"
+      (change)="onChangeCategory($event)"
     >
       <option value="" disabled selected>Filter by category</option>
       <option value="all">All Questions</option>
@@ -17,7 +17,7 @@
   <section class="main-header__bottom">
     <ul class="main-header__list">
       <li
-        (click)="onSetSort('dateCreated')"
+        (click)="onChangeSort('dateCreated')"
         class="main-header__item main-header__item--active"
         [ngClass]="{
           'main-header__item--active': activeSort === 'dateCreated'
@@ -26,14 +26,14 @@
         Latest
       </li>
       <li
-        (click)="onSetSort('votes')"
+        (click)="onChangeSort('votes')"
         class="main-header__item"
         [ngClass]="{ 'main-header__item--active': activeSort === 'votes' }"
       >
         Votes
       </li>
       <li
-        (click)="onSetSort('answers')"
+        (click)="onChangeSort('answers')"
         class="main-header__item"
         [ngClass]="{ 'main-header__item--active': activeSort === 'answers' }"
       >
@@ -48,7 +48,7 @@
         class="count-filter__select"
         name="count-filter__select"
         id="count-filter__select"
-        (change)="onSetLimit($event)"
+        (change)="onChangeLimit($event)"
       >
         <option value="12">12</option>
         <option value="24">24</option>

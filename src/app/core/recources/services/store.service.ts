@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { QuestionsService } from './questions.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class StoreService {
   };
   filters = this.initialFilters;
 
-  constructor() {}
+  constructor(private questionsService: QuestionsService) {}
 
   resetFilters() {
     this.filters = this.initialFilters;
@@ -28,5 +29,23 @@ export class StoreService {
     const limit = this.filters.limit;
 
     return { category, sorting, order, page, limit };
+  }
+
+  setLastPage() {
+    const regex = /.+rel="next".*page=(.+)&/;
+    let linkHeader: string | null;
+
+    this.questionsService
+      .getWithHeaders(this.getParams())
+      .subscribe((response) => {
+        linkHeader = response.headers.get('Link');
+        const lastPageMatch = linkHeader?.match(regex);
+
+        if (lastPageMatch) {
+          this.filters.lastPage = +lastPageMatch[1];
+        } else {
+          this.filters.lastPage = 1;
+        }
+      });
   }
 }

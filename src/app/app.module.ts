@@ -10,7 +10,6 @@ import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { QuestionComponent } from './shared/question/question.component';
-import { QuestionsComponent } from './shared/questions/questions.component';
 import { FormComponent } from './shared/form/form.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { HeaderNavComponent } from './core/components/header/header-nav/header-nav.component';
@@ -39,7 +38,6 @@ import { AllQuestionsHeaderComponent } from './all-questions/all-questions-heade
     EditQuestionComponent,
     PaginationComponent,
     QuestionComponent,
-    QuestionsComponent,
     FormComponent,
     HeaderComponent,
     HeaderNavComponent,

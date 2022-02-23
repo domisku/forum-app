@@ -33,6 +33,19 @@ export class QuestionsService {
     return this.http.get<Question[]>(`${this.baseUrl}${paramsUrl}`);
   }
 
+  getWithHeaders(params?: Params) {
+    let paramsUrl;
+    if (params) {
+      paramsUrl = this.constructParamsUrl(params);
+    } else {
+      paramsUrl = '';
+    }
+
+    return this.http.get<Question[]>(`${this.baseUrl}${paramsUrl}`, {
+      observe: 'response',
+    });
+  }
+
   getHotQuestions() {
     return this.http.get<Question[]>(this.hotQuestionsUrl);
   }

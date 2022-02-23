@@ -33,7 +33,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
       });
   }
 
-  onSetSort(sortBy: SortOptions) {
+  onChangeSort(sortBy: SortOptions) {
     this.activeSort = sortBy;
     this.storeService.filters.sorting = sortBy;
 
@@ -46,7 +46,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
     this.onFilterChange.emit();
   }
 
-  onSetCategory(event: Event) {
+  onChangeCategory(event: Event) {
     let selectedCategory = (event.target as HTMLSelectElement).value;
 
     if (selectedCategory !== 'all') {
@@ -58,7 +58,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
     this.onFilterChange.emit();
   }
 
-  onSetLimit(event: Event) {
+  onChangeLimit(event: Event) {
     this.storeService.filters.limit = +(event.target as HTMLSelectElement)
       .value;
 
