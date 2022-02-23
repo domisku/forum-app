@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { HeaderNavComponent } from './core/components/header/header-nav/header-nav.component';
@@ -15,9 +18,7 @@ import { SidebarRightComponent } from './core/components/sidebar-right/sidebar-r
 import { StatsComponent } from './core/components/sidebar-right/stats/stats.component';
 import { MostUsedTagsComponent } from './core/components/sidebar-right/most-used-tags/most-used-tags.component';
 import { HotQuestionsComponent } from './core/components/sidebar-right/hot-questions/hot-questions.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
