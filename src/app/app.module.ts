@@ -29,6 +29,8 @@ import { ScrollButtonsComponent } from './shared/UI/scroll-buttons/scroll-button
 import { AllQuestionsHeaderComponent } from './all-questions/all-questions-header/all-questions-header.component';
 import { NewQuestionsComponent } from './new-questions/new-questions.component';
 import { ContentHeaderComponent } from './shared/content-header/content-header.component';
+import { FormsModule } from '@angular/forms';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -57,12 +59,14 @@ import { ContentHeaderComponent } from './shared/content-header/content-header.c
     AllQuestionsHeaderComponent,
     NewQuestionsComponent,
     ContentHeaderComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

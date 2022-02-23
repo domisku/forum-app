@@ -8,10 +8,15 @@ import { faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./hamburger-nav.component.scss'],
 })
 export class HamburgerNavComponent implements OnInit {
+  menuIsShown = false;
   faBars = faBars;
   faCaretDown = faCaretDown;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleMenu() {
+    this.menuIsShown = !this.menuIsShown;
+  }
 }

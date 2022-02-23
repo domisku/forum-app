@@ -1,4 +1,8 @@
-<article *ngFor="let question of questions; index as index" class="question">
+<article
+  *ngFor="let question of questions; index as index"
+  routerLink="/edit/{{ question.id }}"
+  class="question"
+>
   <section class="question__details">
     <h3 class="question__title">{{ question.title }}</h3>
     <p class="question__description">{{ question.description }}</p>
