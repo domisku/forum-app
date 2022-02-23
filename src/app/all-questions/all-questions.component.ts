@@ -28,6 +28,7 @@ export class AllQuestionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.storeService.resetFilters();
     this.setQuestions();
   }
 

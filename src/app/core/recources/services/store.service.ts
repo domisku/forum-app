@@ -5,7 +5,7 @@ import { QuestionsService } from './questions.service';
   providedIn: 'root',
 })
 export class StoreService {
-  initialFilters = {
+  filters = {
     category: '',
     sorting: 'dateCreated',
     order: 'desc',
@@ -13,12 +13,18 @@ export class StoreService {
     page: 1,
     lastPage: 1,
   };
-  filters = this.initialFilters;
 
   constructor(private questionsService: QuestionsService) {}
 
   resetFilters() {
-    this.filters = this.initialFilters;
+    this.filters = {
+      category: '',
+      sorting: 'dateCreated',
+      order: 'desc',
+      limit: 12,
+      page: 1,
+      lastPage: 1,
+    };
   }
 
   getParams() {
