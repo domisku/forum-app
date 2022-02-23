@@ -4,12 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AllQuestionsComponent } from './all-questions/all-questions.component';
-import { AskQuestionComponent } from './ask-question/ask-question.component';
-import { EditQuestionComponent } from './edit-question/edit-question.component';
-import { PaginationComponent } from './shared/pagination/pagination.component';
-import { QuestionComponent } from './shared/question/question.component';
-import { FormComponent } from './shared/form/form.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { HeaderNavComponent } from './core/components/header/header-nav/header-nav.component';
 import { HamburgerNavComponent } from './core/components/header/hamburger-nav/hamburger-nav.component';
@@ -21,26 +15,13 @@ import { SidebarRightComponent } from './core/components/sidebar-right/sidebar-r
 import { StatsComponent } from './core/components/sidebar-right/stats/stats.component';
 import { MostUsedTagsComponent } from './core/components/sidebar-right/most-used-tags/most-used-tags.component';
 import { HotQuestionsComponent } from './core/components/sidebar-right/hot-questions/hot-questions.component';
-import { AlertComponent } from './shared/UI/alert/alert.component';
-import { LoadingSpinnerComponent } from './shared/UI/loading-spinner/loading-spinner.component';
-import { OverlayComponent } from './shared/UI/overlay/overlay.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ScrollButtonsComponent } from './shared/UI/scroll-buttons/scroll-buttons.component';
-import { AllQuestionsHeaderComponent } from './all-questions/all-questions-header/all-questions-header.component';
-import { NewQuestionsComponent } from './new-questions/new-questions.component';
-import { ContentHeaderComponent } from './shared/content-header/content-header.component';
-import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AllQuestionsComponent,
-    AskQuestionComponent,
-    EditQuestionComponent,
-    PaginationComponent,
-    QuestionComponent,
-    FormComponent,
     HeaderComponent,
     HeaderNavComponent,
     HamburgerNavComponent,
@@ -52,13 +33,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     StatsComponent,
     MostUsedTagsComponent,
     HotQuestionsComponent,
-    AlertComponent,
-    LoadingSpinnerComponent,
-    OverlayComponent,
-    ScrollButtonsComponent,
-    AllQuestionsHeaderComponent,
-    NewQuestionsComponent,
-    ContentHeaderComponent,
     NotFoundComponent,
   ],
   imports: [
@@ -66,7 +40,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
