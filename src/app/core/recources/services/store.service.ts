@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { QuestionsService } from './questions.service';
 
 @Injectable({
@@ -16,6 +17,7 @@ export class StoreService {
   alertIsShown = false;
   alertMessage = '';
   timeoutId?: NodeJS.Timeout;
+  formActionSubject = new Subject<void>();
 
   constructor(private questionsService: QuestionsService) {}
 

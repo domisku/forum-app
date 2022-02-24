@@ -59,6 +59,7 @@ export class EditQuestionComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(() => {
         this.loading = false;
+        this.storeService.formActionSubject.next();
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully deleted');
       });
@@ -77,6 +78,7 @@ export class EditQuestionComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(() => {
         this.loading = false;
+        this.storeService.formActionSubject.next();
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully updated');
       });

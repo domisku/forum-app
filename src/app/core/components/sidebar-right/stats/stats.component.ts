@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
+import { StoreService } from 'src/app/core/recources/services/store.service';
 import { UsersService } from 'src/app/core/recources/services/users.service';
 
 @UntilDestroy()
@@ -16,12 +17,20 @@ export class StatsComponent implements OnInit {
 
   constructor(
     private questionsService: QuestionsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private storeService: StoreService
   ) {}
 
   ngOnInit(): void {
     this.setQuestionsCount();
     this.setUsersCount();
+
+    this.storeService.formActionSubject
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.setQuestionsCount();
+        this.setUsersCount();
+      });
   }
 
   private setQuestionsCount() {

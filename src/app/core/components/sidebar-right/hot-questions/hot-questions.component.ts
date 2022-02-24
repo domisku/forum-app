@@ -4,6 +4,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import Question from 'src/app/core/recources/models/question.model';
 import User from 'src/app/core/recources/models/user.model';
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
+import { StoreService } from 'src/app/core/recources/services/store.service';
 import { UsersService } from 'src/app/core/recources/services/users.service';
 
 @UntilDestroy()
@@ -18,11 +19,16 @@ export class HotQuestionsComponent implements OnInit {
 
   constructor(
     private questionsService: QuestionsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private storeService: StoreService
   ) {}
 
   ngOnInit(): void {
     this.setHotQuestions();
+
+    this.storeService.formActionSubject
+      .pipe(untilDestroyed(this))
+      .subscribe(() => this.setHotQuestions());
   }
 
   private setHotQuestions() {

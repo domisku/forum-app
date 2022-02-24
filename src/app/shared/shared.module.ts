@@ -9,7 +9,6 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { QuestionComponent } from './question/question.component';
 import { AlertComponent } from './UI/alert/alert.component';
 import { LoadingSpinnerComponent } from './UI/loading-spinner/loading-spinner.component';
-import { OverlayComponent } from './UI/overlay/overlay.component';
 import { ScrollButtonsComponent } from './UI/scroll-buttons/scroll-buttons.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { ScrollButtonsComponent } from './UI/scroll-buttons/scroll-buttons.compo
     QuestionComponent,
     AlertComponent,
     LoadingSpinnerComponent,
-    OverlayComponent,
     ScrollButtonsComponent,
     InputDirective,
   ],
@@ -32,7 +30,6 @@ import { ScrollButtonsComponent } from './UI/scroll-buttons/scroll-buttons.compo
     QuestionComponent,
     AlertComponent,
     LoadingSpinnerComponent,
-    OverlayComponent,
     ScrollButtonsComponent,
     InputDirective,
   ],

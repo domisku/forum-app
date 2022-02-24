@@ -3,6 +3,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 import Question from 'src/app/core/recources/models/question.model';
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
+import { StoreService } from 'src/app/core/recources/services/store.service';
 
 @UntilDestroy()
 @Component({
@@ -17,13 +18,17 @@ export class MostUsedTagsComponent implements OnInit {
   shownTags?: [string, number][];
   buttonText = 'See more tags';
 
-  constructor(private questionsService: QuestionsService) {}
+  constructor(
+    private questionsService: QuestionsService,
+    private storeService: StoreService
+  ) {}
 
   ngOnInit(): void {
-    this.questionsService
-      .get()
+    this.getTags();
+
+    this.storeService.formActionSubject
       .pipe(untilDestroyed(this))
-      .subscribe((questions) => this.countTags(questions));
+      .subscribe(() => this.getTags());
   }
 
   onButtonClick() {
@@ -35,6 +40,13 @@ export class MostUsedTagsComponent implements OnInit {
       this.buttonText = 'See more tags';
       this.shownTags = this.sortedTags.slice(0, 8);
     }
+  }
+
+  private getTags() {
+    this.questionsService
+      .get()
+      .pipe(untilDestroyed(this))
+      .subscribe((questions) => this.countTags(questions));
   }
 
   private countTags(questions: Question[]) {

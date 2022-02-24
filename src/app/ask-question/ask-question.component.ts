@@ -76,6 +76,7 @@ export class AskQuestionComponent implements OnInit {
       .post(user)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
+        this.storeService.formActionSubject.next();
         this.router.navigate(['/all']);
         this.storeService.showAlert('Your question was posted successfully');
         this.loading = false;
