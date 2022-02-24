@@ -11,6 +11,7 @@ import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
 import convertToJavascriptTime from '../core/utils/convert-to-javascript-time';
 import splitByComma from '../core/utils/split-by-comma';
+import scrollTo from '../core/utils/scroll-to';
 
 @UntilDestroy()
 @Component({
@@ -28,7 +29,9 @@ export class AskQuestionComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    scrollTo(0);
+  }
 
   resetForm(form: FormGroup) {
     form.reset();

@@ -30,6 +30,7 @@ export class AllQuestionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    scrollTo(0);
     this.loading = true;
     this.storeService.resetFilters();
     this.setQuestions();

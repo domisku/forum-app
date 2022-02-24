@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { catchError, throwError } from 'rxjs';
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
 
@@ -11,6 +12,7 @@ import convertToYMD from '../core/utils/convert-to-ymd';
 import convertToJavascriptTime from '../core/utils/convert-to-javascript-time';
 import splitByComma from '../core/utils/split-by-comma';
 import { StoreService } from '../core/recources/services/store.service';
+import scrollTo from '../core/utils/scroll-to';
 
 @UntilDestroy()
 @Component({
@@ -33,6 +35,7 @@ export class EditQuestionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    scrollTo(0);
     this.loading = true;
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
@@ -87,7 +90,13 @@ export class EditQuestionComponent implements OnInit {
   private getQuestionData(id: number) {
     this.questionsService
       .getById(id)
-      .pipe(untilDestroyed(this))
+      .pipe(
+        untilDestroyed(this),
+        catchError((err) => {
+          this.router.navigate(['/404']);
+          return throwError(() => new Error(err.message));
+        })
+      )
       .subscribe((question) => {
         this.userId = question.userId;
         this.getUserData(question);
