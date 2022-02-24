@@ -7,3 +7,4 @@
   (onFormSubmit)="patchData($event)"
   (onSecondaryBtnAction)="deleteQuestion()"
 ></app-form>
+<app-loading-spinner *ngIf="loading" [sizing]="'large'"></app-loading-spinner>

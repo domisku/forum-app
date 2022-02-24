@@ -7,6 +7,7 @@ import { QuestionsService } from '../core/recources/services/questions.service';
 import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
 import { PaginationComponent } from '../shared/pagination/pagination.component';
+import scrollTo from '../core/utils/scroll-to';
 
 @UntilDestroy()
 @Component({
@@ -17,6 +18,7 @@ import { PaginationComponent } from '../shared/pagination/pagination.component';
 export class AllQuestionsComponent implements OnInit {
   questions?: Question[];
   authors?: User[];
+  loading = false;
 
   @ViewChild(PaginationComponent, { static: false })
   private paginationComponent?: PaginationComponent;
@@ -28,17 +30,21 @@ export class AllQuestionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.storeService.resetFilters();
     this.setQuestions();
   }
 
   filterChanged() {
+    this.loading = true;
     this.authors = undefined;
     this.resetPagination();
     this.setQuestions();
   }
 
   pageChanged() {
+    this.loading = true;
+    scrollTo(0);
     this.authors = undefined;
     this.setQuestions();
   }
@@ -67,6 +73,7 @@ export class AllQuestionsComponent implements OnInit {
         this.authors = this.questions!.map((question) => {
           return users.find((user) => user.id === question.userId) as User;
         });
+        this.loading = false;
       });
   }
 }

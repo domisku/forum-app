@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
@@ -10,6 +10,7 @@ import FormData from '../core/recources/models/form-data.model';
 import convertToYMD from '../core/utils/convert-to-ymd';
 import convertToJavascriptTime from '../core/utils/convert-to-javascript-time';
 import splitByComma from '../core/utils/split-by-comma';
+import { StoreService } from '../core/recources/services/store.service';
 
 @UntilDestroy()
 @Component({
@@ -21,14 +22,18 @@ export class EditQuestionComponent implements OnInit {
   private questionId?: number;
   private userId?: number;
   formData?: FormData;
+  loading = false;
 
   constructor(
     private questionsService: QuestionsService,
     private usersService: UsersService,
-    private route: ActivatedRoute
+    private storeService: StoreService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
       throw new Error('Missing id from params!');
@@ -39,6 +44,7 @@ export class EditQuestionComponent implements OnInit {
   }
 
   patchData(formData: FormData) {
+    this.loading = true;
     const question = this.transformToQuestionData(formData);
     this.patchQuestion(question);
 
@@ -47,10 +53,15 @@ export class EditQuestionComponent implements OnInit {
   }
 
   deleteQuestion() {
+    this.loading = true;
     this.questionsService
       .delete(this.questionId!)
       .pipe(untilDestroyed(this))
-      .subscribe();
+      .subscribe(() => {
+        this.loading = false;
+        this.router.navigate(['/all']);
+        this.storeService.showAlert('Question was successfully deleted');
+      });
   }
 
   private patchQuestion(question: Partial<Question>) {
@@ -64,7 +75,11 @@ export class EditQuestionComponent implements OnInit {
     this.usersService
       .patch(user, this.userId!)
       .pipe(untilDestroyed(this))
-      .subscribe();
+      .subscribe(() => {
+        this.loading = false;
+        this.router.navigate(['/all']);
+        this.storeService.showAlert('Question was successfully updated');
+      });
   }
 
   private getQuestionData(id: number) {
@@ -83,6 +98,7 @@ export class EditQuestionComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((user) => {
         this.transformToFormData(question, user);
+        this.loading = false;
       });
   }
 

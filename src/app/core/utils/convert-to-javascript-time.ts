@@ -3,5 +3,5 @@ export default function convertToJavascriptTime(
   month: number,
   day: number
 ) {
-  return new Date(+date, +month, +day).getTime();
+  return new Date(+date, +month - 1, +day).getTime();
 }

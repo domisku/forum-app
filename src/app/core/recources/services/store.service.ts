@@ -13,8 +13,22 @@ export class StoreService {
     page: 1,
     lastPage: 1,
   };
+  alertIsShown = false;
+  alertMessage = '';
+  timeoutId?: NodeJS.Timeout;
 
   constructor(private questionsService: QuestionsService) {}
+
+  showAlert(message: string) {
+    if (this.alertIsShown) {
+      this.alertIsShown = false;
+      clearTimeout(this.timeoutId!);
+    }
+
+    this.alertMessage = message;
+    this.alertIsShown = true;
+    this.timeoutId = setTimeout(() => (this.alertIsShown = false), 3000);
+  }
 
   resetFilters() {
     this.filters = {

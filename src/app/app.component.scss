@@ -6,7 +6,9 @@
 }
 
 .main {
+  position: relative;
   grid-column: 3 / span 6;
+  min-height: calc(100vh - 5rem);
 }
 
 @media (max-width: $large) {

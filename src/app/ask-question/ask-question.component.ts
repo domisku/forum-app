@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import FormData from '../core/recources/models/form-data.model';
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
 import { QuestionsService } from '../core/recources/services/questions.service';
+import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
 import convertToJavascriptTime from '../core/utils/convert-to-javascript-time';
 import splitByComma from '../core/utils/split-by-comma';
@@ -17,9 +19,13 @@ import splitByComma from '../core/utils/split-by-comma';
   styleUrls: ['./ask-question.component.scss'],
 })
 export class AskQuestionComponent implements OnInit {
+  loading = false;
+
   constructor(
     private questionsService: QuestionsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private storeService: StoreService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -29,6 +35,7 @@ export class AskQuestionComponent implements OnInit {
   }
 
   formSubmitted(data: FormData) {
+    this.loading = true;
     const { user, question } = this.transformFormData(data);
     this.postQuestion(question);
     this.postUser(user);
@@ -65,7 +72,14 @@ export class AskQuestionComponent implements OnInit {
   }
 
   private postUser(user: User) {
-    this.usersService.post(user).pipe(untilDestroyed(this)).subscribe();
+    this.usersService
+      .post(user)
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.router.navigate(['/all']);
+        this.storeService.showAlert('Your question was posted successfully');
+        this.loading = false;
+      });
   }
 
   private postQuestion(question: Question) {

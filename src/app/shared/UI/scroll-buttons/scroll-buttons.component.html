@@ -1,8 +1,11 @@
-<div class="scroll-buttons">
-  <button class="scroll-buttons__up" data-direction="up">
-    <i class="fa-solid fa-angle-up fa-fw"></i>
+<div
+  class="scroll-buttons"
+  [ngClass]="{ 'scroll-buttons--show': showScrollButtons }"
+>
+  <button class="scroll-buttons__up" (click)="scrollToPageTop()">
+    <fa-icon [icon]="faAngleUp" [fixedWidth]="true"></fa-icon>
   </button>
-  <button class="scroll-buttons__down" data-direction="down">
-    <i class="fa-solid fa-angle-down fa-fw"></i>
+  <button class="scroll-buttons__down" (click)="scrollToPageBottom()">
+    <fa-icon [icon]="faAngleDown" [fixedWidth]="true"></fa-icon>
   </button>
 </div>

@@ -6,6 +6,7 @@ import User from '../core/recources/models/user.model';
 import { QuestionsService } from '../core/recources/services/questions.service';
 import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
+import scrollTo from '../core/utils/scroll-to';
 
 @UntilDestroy()
 @Component({
@@ -16,6 +17,7 @@ import { UsersService } from '../core/recources/services/users.service';
 export class NewQuestionsComponent implements OnInit {
   questions?: Question[];
   authors?: User[];
+  loading = false;
 
   constructor(
     private questionsService: QuestionsService,
@@ -24,11 +26,14 @@ export class NewQuestionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.storeService.resetFilters();
     this.setQuestions();
   }
 
   pageChanged() {
+    this.loading = true;
+    scrollTo(0);
     this.authors = undefined;
     this.setQuestions();
   }
@@ -54,6 +59,7 @@ export class NewQuestionsComponent implements OnInit {
         this.authors = this.questions!.map((question) => {
           return users.find((user) => user.id === question.userId) as User;
         });
+        this.loading = false;
       });
   }
 }

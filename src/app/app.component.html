@@ -6,3 +6,8 @@
   </main>
   <app-sidebar-right></app-sidebar-right>
 </div>
+<app-scroll-buttons></app-scroll-buttons>
+<app-alert
+  *ngIf="storeService.alertIsShown"
+  [message]="storeService.alertMessage"
+></app-alert>

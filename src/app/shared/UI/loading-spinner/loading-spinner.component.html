@@ -1,1 +1,10 @@
-<p>loading-spinner works!</p>
+<div class="loading">
+  <div
+    class="loading__spinner"
+    [ngClass]="{
+      'loading__spinner--small': sizing === 'small',
+      'loading__spinner--medium': sizing === 'medium',
+      'loading__spinner--large': sizing === 'large'
+    }"
+  ></div>
+</div>
