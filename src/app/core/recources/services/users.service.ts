@@ -15,4 +15,8 @@ export class UsersService {
   get(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
   }
+
+  post(user: User) {
+    return this.http.post(this.baseUrl, user);
+  }
 }

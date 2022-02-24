@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ContentHeaderComponent } from './content-header/content-header.component';
-import { FormComponent } from './form/form.component';
+import { FormComponent, InputDirective } from './form/form.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { QuestionComponent } from './question/question.component';
 import { AlertComponent } from './UI/alert/alert.component';
@@ -22,8 +22,9 @@ import { ScrollButtonsComponent } from './UI/scroll-buttons/scroll-buttons.compo
     LoadingSpinnerComponent,
     OverlayComponent,
     ScrollButtonsComponent,
+    InputDirective,
   ],
-  imports: [CommonModule, FormsModule, FontAwesomeModule],
+  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
   exports: [
     ContentHeaderComponent,
     FormComponent,
@@ -33,6 +34,7 @@ import { ScrollButtonsComponent } from './UI/scroll-buttons/scroll-buttons.compo
     LoadingSpinnerComponent,
     OverlayComponent,
     ScrollButtonsComponent,
+    InputDirective,
   ],
 })
 export class SharedModule {}

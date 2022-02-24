@@ -80,4 +80,8 @@ export class QuestionsService {
 
     return paramsUrl;
   }
+
+  post(question: Question) {
+    return this.http.post(this.baseUrl, question);
+  }
 }

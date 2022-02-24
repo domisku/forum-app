@@ -1,2 +1,7 @@
 <app-content-header [headerTitle]="'Ask a Question'"></app-content-header>
-<app-form></app-form>
+<app-form
+  [primaryBtnText]="'Save'"
+  [secondaryBtnText]="'Clear'"
+  (onFormSubmit)="formSubmitted($event)"
+  (onSecondaryBtnAction)="resetForm($event)"
+></app-form>

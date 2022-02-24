@@ -1,53 +1,47 @@
-<form class="question-form" (ngSubmit)="onSubmit()" #form="ngForm">
+<form [formGroup]="form" class="question-form" (ngSubmit)="onSubmit()">
   <div id="formNameWrapper" class="question-form__input-wrapper">
     <input
+      appInput
+      formControlName="name"
       id="inputName"
       type="text"
-      name="authorName"
       class="question-form__input"
-      [ngClass]="{
-        'question-form__input--invalid':
-          authorName.invalid && authorName.touched
-      }"
-      (focus)="authorNameFocused = true"
-      ngModel
-      maxlength="40"
-      required
-      authorName
-      #authorName="ngModel"
     />
-    <label
-      for="authorName"
-      class="question-form__label"
-      [ngClass]="{ 'question-form__label--was-focused': authorNameFocused }"
-      >Name</label
-    >
+    <label for="inputName" class="question-form__label">Name</label>
   </div>
   <label
-    *ngIf="authorName.invalid && authorName.touched"
-    for="authorName"
+    *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
+    for="inputName"
     class="question-form__error-label"
-    >Please enter a valid name</label
   >
+    Please enter a valid name (&#60; 40 chars)
+  </label>
   <div id="formTitleWrapper" class="question-form__input-wrapper">
     <input
+      appInput
+      formControlName="title"
       id="inputTitle"
       type="text"
-      name="title"
       class="question-form__input"
-      maxlength="140"
     />
     <label for="inputTitle" class="question-form__label">Title</label>
   </div>
+  <label
+    *ngIf="!form.get('title')?.valid && form.get('title')?.touched"
+    for="inputTitle"
+    class="question-form__error-label"
+  >
+    Please enter a valid title (&#60; 140 chars)
+  </label>
   <div
     id="formDescriptionWrapper"
     class="question-form__input-wrapper question-form__input-wrapper--textarea"
   >
     <textarea
+      appInput
+      formControlName="description"
       id="inputDescription"
       class="question-form__input question-form__input--textarea"
-      name="description"
-      maxlength="5000"
     ></textarea>
     <label
       for="inputDescription"
@@ -55,50 +49,79 @@
       >Description</label
     >
   </div>
-  <div id="formDateWrapper" class="question-form__input-wrapper">
+  <label
+    *ngIf="!form.get('description')?.valid && form.get('description')?.touched"
+    for="inputDescription"
+    class="question-form__error-label"
+  >
+    Please enter a valid description (&#60; 4000 chars)
+  </label>
+  <div
+    formGroupName="date"
+    id="formDateWrapper"
+    class="question-form__input-wrapper"
+  >
     <div class="question-form__date-wrapper">
       <input
+        appInput
+        formControlName="year"
         id="inputYear"
         type="number"
-        name="year"
         class="question-form__input"
       />
       <label for="inputYear" class="question-form__date-label">Year</label>
     </div>
     <div class="question-form__date-wrapper">
       <input
+        appInput
+        formControlName="month"
         id="inputMonth"
         type="number"
-        name="month"
         class="question-form__input"
       />
       <label for="inputMonth" class="question-form__date-label">Month</label>
     </div>
     <div class="question-form__date-wrapper">
       <input
+        appInput
+        formControlName="day"
         id="inputDay"
         type="number"
-        name="day"
         class="question-form__input"
       />
       <label for="inputDay" class="question-form__date-label">Day</label>
     </div>
   </div>
+  <label
+    *ngIf="!form.get('date')?.valid && form.get('date')?.touched"
+    for="formDateWrapper"
+    class="question-form__error-label"
+  >
+    Please enter a valid date
+  </label>
   <div id="formCategoryWrapper" class="question-form__input-wrapper">
     <input
+      appInput
+      formControlName="category"
       id="inputCategory"
       type="text"
-      name="category"
       class="question-form__input"
-      maxlength="40"
     />
     <label for="inputCategory" class="question-form__label">Category</label>
   </div>
+  <label
+    *ngIf="!form.get('category')?.valid && form.get('category')?.touched"
+    for="inputCategory"
+    class="question-form__error-label"
+  >
+    Please enter a valid category (&#60; 40 chars)
+  </label>
   <div id="formTagsWrapper" class="question-form__input-wrapper">
     <input
+      appInput
+      formControlName="tags"
       id="inputTags"
       type="text"
-      name="tags"
       class="question-form__input"
       maxlength="140"
     />
@@ -106,18 +129,28 @@
       >Tags <i>(optional)</i></label
     >
   </div>
+  <label
+    *ngIf="!form.get('tags')?.valid && form.get('tags')?.touched"
+    for="inputTags"
+    class="question-form__error-label"
+  >
+    Please enter a valid taglist (no special symbols), eg.: black, phone, tiger
+  </label>
   <div class="question-form__buttons-wrapper">
     <button
+      [disabled]="!form.valid"
       type="submit"
       class="question-form__button question-form__button--main"
     >
-      Save
+      {{ primaryBtnText }}
     </button>
     <button
       id="resetFormButton"
+      type="button"
       class="question-form__button question-form__button--clear"
+      (click)="onSecondaryBtnClick()"
     >
-      Clear
+      {{ secondaryBtnText }}
     </button>
   </div>
 </form>

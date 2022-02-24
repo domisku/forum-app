@@ -66,20 +66,16 @@
     outline: none;
     transition: box-shadow 200ms ease-out;
 
-    &--textarea {
-      resize: none;
-      font-family: "Lato", sans-serif;
-    }
-
-    &:focus {
-      box-shadow: 0 0 5px 1px var(--blue-300);
-    }
-
-    &--invalid {
+    &.ng-invalid.ng-touched {
       box-shadow: 0 0 5px 1px var(--error);
 
+      &--textarea {
+        resize: none;
+        font-family: "Lato", sans-serif;
+      }
+
       &:focus {
-        box-shadow: 0 0 5px 1px var(--error);
+        box-shadow: 0 0 5px 1px var(--blue-300);
       }
     }
   }
@@ -125,6 +121,18 @@
 
       &:hover::after {
         transform: scaleX(1);
+      }
+
+      &[disabled] {
+        background-color: var(--gray-200);
+
+        &::after {
+          transition: none;
+        }
+
+        &:hover::after {
+          background-color: inherit;
+        }
       }
     }
 
