@@ -16,7 +16,15 @@ export class UsersService {
     return this.http.get<User[]>(this.baseUrl);
   }
 
+  getById(id: number) {
+    return this.http.get<User>(`${this.baseUrl}/${id}`);
+  }
+
   post(user: User) {
     return this.http.post(this.baseUrl, user);
+  }
+
+  patch(user: Partial<User>, id: number) {
+    return this.http.patch(`${this.baseUrl}/${id}`, user);
   }
 }

@@ -7,7 +7,12 @@
       type="text"
       class="question-form__input"
     />
-    <label for="inputName" class="question-form__label">Name</label>
+    <label
+      for="inputName"
+      class="question-form__label"
+      [ngClass]="{ 'question-form__label--was-focused': init }"
+      >Name</label
+    >
   </div>
   <label
     *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
@@ -24,7 +29,12 @@
       type="text"
       class="question-form__input"
     />
-    <label for="inputTitle" class="question-form__label">Title</label>
+    <label
+      for="inputTitle"
+      class="question-form__label"
+      [ngClass]="{ 'question-form__label--was-focused': init }"
+      >Title</label
+    >
   </div>
   <label
     *ngIf="!form.get('title')?.valid && form.get('title')?.touched"
@@ -46,6 +56,7 @@
     <label
       for="inputDescription"
       class="question-form__label question-form__label--textarea"
+      [ngClass]="{ 'question-form__label--was-focused': init }"
       >Description</label
     >
   </div>
@@ -69,7 +80,12 @@
         type="number"
         class="question-form__input"
       />
-      <label for="inputYear" class="question-form__date-label">Year</label>
+      <label
+        for="inputYear"
+        class="question-form__date-label"
+        [ngClass]="{ 'question-form__label--was-focused': init }"
+        >Year</label
+      >
     </div>
     <div class="question-form__date-wrapper">
       <input
@@ -79,7 +95,12 @@
         type="number"
         class="question-form__input"
       />
-      <label for="inputMonth" class="question-form__date-label">Month</label>
+      <label
+        for="inputMonth"
+        class="question-form__date-label"
+        [ngClass]="{ 'question-form__label--was-focused': init }"
+        >Month</label
+      >
     </div>
     <div class="question-form__date-wrapper">
       <input
@@ -89,7 +110,12 @@
         type="number"
         class="question-form__input"
       />
-      <label for="inputDay" class="question-form__date-label">Day</label>
+      <label
+        for="inputDay"
+        class="question-form__date-label"
+        [ngClass]="{ 'question-form__label--was-focused': init }"
+        >Day</label
+      >
     </div>
   </div>
   <label
@@ -107,7 +133,12 @@
       type="text"
       class="question-form__input"
     />
-    <label for="inputCategory" class="question-form__label">Category</label>
+    <label
+      for="inputCategory"
+      class="question-form__label"
+      [ngClass]="{ 'question-form__label--was-focused': init }"
+      >Category</label
+    >
   </div>
   <label
     *ngIf="!form.get('category')?.valid && form.get('category')?.touched"
@@ -125,7 +156,10 @@
       class="question-form__input"
       maxlength="140"
     />
-    <label for="inputTags" class="question-form__label"
+    <label
+      for="inputTags"
+      class="question-form__label"
+      [ngClass]="{ 'question-form__label--was-focused': init }"
       >Tags <i>(optional)</i></label
     >
   </div>
@@ -147,7 +181,11 @@
     <button
       id="resetFormButton"
       type="button"
-      class="question-form__button question-form__button--clear"
+      class="question-form__button"
+      [ngClass]="{
+        'question-form__button--clear': secondaryBtnText === 'Clear',
+        'question-form__button--delete': secondaryBtnText === 'Delete'
+      }"
       (click)="onSecondaryBtnClick()"
     >
       {{ secondaryBtnText }}

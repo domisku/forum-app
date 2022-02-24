@@ -1,1 +1,9 @@
-<p>edit-question works!</p>
+<app-content-header [headerTitle]="'Edit Question'"></app-content-header>
+<app-form
+  *ngIf="formData"
+  [initialFormData]="formData"
+  [primaryBtnText]="'Save'"
+  [secondaryBtnText]="'Delete'"
+  (onFormSubmit)="patchData($event)"
+  (onSecondaryBtnAction)="deleteQuestion()"
+></app-form>

@@ -33,6 +33,10 @@ export class QuestionsService {
     return this.http.get<Question[]>(`${this.baseUrl}${paramsUrl}`);
   }
 
+  getById(id: number) {
+    return this.http.get<Question>(`${this.baseUrl}/${id}`);
+  }
+
   getWithHeaders(params?: Params) {
     let paramsUrl;
     if (params) {
@@ -48,6 +52,18 @@ export class QuestionsService {
 
   getHotQuestions() {
     return this.http.get<Question[]>(this.hotQuestionsUrl);
+  }
+
+  post(question: Question) {
+    return this.http.post(this.baseUrl, question);
+  }
+
+  patch(question: Partial<Question>, id: number) {
+    return this.http.patch(`${this.baseUrl}/${id}`, question);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
   private constructParamsUrl(params: Params) {
@@ -79,9 +95,5 @@ export class QuestionsService {
     const paramsUrl = prefix + paramsUrlArr.join('&_');
 
     return paramsUrl;
-  }
-
-  post(question: Question) {
-    return this.http.post(this.baseUrl, question);
   }
 }
