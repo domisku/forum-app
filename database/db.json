@@ -243,23 +243,6 @@
       "dateCreated": 527284800000
     },
     {
-      "id": 13,
-      "userId": 8,
-      "category": "animals",
-      "title": "Ex magnam voluptas quaerat commodi eos itaque",
-      "description": "Ut temporibus soluta ipsa sequi delectus consectetur unde. Deserunt nostrum ut illum mollitia mollitia. Sit consequuntur totam ut sequi natus. Perferendis hic minima est provident repellendus doloremque. Dolor corporis molestias voluptas quam fuga.",
-      "tags": [
-        "iusto",
-        "ea",
-        "ut",
-        "aut"
-      ],
-      "views": 136,
-      "answers": 6,
-      "votes": 86,
-      "dateCreated": 759535200000
-    },
-    {
       "id": 14,
       "userId": 7,
       "category": "chemistry",
@@ -465,22 +448,6 @@
       "answers": 6,
       "votes": 34,
       "dateCreated": 341874000000
-    },
-    {
-      "id": 42,
-      "userId": 3,
-      "category": "gardening",
-      "title": "Quas non pariatur blanditiis omnis tempore",
-      "description": "Et sint placeat non modi illo id. Suscipit reprehenderit velit quia. Qui quisquam est neque quia ipsum omnis id. Molestiae quis fugit sit. Eos voluptatem exercitationem qui ut praesentium.",
-      "tags": [
-        "commodi",
-        "aut",
-        "unde"
-      ],
-      "views": 80,
-      "answers": 12,
-      "votes": 21,
-      "dateCreated": 739659600000
     },
     {
       "id": 43,
@@ -761,22 +728,6 @@
       "dateCreated": 322174800000
     },
     {
-      "id": 66,
-      "userId": 1,
-      "category": "math",
-      "title": "Nemo rem labore quis deleniti repudiandae ex",
-      "description": "Et voluptatem quam qui molestiae qui aliquam quia. Eum pariatur dolores harum id voluptates minima voluptatibus sit. Cumque quibusdam et tempore temporibus corporis qui vitae odio. Dolorem maiores iusto aut.",
-      "tags": [
-        "aut",
-        "consequatur",
-        "voluptatem"
-      ],
-      "views": 188,
-      "answers": 19,
-      "votes": 11,
-      "dateCreated": 773096400000
-    },
-    {
       "id": 68,
       "userId": 20,
       "category": "business",
@@ -1030,20 +981,6 @@
       "answers": 0,
       "votes": 3,
       "dateCreated": 49064400000
-    },
-    {
-      "id": 98,
-      "userId": 18,
-      "category": "gardening",
-      "title": "Odio et accusamus",
-      "description": "Incidunt impedit provident accusantium nulla. Soluta in consectetur placeat minus dolore consequatur. Placeat ea expedita facilis facilis. Et vero laborum sunt esse fugit minus.",
-      "tags": [
-        "dolor"
-      ],
-      "views": 93,
-      "answers": 14,
-      "votes": 5,
-      "dateCreated": 737586000000
     },
     {
       "id": 99,

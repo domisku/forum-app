@@ -1,3 +1,9 @@
-<div class="alert-root alert-root--slide-in">
-  {{ message }}
+<div
+  class="alert-root alert-root--slide-in"
+  [ngClass]="{ 'alert-root--error': isError }"
+>
+  <p>{{ message }}</p>
+  <button *ngIf="isError" class="alert-root__button" (click)="onDismiss()">
+    Dismiss
+  </button>
 </div>

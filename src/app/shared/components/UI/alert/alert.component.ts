@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { StoreService } from 'src/app/core/recources/services/store.service';
 
 @Component({
   selector: 'app-alert',
@@ -7,8 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
   @Input('message') message?: string;
+  @Input('isError') isError?: boolean;
 
-  constructor() {}
+  constructor(private storeService: StoreService) {}
 
   ngOnInit(): void {}
+
+  onDismiss() {
+    this.storeService.alertIsShown = false;
+  }
 }

@@ -16,20 +16,24 @@ export class StoreService {
   };
   alertIsShown = false;
   alertMessage = '';
+  isError = false;
   timeoutId?: NodeJS.Timeout;
   formActionSubject = new Subject<void>();
 
   constructor(private questionsService: QuestionsService) {}
 
-  showAlert(message: string) {
-    if (this.alertIsShown) {
-      this.alertIsShown = false;
-      clearTimeout(this.timeoutId!);
-    }
+  showAlert(message: string, isError?: boolean) {
+    this.handleOldAlert();
 
     this.alertMessage = message;
     this.alertIsShown = true;
-    this.timeoutId = setTimeout(() => (this.alertIsShown = false), 3000);
+
+    if (isError) {
+      this.isError = true;
+    } else {
+      this.isError = false;
+      this.timeoutId = setTimeout(() => (this.alertIsShown = false), 4000);
+    }
   }
 
   resetFilters() {
@@ -69,5 +73,12 @@ export class StoreService {
           this.filters.lastPage = 1;
         }
       });
+  }
+
+  private handleOldAlert() {
+    if (this.alertIsShown) {
+      this.alertIsShown = false;
+      clearTimeout(this.timeoutId!);
+    }
   }
 }

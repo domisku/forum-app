@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { StatsComponent } from './core/components/sidebar-right/stats/stats.comp
 import { MostUsedTagsComponent } from './core/components/sidebar-right/most-used-tags/most-used-tags.component';
 import { HotQuestionsComponent } from './core/components/sidebar-right/hot-questions/hot-questions.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HttpErrorInterceptor } from './core/recources/interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

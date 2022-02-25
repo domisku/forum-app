@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { catchError, throwError } from 'rxjs';
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
 
@@ -88,13 +87,7 @@ export class EditQuestionComponent implements OnInit {
   private getQuestionData(id: number) {
     this.questionsService
       .getById(id)
-      .pipe(
-        untilDestroyed(this),
-        catchError((err) => {
-          this.router.navigate(['/404']);
-          return throwError(() => new Error(err.message));
-        })
-      )
+      .pipe(untilDestroyed(this))
       .subscribe((question) => {
         this.userId = question.userId;
         this.getUserData(question);

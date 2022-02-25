@@ -10,4 +10,5 @@
 <app-alert
   *ngIf="storeService.alertIsShown"
   [message]="storeService.alertMessage"
+  [isError]="storeService.isError"
 ></app-alert>
