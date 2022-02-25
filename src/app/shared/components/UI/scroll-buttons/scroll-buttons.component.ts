@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-
-import scrollTo from 'src/app/core/utils/scroll-to';
+import { ScrollService } from 'src/app/core/recources/services/scroll.service';
 
 @Component({
   selector: 'app-scroll-buttons',
@@ -14,7 +13,7 @@ export class ScrollButtonsComponent implements OnInit {
   faAngleDown = faAngleDown;
   faAngleUp = faAngleUp;
 
-  constructor() {}
+  constructor(private scrollService: ScrollService) {}
 
   ngOnInit(): void {
     let scrolling = false;
@@ -37,10 +36,10 @@ export class ScrollButtonsComponent implements OnInit {
   }
 
   scrollToPageTop() {
-    scrollTo(0);
+    this.scrollService.scrollToPageTop();
   }
 
   scrollToPageBottom() {
-    scrollTo(document.body.scrollHeight);
+    this.scrollService.scrollToPageBottom();
   }
 }

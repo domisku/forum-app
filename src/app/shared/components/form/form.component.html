@@ -1,54 +1,40 @@
 <form [formGroup]="form" class="question-form" (ngSubmit)="onSubmit()">
   <div id="formNameWrapper" class="question-form__input-wrapper">
     <input
-      appInput
+      [appInput]="init"
       formControlName="name"
       id="inputName"
       type="text"
       class="question-form__input"
     />
-    <label
-      for="inputName"
-      class="question-form__label"
-      [ngClass]="{ 'question-form__label--was-focused': init }"
-      >Name</label
-    >
+    <label for="inputName" class="question-form__label">Name</label>
   </div>
   <label
     *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
-    for="inputName"
-    class="question-form__error-label"
-  >
-    Please enter a valid name (&#60; 40 chars)
-  </label>
+    appErrorLabel="inputName"
+    message="Please enter a valid name (&#60; 40 chars)"
+  ></label>
   <div id="formTitleWrapper" class="question-form__input-wrapper">
     <input
-      appInput
+      [appInput]="init"
       formControlName="title"
       id="inputTitle"
       type="text"
       class="question-form__input"
     />
-    <label
-      for="inputTitle"
-      class="question-form__label"
-      [ngClass]="{ 'question-form__label--was-focused': init }"
-      >Title</label
-    >
+    <label for="inputTitle" class="question-form__label">Title</label>
   </div>
   <label
     *ngIf="!form.get('title')?.valid && form.get('title')?.touched"
-    for="inputTitle"
-    class="question-form__error-label"
-  >
-    Please enter a valid title (&#60; 140 chars)
-  </label>
+    appErrorLabel="inputTitle"
+    message="Please enter a valid title (&#60; 140 chars)"
+  ></label>
   <div
     id="formDescriptionWrapper"
     class="question-form__input-wrapper question-form__input-wrapper--textarea"
   >
     <textarea
-      appInput
+      [appInput]="init"
       formControlName="description"
       id="inputDescription"
       class="question-form__input question-form__input--textarea"
@@ -56,16 +42,14 @@
     <label
       for="inputDescription"
       class="question-form__label question-form__label--textarea"
-      [ngClass]="{ 'question-form__label--was-focused': init }"
       >Description</label
     >
   </div>
   <label
     *ngIf="!form.get('description')?.valid && form.get('description')?.touched"
-    for="inputDescription"
-    class="question-form__error-label"
+    appErrorLabel="inputDescription"
+    message="Please enter a valid description (&#60; 4000 chars)"
   >
-    Please enter a valid description (&#60; 4000 chars)
   </label>
   <div
     formGroupName="date"
@@ -74,102 +58,72 @@
   >
     <div class="question-form__date-wrapper">
       <input
-        appInput
+        [appInput]="init"
         formControlName="year"
         id="inputYear"
         type="number"
         class="question-form__input"
       />
-      <label
-        for="inputYear"
-        class="question-form__date-label"
-        [ngClass]="{ 'question-form__label--was-focused': init }"
-        >Year</label
-      >
+      <label for="inputYear" class="question-form__date-label">Year</label>
     </div>
     <div class="question-form__date-wrapper">
       <input
-        appInput
+        [appInput]="init"
         formControlName="month"
         id="inputMonth"
         type="number"
         class="question-form__input"
       />
-      <label
-        for="inputMonth"
-        class="question-form__date-label"
-        [ngClass]="{ 'question-form__label--was-focused': init }"
-        >Month</label
-      >
+      <label for="inputMonth" class="question-form__date-label">Month</label>
     </div>
     <div class="question-form__date-wrapper">
       <input
-        appInput
+        [appInput]="init"
         formControlName="day"
         id="inputDay"
         type="number"
         class="question-form__input"
       />
-      <label
-        for="inputDay"
-        class="question-form__date-label"
-        [ngClass]="{ 'question-form__label--was-focused': init }"
-        >Day</label
-      >
+      <label for="inputDay" class="question-form__date-label">Day</label>
     </div>
   </div>
   <label
     *ngIf="!form.get('date')?.valid && form.get('date')?.touched"
-    for="formDateWrapper"
-    class="question-form__error-label"
-  >
-    Please enter a valid date
-  </label>
+    appErrorLabel="formDateWrapper"
+    message="Please enter a valid date"
+  ></label>
   <div id="formCategoryWrapper" class="question-form__input-wrapper">
     <input
-      appInput
+      [appInput]="init"
       formControlName="category"
       id="inputCategory"
       type="text"
       class="question-form__input"
     />
-    <label
-      for="inputCategory"
-      class="question-form__label"
-      [ngClass]="{ 'question-form__label--was-focused': init }"
-      >Category</label
-    >
+    <label for="inputCategory" class="question-form__label">Category</label>
   </div>
   <label
     *ngIf="!form.get('category')?.valid && form.get('category')?.touched"
-    for="inputCategory"
-    class="question-form__error-label"
-  >
-    Please enter a valid category (&#60; 40 chars)
-  </label>
+    appErrorLabel="inputCategory"
+    message="Please enter a valid category (&#60; 40 chars)"
+  ></label>
   <div id="formTagsWrapper" class="question-form__input-wrapper">
     <input
-      appInput
+      [appInput]="init"
       formControlName="tags"
       id="inputTags"
       type="text"
       class="question-form__input"
-      maxlength="140"
     />
-    <label
-      for="inputTags"
-      class="question-form__label"
-      [ngClass]="{ 'question-form__label--was-focused': init }"
+    <label for="inputTags" class="question-form__label"
       >Tags <i>(optional)</i></label
     >
   </div>
   <label
     *ngIf="!form.get('tags')?.valid && form.get('tags')?.touched"
-    for="inputTags"
-    class="question-form__error-label"
-  >
-    Please enter a valid taglist (no special symbols), eg.: black, phone, tiger
-  </label>
+    appErrorLabel="inputTags"
+    message="Please enter a valid taglist (no special symbols), eg.: black, phone, tiger"
+  ></label>
   <div class="question-form__buttons-wrapper">
     <button
       [disabled]="!form.valid"

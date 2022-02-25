@@ -223,24 +223,6 @@
       "dateCreated": 629503200000
     },
     {
-      "id": 9,
-      "userId": 7,
-      "category": "music",
-      "title": "Minima dolor eum",
-      "description": "Necessitatibus soluta tenetur. Doloremque hic modi aliquid consequatur et consequatur corrupti eos. Quasi et magnam est. Molestiae autem recusandae recusandae non sunt numquam hic et.",
-      "tags": [
-        "ratione",
-        "ullam",
-        "dignissimos",
-        "dolorem",
-        "placeat"
-      ],
-      "views": 17,
-      "answers": 1,
-      "votes": 15,
-      "dateCreated": 775774800000
-    },
-    {
       "id": 11,
       "userId": 14,
       "category": "gardening",
@@ -293,21 +275,6 @@
       "answers": 12,
       "votes": 45,
       "dateCreated": 525297600000
-    },
-    {
-      "id": 15,
-      "userId": 11,
-      "category": "music",
-      "title": "Et recusandae neque exercitationem voluptatem",
-      "description": "Enim nemo et velit explicabo repellendus fugit aspernatur. Incidunt enim hic accusantium doloribus est. Adipisci officia aut sunt et nobis accusamus. Labore esse labore in optio omnis doloribus quo. Est in ut exercitationem maxime sunt dolore consequatur.",
-      "tags": [
-        "minus",
-        "ea"
-      ],
-      "views": 25,
-      "answers": 6,
-      "votes": 3,
-      "dateCreated": 869864400000
     },
     {
       "id": 17,
@@ -562,25 +529,6 @@
       "dateCreated": 724111200000
     },
     {
-      "id": 46,
-      "userId": 11,
-      "category": "business",
-      "title": "Eum ut nobis adipisci quo molestias",
-      "description": "Odit aut quo nobis voluptatibus saepe commodi velit. Rem qui omnis est cupiditate. Eius fugit earum sunt neque vero quis aut quia. Necessitatibus dignissimos nihil laborum ut dolore. Quasi ipsum aut necessitatibus quis laudantium aut temporibus.",
-      "tags": [
-        "quibusdam",
-        "et",
-        "ut",
-        "nam",
-        "aliquid",
-        "tempore"
-      ],
-      "views": 29,
-      "answers": 16,
-      "votes": 71,
-      "dateCreated": 756856800000
-    },
-    {
       "id": 48,
       "userId": 5,
       "category": "web",
@@ -829,23 +777,6 @@
       "dateCreated": 773096400000
     },
     {
-      "id": 67,
-      "userId": 15,
-      "category": "biology",
-      "title": "Id aut ullam et error",
-      "description": "Tempore placeat molestiae consequuntur. Error sequi ipsa aut consequatur est. Corrupti quisquam distinctio nisi iure. Laborum aut qui est. Voluptatem id veritatis qui ducimus quasi facilis dolore.",
-      "tags": [
-        "vel",
-        "voluptatem",
-        "distinctio",
-        "sed"
-      ],
-      "views": 105,
-      "answers": 17,
-      "votes": 80,
-      "dateCreated": 913590000000
-    },
-    {
       "id": 68,
       "userId": 20,
       "category": "business",
@@ -909,22 +840,6 @@
       "dateCreated": 195253200000
     },
     {
-      "id": 72,
-      "userId": 5,
-      "category": "chemistry",
-      "title": "Molestias maxime aliquam expedita exercitationem ipsum quo maxime",
-      "description": "Non illum atque tenetur. Illum quaerat odit necessitatibus ut et pariatur rem ex. Minus ad sed consequatur amet. Dolorem nihil modi in illo nihil aliquid quam reiciendis.",
-      "tags": [
-        "et",
-        "facilis",
-        "quo"
-      ],
-      "views": 48,
-      "answers": 14,
-      "votes": 98,
-      "dateCreated": 889999200000
-    },
-    {
       "id": 73,
       "userId": 5,
       "category": "web",
@@ -958,23 +873,6 @@
       "answers": 18,
       "votes": -8,
       "dateCreated": 92523600000
-    },
-    {
-      "id": 75,
-      "userId": 5,
-      "category": "engineering",
-      "title": "Nemo aliquid et unde dolor",
-      "description": "Esse suscipit assumenda quas animi voluptatem molestiae. Expedita quis dolor hic nulla minima id magni est. Et neque omnis nihil aut maxime esse quae. Eius totam quis sapiente voluptatem temporibus provident.",
-      "tags": [
-        "sed",
-        "deleniti",
-        "voluptatem",
-        "labore"
-      ],
-      "views": 87,
-      "answers": 15,
-      "votes": 88,
-      "dateCreated": 805064400000
     },
     {
       "id": 77,
@@ -1031,23 +929,6 @@
       "dateCreated": 387144000000
     },
     {
-      "id": 82,
-      "userId": 15,
-      "category": "gardening",
-      "title": "Tempora est suscipit perferendis culpa doloribus est aut quae necessitatibus",
-      "description": "Iste modi tempore dolore ut tempore aperiam. Perspiciatis in hic autem aperiam. Voluptatem et molestiae. Aliquam debitis sapiente assumenda fugit ea dolor unde soluta doloremque.",
-      "tags": [
-        "dolores",
-        "debitis",
-        "ut",
-        "officia"
-      ],
-      "views": 55,
-      "answers": 7,
-      "votes": 42,
-      "dateCreated": 809470800000
-    },
-    {
       "id": 83,
       "userId": 10,
       "category": "math",
@@ -1096,21 +977,6 @@
       "answers": 19,
       "votes": 55,
       "dateCreated": 254523600000
-    },
-    {
-      "id": 91,
-      "userId": 11,
-      "category": "math",
-      "title": "A nihil tempore qui",
-      "description": "Cupiditate omnis accusantium enim dolore nemo. A hic quasi dicta. Dolorum fugiat aut aut laboriosam sapiente veniam eum facere. Qui aut atque est. Maxime eius vel mollitia quis. Voluptas nisi et cum.",
-      "tags": [
-        "fugiat",
-        "aut"
-      ],
-      "views": 67,
-      "answers": 13,
-      "votes": 83,
-      "dateCreated": 834440400000
     },
     {
       "id": 92,

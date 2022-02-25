@@ -8,11 +8,10 @@ import User from '../core/recources/models/user.model';
 import { QuestionsService } from '../core/recources/services/questions.service';
 import { UsersService } from '../core/recources/services/users.service';
 import FormData from '../core/recources/models/form-data.model';
-import convertToYMD from '../core/utils/convert-to-ymd';
-import convertToJavascriptTime from '../core/utils/convert-to-javascript-time';
-import splitByComma from '../core/utils/split-by-comma';
+import convertToYMD from '../core/utils/convert-to-ymd.util';
+import convertToJavascriptTime from '../core/utils/convert-to-javascript-time.util';
+import splitByComma from '../core/utils/split-by-comma.util';
 import { StoreService } from '../core/recources/services/store.service';
-import scrollTo from '../core/utils/scroll-to';
 
 @UntilDestroy()
 @Component({
@@ -35,7 +34,6 @@ export class EditQuestionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    scrollTo(0);
     this.loading = true;
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {

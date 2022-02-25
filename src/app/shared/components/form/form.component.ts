@@ -1,29 +1,7 @@
-import {
-  Component,
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-  Renderer2,
-  EventEmitter,
-} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import FormData from 'src/app/core/recources/models/form-data.model';
-
-@Directive({
-  selector: '[appInput]',
-})
-export class InputDirective {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
-
-  @HostListener('focus') onFocus() {
-    const inputLabel = this.el.nativeElement.nextSibling;
-    this.renderer.addClass(inputLabel, 'question-form__label--was-focused');
-  }
-}
 
 @Component({
   selector: 'app-form',

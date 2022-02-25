@@ -6,8 +6,8 @@ import User from '../core/recources/models/user.model';
 import { QuestionsService } from '../core/recources/services/questions.service';
 import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
-import { PaginationComponent } from '../shared/pagination/pagination.component';
-import scrollTo from '../core/utils/scroll-to';
+import { PaginationComponent } from '../shared/components/pagination/pagination.component';
+import { ScrollService } from '../core/recources/services/scroll.service';
 
 @UntilDestroy()
 @Component({
@@ -26,11 +26,11 @@ export class AllQuestionsComponent implements OnInit {
   constructor(
     private questionsService: QuestionsService,
     private usersService: UsersService,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private scrollService: ScrollService
   ) {}
 
   ngOnInit(): void {
-    scrollTo(0);
     this.loading = true;
     this.storeService.resetFilters();
     this.setQuestions();
@@ -45,7 +45,7 @@ export class AllQuestionsComponent implements OnInit {
 
   pageChanged() {
     this.loading = true;
-    scrollTo(0);
+    this.scrollService.scrollToPageTop();
     this.authors = undefined;
     this.setQuestions();
   }
