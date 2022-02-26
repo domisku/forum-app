@@ -22,7 +22,6 @@ export class EditQuestionComponent implements OnInit {
   private questionId?: number;
   private userId?: number;
   formData?: FormData;
-  loading = false;
 
   constructor(
     private questionsService: QuestionsService,
@@ -33,7 +32,6 @@ export class EditQuestionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
       throw new Error('Missing id from params!');
@@ -44,7 +42,6 @@ export class EditQuestionComponent implements OnInit {
   }
 
   patchData(formData: FormData) {
-    this.loading = true;
     const question = this.transformToQuestionData(formData);
     this.patchQuestion(question);
 
@@ -53,12 +50,10 @@ export class EditQuestionComponent implements OnInit {
   }
 
   deleteQuestion() {
-    this.loading = true;
     this.questionsService
       .delete(this.questionId!)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.loading = false;
         this.storeService.formActionSubject.next();
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully deleted');
@@ -77,7 +72,6 @@ export class EditQuestionComponent implements OnInit {
       .patch(user, this.userId!)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.loading = false;
         this.storeService.formActionSubject.next();
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully updated');
@@ -100,7 +94,6 @@ export class EditQuestionComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((user) => {
         this.transformToFormData(question, user);
-        this.loading = false;
       });
   }
 

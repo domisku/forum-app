@@ -17,7 +17,6 @@ import { ScrollService } from '../core/recources/services/scroll.service';
 export class NewQuestionsComponent implements OnInit {
   questions?: Question[];
   authors?: User[];
-  loading = false;
 
   constructor(
     private questionsService: QuestionsService,
@@ -27,13 +26,11 @@ export class NewQuestionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.storeService.resetFilters();
     this.setQuestions();
   }
 
   pageChanged() {
-    this.loading = true;
     this.scrollService.scrollToPageTop();
     this.authors = undefined;
     this.setQuestions();
@@ -60,7 +57,6 @@ export class NewQuestionsComponent implements OnInit {
         this.authors = this.questions!.map((question) => {
           return users.find((user) => user.id === question.userId) as User;
         });
-        this.loading = false;
       });
   }
 }

@@ -18,7 +18,6 @@ import { ScrollService } from '../core/recources/services/scroll.service';
 export class AllQuestionsComponent implements OnInit {
   questions?: Question[];
   authors?: User[];
-  loading = false;
 
   @ViewChild(PaginationComponent, { static: false })
   private paginationComponent?: PaginationComponent;
@@ -26,25 +25,22 @@ export class AllQuestionsComponent implements OnInit {
   constructor(
     private questionsService: QuestionsService,
     private usersService: UsersService,
-    private storeService: StoreService,
+    public storeService: StoreService,
     private scrollService: ScrollService
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.storeService.resetFilters();
     this.setQuestions();
   }
 
   filterChanged() {
-    this.loading = true;
     this.authors = undefined;
     this.resetPagination();
     this.setQuestions();
   }
 
   pageChanged() {
-    this.loading = true;
     this.scrollService.scrollToPageTop();
     this.authors = undefined;
     this.setQuestions();
@@ -74,7 +70,6 @@ export class AllQuestionsComponent implements OnInit {
         this.authors = this.questions!.map((question) => {
           return users.find((user) => user.id === question.userId) as User;
         });
-        this.loading = false;
       });
   }
 }

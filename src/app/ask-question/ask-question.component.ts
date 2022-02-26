@@ -19,8 +19,6 @@ import splitByComma from '../core/utils/split-by-comma.util';
   styleUrls: ['./ask-question.component.scss'],
 })
 export class AskQuestionComponent implements OnInit {
-  loading = false;
-
   constructor(
     private questionsService: QuestionsService,
     private usersService: UsersService,
@@ -35,7 +33,6 @@ export class AskQuestionComponent implements OnInit {
   }
 
   formSubmitted(data: FormData) {
-    this.loading = true;
     const { user, question } = this.transformFormData(data);
     this.postQuestion(question);
     this.postUser(user);
@@ -79,7 +76,6 @@ export class AskQuestionComponent implements OnInit {
         this.storeService.formActionSubject.next();
         this.router.navigate(['/all']);
         this.storeService.showAlert('Your question was posted successfully');
-        this.loading = false;
       });
   }
 
