@@ -2,12 +2,12 @@
   (onFilterChange)="filterChanged()"
 ></app-all-questions-header>
 <app-question
-  *ngIf="authors"
+  *ngIf="authors && questions"
   [questions]="questions"
   [authors]="authors"
 ></app-question>
 <app-pagination
-  *ngIf="authors"
+  *ngIf="authors && questions"
   (onPageChange)="pageChanged()"
   [resultsCount]="authors.length"
 ></app-pagination>

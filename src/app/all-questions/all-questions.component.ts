@@ -16,8 +16,8 @@ import { ScrollService } from '../core/recources/services/scroll.service';
   styleUrls: ['./all-questions.component.scss'],
 })
 export class AllQuestionsComponent implements OnInit {
-  questions?: Question[];
-  authors?: User[];
+  questions: Question[] | null = null;
+  authors: User[] | null = null;
 
   @ViewChild(PaginationComponent, { static: false })
   private paginationComponent?: PaginationComponent;
@@ -35,18 +35,23 @@ export class AllQuestionsComponent implements OnInit {
   }
 
   filterChanged() {
-    this.authors = undefined;
+    this.clearCurrentData();
     this.resetPagination();
     this.setQuestions();
   }
 
   pageChanged() {
+    this.clearCurrentData();
     this.scrollService.scrollToPageTop();
-    this.authors = undefined;
     this.setQuestions();
   }
 
-  resetPagination() {
+  private clearCurrentData() {
+    this.questions = null;
+    this.authors = null;
+  }
+
+  private resetPagination() {
     this.paginationComponent?.resetPagination();
   }
 
