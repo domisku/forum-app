@@ -21,6 +21,7 @@ import { HotQuestionsComponent } from './core/components/sidebar-right/hot-quest
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpErrorInterceptor } from './core/recources/interceptors/http-error.interceptor';
 import { LoadingInterceptor } from './core/recources/interceptors/loading.interceptor';
+import { LengthPipe } from './core/recources/pipes/length.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LoadingInterceptor } from './core/recources/interceptors/loading.interc
     MostUsedTagsComponent,
     HotQuestionsComponent,
     NotFoundComponent,
+    LengthPipe,
   ],
   imports: [
     BrowserModule,

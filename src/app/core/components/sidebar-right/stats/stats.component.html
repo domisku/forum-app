@@ -1,10 +1,10 @@
 <section class="sidebar-right__stats">
   <figure class="sidebar-right__questions">
     <figcaption class="sidebar-right__caption">Questions</figcaption>
-    <p class="sidebar-right__total">{{ questionsCount }}</p>
+    <p class="sidebar-right__total">{{ questions | async | length }}</p>
   </figure>
   <figure class="sidebar-right__members">
     <figcaption class="sidebar-right__caption">Members</figcaption>
-    <p class="sidebar-right__total">{{ usersCount }}</p>
+    <p class="sidebar-right__total">{{ users | async | length }}</p>
   </figure>
 </section>

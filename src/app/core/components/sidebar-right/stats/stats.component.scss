@@ -2,6 +2,7 @@
 
 .sidebar-right {
   &__stats {
+    position: relative;
     height: 15rem;
     display: flex;
     flex-direction: column;
@@ -9,12 +10,14 @@
   }
 
   &__questions {
+    height: 4rem;
     border-left: 4px solid var(--blue-300);
     padding-left: 0.5rem;
     margin-left: 1rem;
   }
 
   &__members {
+    height: 4rem;
     border-left: 4px solid var(--orange);
     padding-left: 0.5rem;
     margin-left: 1rem;

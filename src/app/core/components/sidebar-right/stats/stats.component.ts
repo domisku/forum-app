@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Observable, tap } from 'rxjs';
 
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
 import { StoreService } from 'src/app/core/recources/services/store.service';
 import { UsersService } from 'src/app/core/recources/services/users.service';
+import Question from 'src/app/core/recources/models/question.model';
+import User from 'src/app/core/recources/models/user.model';
 
 @UntilDestroy()
 @Component({
@@ -12,8 +15,8 @@ import { UsersService } from 'src/app/core/recources/services/users.service';
   styleUrls: ['./stats.component.scss'],
 })
 export class StatsComponent implements OnInit {
-  questionsCount?: number;
-  usersCount?: number;
+  questions?: Observable<Question[]>;
+  users?: Observable<User[]>;
 
   constructor(
     private questionsService: QuestionsService,
@@ -34,16 +37,10 @@ export class StatsComponent implements OnInit {
   }
 
   private setQuestionsCount() {
-    this.questionsService
-      .get()
-      .pipe(untilDestroyed(this))
-      .subscribe((questions) => (this.questionsCount = questions.length));
+    this.questions = this.questionsService.get();
   }
 
   private setUsersCount() {
-    this.usersService
-      .get()
-      .pipe(untilDestroyed(this))
-      .subscribe((users) => (this.usersCount = users.length));
+    this.users = this.usersService.get();
   }
 }
