@@ -29,3 +29,13 @@ export const updateLastPage = createAction(
   '[Filters] Update last page',
   props<{ lastPage: number }>()
 );
+
+export const setCurrentPageAsLastPage = createAction(
+  '[Filters] Set current page as last page'
+);
+
+export const incrementPage = createAction('[Filters] Increment page');
+
+export const decrementPage = createAction('[Filters] Decrement page');
+
+export const reset = createAction('[Filters] Reset');

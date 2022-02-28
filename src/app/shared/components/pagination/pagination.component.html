@@ -5,35 +5,31 @@
   </div>
   <nav class="pagination__nav">
     <button
-      (click)="onNavigateFirst()"
+      [disabled]="(currentPage | async) === 1"
       class="pagination__first"
-      [disabled]="this.storeService.filters.page === 1"
+      (click)="onNavigateFirst()"
     >
       <fa-icon [icon]="faAnglesLeft" [fixedWidth]="true"></fa-icon>
     </button>
     <button
-      (click)="onNavigatePrev()"
+      [disabled]="(currentPage | async) === 1"
       class="pagination__prev"
-      [disabled]="this.storeService.filters.page <= 1"
+      (click)="onNavigatePrev()"
     >
       <fa-icon [icon]="faAngleLeft" [fixedWidth]="true"></fa-icon>
     </button>
-    <span class="pagination__current">{{ currentPage }}</span>
+    <span class="pagination__current">{{ currentPage | async }}</span>
     <button
-      (click)="onNavigateNext()"
+      [disabled]="(currentPage | async)! >= (lastPage | async)!"
       class="pagination__next"
-      [disabled]="
-        this.storeService.filters.page >= this.storeService.filters.lastPage
-      "
+      (click)="onNavigateNext()"
     >
       <fa-icon [icon]="faAngleRight" [fixedWidth]="true"></fa-icon>
     </button>
     <button
-      (click)="onNavigateLast()"
+      [disabled]="(currentPage | async)! >= (lastPage | async)!"
       class="pagination__last"
-      [disabled]="
-        this.storeService.filters.page >= this.storeService.filters.lastPage
-      "
+      (click)="onNavigateLast()"
     >
       <fa-icon [icon]="faAnglesRight" [fixedWidth]="true"></fa-icon>
     </button>

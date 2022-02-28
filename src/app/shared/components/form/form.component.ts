@@ -18,8 +18,6 @@ export class FormComponent implements OnInit {
   @Output() onFormSubmit = new EventEmitter<FormData>();
   @Output() onSecondaryBtnAction = new EventEmitter<FormGroup>();
 
-  constructor() {}
-
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl(this.init?.name || '', [

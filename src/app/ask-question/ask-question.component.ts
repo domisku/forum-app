@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -23,7 +23,7 @@ import { FormComponent } from '../shared/components/form/form.component';
   templateUrl: './ask-question.component.html',
   styleUrls: ['./ask-question.component.scss'],
 })
-export class AskQuestionComponent implements OnInit, CanComponentDeactivate {
+export class AskQuestionComponent implements CanComponentDeactivate {
   private changesSaved = false;
 
   @ViewChild(FormComponent) formComponent?: FormComponent;
@@ -34,8 +34,6 @@ export class AskQuestionComponent implements OnInit, CanComponentDeactivate {
     private storeService: StoreService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {}
 
   resetForm(form: FormGroup) {
     form.reset();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,10 +7,6 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './header-nav.component.html',
   styleUrls: ['./header-nav.component.scss'],
 })
-export class HeaderNavComponent implements OnInit {
+export class HeaderNavComponent {
   faCaretDown = faCaretDown;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

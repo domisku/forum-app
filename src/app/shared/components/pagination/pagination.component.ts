@@ -5,15 +5,28 @@ import {
   faAngleRight,
   faAnglesRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { StoreService } from 'src/app/core/recources/services/store.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import Filters from 'src/app/core/recources/models/filters.model';
+import { StoreService } from 'src/app/core/recources/services/store.service';
+import {
+  decrementPage,
+  incrementPage,
+  setCurrentPageAsLastPage,
+  updatePage,
+} from 'src/app/store/filters/filters.actions';
+
+@UntilDestroy()
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-  currentPage?: number;
+  currentPage?: Observable<number>;
+  lastPage?: Observable<number>;
   resultsFrom?: number;
   resultsTo?: number;
 
@@ -25,53 +38,52 @@ export class PaginationComponent implements OnInit {
   @Input('resultsCount') resultsCount!: number;
   @Output() onPageChange = new EventEmitter();
 
-  constructor(public storeService: StoreService) {}
+  constructor(
+    public storeService: StoreService,
+    private store: Store<{ filters: Filters }>
+  ) {}
 
   ngOnInit(): void {
-    this.currentPage = this.storeService.filters.page;
+    this.currentPage = this.store.select((state) => state.filters.page);
+    this.lastPage = this.store.select((state) => state.filters.lastPage);
     this.storeService.setLastPage();
     this.calculateResultsIndexes();
   }
 
   resetPagination() {
-    this.storeService.filters.page = 1;
-    this.updatePageNum();
-    this.storeService.setLastPage();
+    this.store.dispatch(updatePage({ page: 1 }));
   }
 
   onNavigateFirst() {
-    this.storeService.filters.page = 1;
-    this.updatePageNum();
+    this.store.dispatch(updatePage({ page: 1 }));
     this.onPageChange.emit();
   }
 
   onNavigatePrev() {
-    this.storeService.filters.page--;
-    this.updatePageNum();
+    this.store.dispatch(decrementPage());
     this.onPageChange.emit();
   }
 
   onNavigateNext() {
-    this.storeService.filters.page++;
-    this.updatePageNum();
+    this.store.dispatch(incrementPage());
     this.onPageChange.emit();
   }
 
   onNavigateLast() {
-    this.storeService.filters.page = this.storeService.filters.lastPage;
-    this.updatePageNum();
+    this.store.dispatch(setCurrentPageAsLastPage());
     this.onPageChange.emit();
   }
 
-  private updatePageNum() {
-    this.currentPage = this.storeService.filters.page;
-  }
-
   private calculateResultsIndexes() {
-    const limit = this.storeService.filters.limit;
-    const currentPage = this.storeService.filters.page;
+    this.store
+      .select('filters')
+      .pipe(untilDestroyed(this))
+      .subscribe((filters) => {
+        const limit = filters.limit;
+        const currentPage = filters.page;
 
-    this.resultsFrom = currentPage * limit - limit + 1;
-    this.resultsTo = this.resultsFrom + this.resultsCount - 1;
+        this.resultsFrom = currentPage * limit - limit + 1;
+        this.resultsTo = this.resultsFrom + this.resultsCount - 1;
+      });
   }
 }

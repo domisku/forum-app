@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanDeactivate,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { CanDeactivate, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 export function onCanFormDeactivate(
@@ -36,10 +31,7 @@ export class CanDeactivateGuard
   implements CanDeactivate<CanComponentDeactivate>
 {
   canDeactivate(
-    component: CanComponentDeactivate,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot
+    component: CanComponentDeactivate
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>

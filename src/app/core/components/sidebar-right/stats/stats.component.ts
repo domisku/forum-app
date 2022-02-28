@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
 import { StoreService } from 'src/app/core/recources/services/store.service';

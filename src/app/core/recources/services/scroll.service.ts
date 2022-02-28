@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ScrollService {
-  constructor() {}
-
   scrollTo(topCoordinate: number) {
     window.scroll({
       left: 0,

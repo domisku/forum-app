@@ -17,25 +17,25 @@
   <section class="main-header__bottom">
     <ul class="main-header__list">
       <li
-        (click)="onChangeSort('dateCreated')"
         class="main-header__item main-header__item--active"
         [ngClass]="{
           'main-header__item--active': activeSort === 'dateCreated'
         }"
+        (click)="onChangeSort('dateCreated')"
       >
         Latest
       </li>
       <li
-        (click)="onChangeSort('votes')"
         class="main-header__item"
         [ngClass]="{ 'main-header__item--active': activeSort === 'votes' }"
+        (click)="onChangeSort('votes')"
       >
         Votes
       </li>
       <li
-        (click)="onChangeSort('answers')"
         class="main-header__item"
         [ngClass]="{ 'main-header__item--active': activeSort === 'answers' }"
+        (click)="onChangeSort('answers')"
       >
         Unanswered
       </li>

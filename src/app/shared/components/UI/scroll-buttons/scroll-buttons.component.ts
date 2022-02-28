@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+
 import { ScrollService } from 'src/app/core/recources/services/scroll.service';
 
 @Component({

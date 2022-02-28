@@ -1,9 +1,16 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import Question from 'src/app/core/recources/models/question.model';
+import { Store } from '@ngrx/store';
 
+import Question from 'src/app/core/recources/models/question.model';
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
-import { StoreService } from 'src/app/core/recources/services/store.service';
+import Filters from 'src/app/core/recources/models/filters.model';
+import {
+  updateSorting,
+  updateOrder,
+  updateCategory,
+  updateLimit,
+} from 'src/app/store/filters/filters.actions';
 
 type SortOptions = 'dateCreated' | 'votes' | 'answers';
 
@@ -21,7 +28,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
 
   constructor(
     private questionsService: QuestionsService,
-    private storeService: StoreService
+    private store: Store<Filters>
   ) {}
 
   ngOnInit(): void {
@@ -35,13 +42,16 @@ export class AllQuestionsHeaderComponent implements OnInit {
 
   onChangeSort(sortBy: SortOptions) {
     this.activeSort = sortBy;
-    this.storeService.filters.sorting = sortBy;
+    this.store.dispatch(updateSorting({ sorting: sortBy }));
 
+    let newSort: string;
     if (sortBy === 'answers') {
-      this.storeService.filters.order = 'asc';
+      newSort = 'asc';
     } else {
-      this.storeService.filters.order = 'desc';
+      newSort = 'desc';
     }
+
+    this.store.dispatch(updateOrder({ order: newSort }));
 
     this.onFilterChange.emit();
   }
@@ -49,18 +59,22 @@ export class AllQuestionsHeaderComponent implements OnInit {
   onChangeCategory(event: Event) {
     let selectedCategory = (event.target as HTMLSelectElement).value;
 
+    let newCategory: string;
     if (selectedCategory !== 'all') {
-      this.storeService.filters.category = selectedCategory;
+      newCategory = selectedCategory;
     } else {
-      this.storeService.filters.category = '';
+      newCategory = '';
     }
+
+    this.store.dispatch(updateCategory({ category: newCategory }));
 
     this.onFilterChange.emit();
   }
 
   onChangeLimit(event: Event) {
-    this.storeService.filters.limit = +(event.target as HTMLSelectElement)
-      .value;
+    this.store.dispatch(
+      updateLimit({ limit: +(event.target as HTMLSelectElement).value })
+    );
 
     this.onFilterChange.emit();
   }

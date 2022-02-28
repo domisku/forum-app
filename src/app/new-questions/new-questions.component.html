@@ -6,7 +6,7 @@
 ></app-question>
 <app-pagination
   *ngIf="authors"
-  (onPageChange)="pageChanged()"
   [resultsCount]="authors.length"
+  (onPageChange)="pageChanged()"
 ></app-pagination>
 <app-loading-spinner [sizing]="'large'"></app-loading-spinner>

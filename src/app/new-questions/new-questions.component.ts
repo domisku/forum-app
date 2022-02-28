@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
 
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
 import { QuestionsService } from '../core/recources/services/questions.service';
-import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
 import { ScrollService } from '../core/recources/services/scroll.service';
+import Filters from '../core/recources/models/filters.model';
+import { reset, updateLimit } from '../store/filters/filters.actions';
 
 @UntilDestroy()
 @Component({
@@ -21,12 +23,12 @@ export class NewQuestionsComponent implements OnInit {
   constructor(
     private questionsService: QuestionsService,
     private usersService: UsersService,
-    private storeService: StoreService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private store: Store<{ filters: Filters }>
   ) {}
 
   ngOnInit(): void {
-    this.storeService.resetFilters();
+    this.store.dispatch(reset());
     this.setQuestions();
   }
 
@@ -37,15 +39,18 @@ export class NewQuestionsComponent implements OnInit {
   }
 
   private setQuestions() {
-    this.storeService.filters.limit = 2;
-    let params = this.storeService.getParams();
-
-    this.questionsService
-      .get(params)
+    this.store.dispatch(updateLimit({ limit: 2 }));
+    this.store
+      .select('filters')
       .pipe(untilDestroyed(this))
-      .subscribe((questions) => {
-        this.questions = questions;
-        this.setAuthors();
+      .subscribe((filters) => {
+        this.questionsService
+          .get(filters)
+          .pipe(untilDestroyed(this))
+          .subscribe((questions) => {
+            this.questions = questions;
+            this.setAuthors();
+          });
       });
   }
 

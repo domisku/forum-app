@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar-right',
   templateUrl: './sidebar-right.component.html',
-  styleUrls: ['./sidebar-right.component.scss']
+  styleUrls: ['./sidebar-right.component.scss'],
 })
-export class SidebarRightComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class SidebarRightComponent {}

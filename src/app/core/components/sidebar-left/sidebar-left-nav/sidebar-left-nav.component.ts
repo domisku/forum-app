@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {
   faCertificate,
@@ -14,15 +14,11 @@ import {
   templateUrl: './sidebar-left-nav.component.html',
   styleUrls: ['./sidebar-left-nav.component.scss'],
 })
-export class SidebarLeftNavComponent implements OnInit {
+export class SidebarLeftNavComponent {
   faCertificate = faCertificate;
   faCircleQuestion = faCircleQuestion;
   faTags = faTags;
   faTrophy = faTrophy;
   faList = faList;
   faUsers = faUsers;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { LoadingService } from 'src/app/core/recources/services/loading.service';
 
 @Component({

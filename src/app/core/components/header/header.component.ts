@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,11 +7,7 @@ import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   faUser = faUser;
   faSearch = faSearch;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

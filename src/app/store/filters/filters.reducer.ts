@@ -6,6 +6,10 @@ import {
   updateLimit,
   updatePage,
   updateLastPage,
+  reset,
+  incrementPage,
+  decrementPage,
+  setCurrentPageAsLastPage,
 } from './filters.actions';
 import Filters from 'src/app/core/recources/models/filters.model';
 
@@ -37,5 +41,17 @@ export const filtersReducer = createReducer(
   }),
   on(updateLastPage, (state, action) => {
     return { ...state, lastPage: action.lastPage };
+  }),
+  on(setCurrentPageAsLastPage, (state) => {
+    return { ...state, page: state.lastPage };
+  }),
+  on(incrementPage, (state) => {
+    return { ...state, page: state.page + 1 };
+  }),
+  on(decrementPage, (state) => {
+    return { ...state, page: state.page - 1 };
+  }),
+  on(reset, () => {
+    return { ...initialState };
   })
 );

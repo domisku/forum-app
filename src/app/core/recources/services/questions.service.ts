@@ -3,14 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import Question from '../models/question.model';
-
-interface Params {
-  category?: string;
-  sorting?: string;
-  order?: string;
-  page?: number;
-  limit?: number;
-}
+import Filters from '../models/filters.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +15,7 @@ export class QuestionsService {
 
   constructor(private http: HttpClient) {}
 
-  get(params?: Params): Observable<Question[]> {
+  get(params?: Partial<Filters>): Observable<Question[]> {
     let paramsUrl;
     if (params) {
       paramsUrl = this.constructParamsUrl(params);
@@ -37,7 +30,7 @@ export class QuestionsService {
     return this.http.get<Question>(`${this.baseUrl}/${id}`);
   }
 
-  getWithHeaders(params?: Params) {
+  getWithHeaders(params?: Partial<Filters>) {
     let paramsUrl;
     if (params) {
       paramsUrl = this.constructParamsUrl(params);
@@ -66,7 +59,7 @@ export class QuestionsService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  private constructParamsUrl(params: Params) {
+  private constructParamsUrl(params: Partial<Filters>) {
     const { category, sorting, order, page, limit } = params;
     let paramsUrlArr: string[] = [];
     let prefix = '?_';
