@@ -19,9 +19,9 @@ import { StatsComponent } from './core/components/sidebar-right/stats/stats.comp
 import { MostUsedTagsComponent } from './core/components/sidebar-right/most-used-tags/most-used-tags.component';
 import { HotQuestionsComponent } from './core/components/sidebar-right/hot-questions/hot-questions.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { HttpErrorInterceptor } from './core/recources/interceptors/http-error.interceptor';
-import { LoadingInterceptor } from './core/recources/interceptors/loading.interceptor';
-import { LengthPipe } from './core/recources/pipes/length.pipe';
+import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { LengthPipe } from './core/pipes/length.pipe';
 
 @NgModule({
   declarations: [

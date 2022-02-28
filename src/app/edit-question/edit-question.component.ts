@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
+
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
-
 import { QuestionsService } from '../core/recources/services/questions.service';
 import { UsersService } from '../core/recources/services/users.service';
 import FormData from '../core/recources/models/form-data.model';
@@ -11,6 +12,11 @@ import convertToYMD from '../core/utils/convert-to-ymd.util';
 import convertToJavascriptTime from '../core/utils/convert-to-javascript-time.util';
 import splitByComma from '../core/utils/split-by-comma.util';
 import { StoreService } from '../core/recources/services/store.service';
+import {
+  CanComponentDeactivate,
+  onCanFormDeactivate,
+} from '../shared/guards/can-deactivate.guard';
+import { FormComponent } from '../shared/components/form/form.component';
 
 @UntilDestroy()
 @Component({
@@ -18,10 +24,14 @@ import { StoreService } from '../core/recources/services/store.service';
   templateUrl: './edit-question.component.html',
   styleUrls: ['./edit-question.component.scss'],
 })
-export class EditQuestionComponent implements OnInit {
+export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
   private questionId?: number;
   private userId?: number;
+  private changesSaved = false;
   formData?: FormData;
+
+  @ViewChild(FormComponent, { static: false })
+  private formComponent?: FormComponent;
 
   constructor(
     private questionsService: QuestionsService,
@@ -42,6 +52,8 @@ export class EditQuestionComponent implements OnInit {
   }
 
   patchData(formData: FormData) {
+    this.changesSaved = true;
+
     const question = this.transformToQuestionData(formData);
     this.patchQuestion(question);
 
@@ -50,6 +62,8 @@ export class EditQuestionComponent implements OnInit {
   }
 
   deleteQuestion() {
+    this.changesSaved = true;
+
     this.questionsService
       .delete(this.questionId!)
       .pipe(untilDestroyed(this))
@@ -58,6 +72,17 @@ export class EditQuestionComponent implements OnInit {
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully deleted');
       });
+  }
+
+  canDeactivate():
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return onCanFormDeactivate(
+      this.formComponent?.form.touched!,
+      this.changesSaved
+    );
   }
 
   private patchQuestion(question: Partial<Question>) {

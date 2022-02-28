@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
+import { UrlTree } from '@angular/router';
 
 import FormData from '../core/recources/models/form-data.model';
 import Question from '../core/recources/models/question.model';
@@ -11,6 +13,9 @@ import { StoreService } from '../core/recources/services/store.service';
 import { UsersService } from '../core/recources/services/users.service';
 import convertToJavascriptTime from '../core/utils/convert-to-javascript-time.util';
 import splitByComma from '../core/utils/split-by-comma.util';
+import { onCanFormDeactivate } from '../shared/guards/can-deactivate.guard';
+import { CanComponentDeactivate } from '../shared/guards/can-deactivate.guard';
+import { FormComponent } from '../shared/components/form/form.component';
 
 @UntilDestroy()
 @Component({
@@ -18,7 +23,11 @@ import splitByComma from '../core/utils/split-by-comma.util';
   templateUrl: './ask-question.component.html',
   styleUrls: ['./ask-question.component.scss'],
 })
-export class AskQuestionComponent implements OnInit {
+export class AskQuestionComponent implements OnInit, CanComponentDeactivate {
+  private changesSaved = false;
+
+  @ViewChild(FormComponent) formComponent?: FormComponent;
+
   constructor(
     private questionsService: QuestionsService,
     private usersService: UsersService,
@@ -33,9 +42,22 @@ export class AskQuestionComponent implements OnInit {
   }
 
   formSubmitted(data: FormData) {
+    this.changesSaved = true;
+
     const { user, question } = this.transformFormData(data);
     this.postQuestion(question);
     this.postUser(user);
+  }
+
+  canDeactivate():
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return onCanFormDeactivate(
+      this.formComponent?.form.touched!,
+      this.changesSaved
+    );
   }
 
   private transformFormData(data: FormData) {
