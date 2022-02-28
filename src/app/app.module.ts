@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
@@ -22,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { LengthPipe } from './core/pipes/length.pipe';
+import { filtersReducer } from './store/filters/filters.reducer';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { LengthPipe } from './core/pipes/length.pipe';
     FontAwesomeModule,
     HttpClientModule,
     SharedModule,
+    StoreModule.forRoot({ filters: filtersReducer }),
   ],
   providers: [
     {
