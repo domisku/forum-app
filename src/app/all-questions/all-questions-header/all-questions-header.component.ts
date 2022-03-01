@@ -6,10 +6,9 @@ import Question from 'src/app/core/recources/models/question.model';
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
 import Filters from 'src/app/core/recources/models/filters.model';
 import {
-  updateSorting,
-  updateOrder,
   updateCategory,
   updateLimit,
+  updateOrderAndSorting,
 } from 'src/app/store/filters/filters.actions';
 
 type SortOptions = 'dateCreated' | 'votes' | 'answers';
@@ -28,7 +27,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
 
   constructor(
     private questionsService: QuestionsService,
-    private store: Store<Filters>
+    private store: Store<{ filters: Filters }>
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +41,6 @@ export class AllQuestionsHeaderComponent implements OnInit {
 
   onChangeSort(sortBy: SortOptions) {
     this.activeSort = sortBy;
-    this.store.dispatch(updateSorting({ sorting: sortBy }));
 
     let newSort: string;
     if (sortBy === 'answers') {
@@ -51,7 +49,9 @@ export class AllQuestionsHeaderComponent implements OnInit {
       newSort = 'desc';
     }
 
-    this.store.dispatch(updateOrder({ order: newSort }));
+    this.store.dispatch(
+      updateOrderAndSorting({ order: newSort, sorting: sortBy })
+    );
 
     this.onFilterChange.emit();
   }

@@ -10,6 +10,7 @@ import {
   incrementPage,
   decrementPage,
   setCurrentPageAsLastPage,
+  updateOrderAndSorting,
 } from './filters.actions';
 import Filters from 'src/app/core/recources/models/filters.model';
 
@@ -27,11 +28,8 @@ export const filtersReducer = createReducer(
   on(updateCategory, (state, action) => {
     return { ...state, category: action.category };
   }),
-  on(updateSorting, (state, action) => {
-    return { ...state, sorting: action.sorting };
-  }),
-  on(updateOrder, (state, action) => {
-    return { ...state, order: action.order };
+  on(updateOrderAndSorting, (state, action) => {
+    return { ...state, sorting: action.sorting, order: action.order };
   }),
   on(updateLimit, (state, action) => {
     return { ...state, limit: action.limit };

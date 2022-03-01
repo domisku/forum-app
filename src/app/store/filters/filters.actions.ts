@@ -15,6 +15,11 @@ export const updateOrder = createAction(
   props<{ order: string }>()
 );
 
+export const updateOrderAndSorting = createAction(
+  '[Filters] Update order and sorting',
+  props<{ sorting: string; order: string }>()
+);
+
 export const updateLimit = createAction(
   '[Filters] Update limit',
   props<{ limit: number }>()
