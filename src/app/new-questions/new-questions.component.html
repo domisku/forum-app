@@ -1,6 +1,6 @@
 <app-content-header [headerTitle]="'New Questions'"></app-content-header>
 <app-question
-  *ngIf="authors"
+  *ngIf="authors && questions"
   [questions]="questions"
   [authors]="authors"
 ></app-question>

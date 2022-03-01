@@ -39,13 +39,11 @@ export class AllQuestionsComponent implements OnInit {
   filterChanged() {
     this.clearCurrentData();
     this.resetPagination();
-    this.setQuestions();
   }
 
   pageChanged() {
     this.clearCurrentData();
     this.scrollService.scrollToPageTop();
-    this.setQuestions();
   }
 
   private clearCurrentData() {

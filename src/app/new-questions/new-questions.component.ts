@@ -17,8 +17,8 @@ import { reset, updateLimit } from '../store/filters/filters.actions';
   styleUrls: ['./new-questions.component.scss'],
 })
 export class NewQuestionsComponent implements OnInit {
-  questions?: Question[];
-  authors?: User[];
+  questions: Question[] | null = null;
+  authors: User[] | null = null;
 
   constructor(
     private questionsService: QuestionsService,
@@ -33,9 +33,13 @@ export class NewQuestionsComponent implements OnInit {
   }
 
   pageChanged() {
+    this.clearCurrentData();
     this.scrollService.scrollToPageTop();
-    this.authors = undefined;
-    this.setQuestions();
+  }
+
+  private clearCurrentData() {
+    this.questions = null;
+    this.authors = null;
   }
 
   private setQuestions() {
