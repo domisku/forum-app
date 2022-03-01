@@ -13,6 +13,7 @@ import Filters from 'src/app/core/recources/models/filters.model';
 import { StoreService } from 'src/app/core/recources/services/store.service';
 import {
   decrementPage,
+  getLastPage,
   incrementPage,
   setCurrentPageAsLastPage,
   updatePage,
@@ -44,9 +45,9 @@ export class PaginationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(getLastPage());
     this.currentPage = this.store.select((state) => state.filters.page);
     this.lastPage = this.store.select((state) => state.filters.lastPage);
-    this.storeService.setLastPage();
     this.calculateResultsIndexes();
   }
 

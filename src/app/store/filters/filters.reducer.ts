@@ -1,16 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   updateCategory,
-  updateSorting,
-  updateOrder,
   updateLimit,
   updatePage,
-  updateLastPage,
   reset,
   incrementPage,
   decrementPage,
   setCurrentPageAsLastPage,
   updateOrderAndSorting,
+  getLastPage,
+  getLastPageComplete,
 } from './filters.actions';
 import Filters from 'src/app/core/recources/models/filters.model';
 
@@ -37,9 +36,6 @@ export const filtersReducer = createReducer(
   on(updatePage, (state, action) => {
     return { ...state, page: action.page };
   }),
-  on(updateLastPage, (state, action) => {
-    return { ...state, lastPage: action.lastPage };
-  }),
   on(setCurrentPageAsLastPage, (state) => {
     return { ...state, page: state.lastPage };
   }),
@@ -51,5 +47,12 @@ export const filtersReducer = createReducer(
   }),
   on(reset, () => {
     return { ...initialState };
+  }),
+  on(getLastPage, (state) => {
+    return { ...state };
+  }),
+  on(getLastPageComplete, (state, action) => {
+    console.log(action);
+    return { ...state, lastPage: action.lastPage };
   })
 );
