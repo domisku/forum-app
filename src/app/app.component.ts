@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import { StoreService } from './core/recources/services/store.service';
 import { ScrollService } from './core/recources/services/scroll.service';
-import { Store } from '@ngrx/store';
-import Db from './core/recources/models/db.model';
-import {
-  getAllQuestions,
-  getHotQuestions,
-  getQuestions,
-  getQuestionsWithAuthors,
-  getUsers,
-} from './store/db/db.actions';
+import * as fromApp from 'src/app/store/app.reducer';
+import * as DbActions from 'src/app/store/db/db.actions';
 
 @Component({
   selector: 'app-root',
@@ -21,15 +15,15 @@ export class AppComponent implements OnInit {
   constructor(
     public storeService: StoreService,
     public scrollService: ScrollService,
-    private store: Store<{ db: Db }>
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(getQuestions());
-    this.store.dispatch(getUsers());
-    this.store.dispatch(getAllQuestions());
-    this.store.dispatch(getQuestionsWithAuthors());
-    this.store.dispatch(getHotQuestions());
+    this.store.dispatch(DbActions.getQuestions());
+    this.store.dispatch(DbActions.getUsers());
+    this.store.dispatch(DbActions.getAllQuestions());
+    this.store.dispatch(DbActions.getQuestionsWithAuthors());
+    this.store.dispatch(DbActions.getHotQuestions());
   }
 
   onRouteActivate() {

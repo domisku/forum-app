@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import Db from 'src/app/core/recources/models/db.model';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { QuestionWithAuthor } from 'src/app/core/recources/models/question-with-author.model';
-import { Observable } from 'rxjs';
+import * as fromApp from 'src/app/store/app.reducer';
 
 @Component({
   selector: 'app-hot-questions',
@@ -14,7 +13,7 @@ import { Observable } from 'rxjs';
 export class HotQuestionsComponent implements OnInit {
   hotQuestions?: Observable<QuestionWithAuthor[] | null> | null = null;
 
-  constructor(private store: Store<{ db: Db }>) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.hotQuestions = this.store.select((store) => store.db.hotQuestions);

@@ -18,8 +18,8 @@ import {
   onCanFormDeactivate,
 } from '../shared/guards/can-deactivate.guard';
 import { FormComponent } from '../shared/components/form/form.component';
-import Db from '../core/recources/models/db.model';
-import { getAllQuestions, getHotQuestions } from '../store/db/db.actions';
+import * as fromApp from 'src/app/store/app.reducer';
+import * as DbActions from 'src/app/store/db/db.actions';
 
 @UntilDestroy()
 @Component({
@@ -42,7 +42,7 @@ export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
     private storeService: StoreService,
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<{ db: Db }>
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
@@ -72,8 +72,8 @@ export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
       .delete(this.questionId!)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.store.dispatch(getAllQuestions());
-        this.store.dispatch(getHotQuestions());
+        this.store.dispatch(DbActions.getAllQuestions());
+        this.store.dispatch(DbActions.getHotQuestions());
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully deleted');
       });
@@ -102,8 +102,8 @@ export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
       .patch(user, this.userId!)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.store.dispatch(getAllQuestions());
-        this.store.dispatch(getHotQuestions());
+        this.store.dispatch(DbActions.getAllQuestions());
+        this.store.dispatch(DbActions.getHotQuestions());
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully updated');
       });

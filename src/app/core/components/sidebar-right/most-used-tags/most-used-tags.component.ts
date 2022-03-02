@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import Db from 'src/app/core/recources/models/db.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import Question from 'src/app/core/recources/models/question.model';
+import * as fromApp from 'src/app/store/app.reducer';
 
 @Component({
   selector: 'app-most-used-tags',
@@ -15,7 +15,7 @@ export class MostUsedTagsComponent implements OnInit {
   sortedTags?: Observable<[string, number][] | null>;
   buttonText = 'See more tags';
 
-  constructor(private store: Store<{ db: Db }>) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.sortedTags = this.store.select((store) => {

@@ -17,12 +17,8 @@ import { onCanFormDeactivate } from '../shared/guards/can-deactivate.guard';
 import { CanComponentDeactivate } from '../shared/guards/can-deactivate.guard';
 import { FormComponent } from '../shared/components/form/form.component';
 import { Store } from '@ngrx/store';
-import Db from '../core/recources/models/db.model';
-import {
-  getAllQuestions,
-  getHotQuestions,
-  getUsers,
-} from '../store/db/db.actions';
+import * as fromApp from 'src/app/store/app.reducer';
+import * as DbActions from 'src/app/store/db/db.actions';
 
 @UntilDestroy()
 @Component({
@@ -40,7 +36,7 @@ export class AskQuestionComponent implements CanComponentDeactivate {
     private usersService: UsersService,
     private storeService: StoreService,
     private router: Router,
-    private store: Store<{ db: Db }>
+    private store: Store<fromApp.AppState>
   ) {}
 
   resetForm(form: FormGroup) {
@@ -101,9 +97,9 @@ export class AskQuestionComponent implements CanComponentDeactivate {
       .post(user)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.store.dispatch(getAllQuestions());
-        this.store.dispatch(getHotQuestions());
-        this.store.dispatch(getUsers());
+        this.store.dispatch(DbActions.getAllQuestions());
+        this.store.dispatch(DbActions.getHotQuestions());
+        this.store.dispatch(DbActions.getUsers());
         this.router.navigate(['/all']);
         this.storeService.showAlert('Your question was posted successfully');
       });

@@ -1,19 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  updateCategory,
-  updateLimit,
-  updatePage,
-  reset,
-  incrementPage,
-  decrementPage,
-  setCurrentPageAsLastPage,
-  updateOrderAndSorting,
-  getLastPage,
-  getLastPageComplete,
-} from './filters.actions';
+import * as FiltersActions from './filters.actions';
 import Filters from 'src/app/core/recources/models/filters.model';
 
-export const initialState: Filters = {
+export type State = Filters;
+
+export const initialState: State = {
   category: '',
   sorting: 'dateCreated',
   order: 'desc',
@@ -24,34 +15,34 @@ export const initialState: Filters = {
 
 export const filtersReducer = createReducer(
   initialState,
-  on(updateCategory, (state, action) => {
+  on(FiltersActions.updateCategory, (state, action) => {
     return { ...state, category: action.category };
   }),
-  on(updateOrderAndSorting, (state, action) => {
+  on(FiltersActions.updateOrderAndSorting, (state, action) => {
     return { ...state, sorting: action.sorting, order: action.order };
   }),
-  on(updateLimit, (state, action) => {
+  on(FiltersActions.updateLimit, (state, action) => {
     return { ...state, limit: action.limit };
   }),
-  on(updatePage, (state, action) => {
+  on(FiltersActions.updatePage, (state, action) => {
     return { ...state, page: action.page };
   }),
-  on(setCurrentPageAsLastPage, (state) => {
+  on(FiltersActions.setCurrentPageAsLastPage, (state) => {
     return { ...state, page: state.lastPage };
   }),
-  on(incrementPage, (state) => {
+  on(FiltersActions.incrementPage, (state) => {
     return { ...state, page: state.page + 1 };
   }),
-  on(decrementPage, (state) => {
+  on(FiltersActions.decrementPage, (state) => {
     return { ...state, page: state.page - 1 };
   }),
-  on(reset, () => {
+  on(FiltersActions.reset, () => {
     return { ...initialState };
   }),
-  on(getLastPage, (state) => {
+  on(FiltersActions.getLastPage, (state) => {
     return { ...state };
   }),
-  on(getLastPageComplete, (state, action) => {
+  on(FiltersActions.getLastPageComplete, (state, action) => {
     return { ...state, lastPage: action.lastPage };
   })
 );

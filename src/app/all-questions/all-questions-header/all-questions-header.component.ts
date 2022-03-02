@@ -1,21 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import Question from 'src/app/core/recources/models/question.model';
-import { QuestionsService } from 'src/app/core/recources/services/questions.service';
-import Filters from 'src/app/core/recources/models/filters.model';
-import {
-  updateCategory,
-  updateLimit,
-  updateOrderAndSorting,
-} from 'src/app/store/filters/filters.actions';
-import Db from 'src/app/core/recources/models/db.model';
+import * as FiltersActions from 'src/app/store/filters/filters.actions';
+import * as fromApp from 'src/app/store/app.reducer';
 
 type SortOptions = 'dateCreated' | 'votes' | 'answers';
 
-@UntilDestroy()
 @Component({
   selector: 'app-all-questions-header',
   templateUrl: './all-questions-header.component.html',
@@ -27,7 +19,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
 
   @Output() onFilterChange = new EventEmitter();
 
-  constructor(private store: Store<{ filters: Filters; db: Db }>) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.questionsCategories = this.store.select((store) =>
@@ -46,7 +38,7 @@ export class AllQuestionsHeaderComponent implements OnInit {
     }
 
     this.store.dispatch(
-      updateOrderAndSorting({ order: newSort, sorting: sortBy })
+      FiltersActions.updateOrderAndSorting({ order: newSort, sorting: sortBy })
     );
 
     this.onFilterChange.emit();
@@ -62,14 +54,18 @@ export class AllQuestionsHeaderComponent implements OnInit {
       newCategory = '';
     }
 
-    this.store.dispatch(updateCategory({ category: newCategory }));
+    this.store.dispatch(
+      FiltersActions.updateCategory({ category: newCategory })
+    );
 
     this.onFilterChange.emit();
   }
 
   onChangeLimit(event: Event) {
     this.store.dispatch(
-      updateLimit({ limit: +(event.target as HTMLSelectElement).value })
+      FiltersActions.updateLimit({
+        limit: +(event.target as HTMLSelectElement).value,
+      })
     );
 
     this.onFilterChange.emit();
