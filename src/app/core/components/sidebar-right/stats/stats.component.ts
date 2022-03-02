@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
 import { StoreService } from 'src/app/core/recources/services/store.service';
 import { UsersService } from 'src/app/core/recources/services/users.service';
 import Question from 'src/app/core/recources/models/question.model';
 import User from 'src/app/core/recources/models/user.model';
+import Db from 'src/app/core/recources/models/db.model';
 
 @UntilDestroy()
 @Component({
@@ -15,32 +17,13 @@ import User from 'src/app/core/recources/models/user.model';
   styleUrls: ['./stats.component.scss'],
 })
 export class StatsComponent implements OnInit {
-  questions?: Observable<Question[]>;
-  users?: Observable<User[]>;
+  questions?: Observable<Question[] | null>;
+  users?: Observable<User[] | null>;
 
-  constructor(
-    private questionsService: QuestionsService,
-    private usersService: UsersService,
-    private storeService: StoreService
-  ) {}
+  constructor(private store: Store<{ db: Db }>) {}
 
   ngOnInit(): void {
-    this.setQuestionsCount();
-    this.setUsersCount();
-
-    this.storeService.formActionSubject
-      .pipe(untilDestroyed(this))
-      .subscribe(() => {
-        this.setQuestionsCount();
-        this.setUsersCount();
-      });
-  }
-
-  private setQuestionsCount() {
-    this.questions = this.questionsService.get();
-  }
-
-  private setUsersCount() {
-    this.users = this.usersService.get();
+    this.questions = this.store.select((store) => store.db.allQuestions);
+    this.users = this.store.select((store) => store.db.users);
   }
 }

@@ -1,13 +1,13 @@
 <section class="sidebar-right__hot-questions">
   <h4 class="sidebar-right__hot-title">Hot Questions</h4>
-  <ul *ngIf="authors" class="sidebar-right__hot-list">
+  <ul *ngIf="hotQuestions" class="sidebar-right__hot-list">
     <li
-      *ngFor="let question of hotQuestions; index as index"
+      *ngFor="let question of hotQuestions | async"
       class="sidebar-right__hot-item"
     >
       <img
         class="sidebar-right__hot-img"
-        [src]="authors[index].profileImgUrl"
+        [src]="question.profileImgUrl"
         alt="profile picture"
       />
       <span class="sidebar-right__hot-question">{{ question.title }}</span>

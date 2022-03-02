@@ -52,7 +52,6 @@ export const filtersReducer = createReducer(
     return { ...state };
   }),
   on(getLastPageComplete, (state, action) => {
-    console.log(action);
     return { ...state, lastPage: action.lastPage };
   })
 );

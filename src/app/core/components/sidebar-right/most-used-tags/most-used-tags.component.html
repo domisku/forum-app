@@ -1,8 +1,12 @@
 <section class="sidebar-right__tags">
   <h4 class="sidebar-right__tags-title">Most Used Tags</h4>
-  <ul *ngIf="shownTags" class="sidebar-right__tags-list">
+  <ul *ngIf="sortedTags" class="sidebar-right__tags-list">
     <li
-      *ngFor="let tag of shownTags"
+      *ngFor="
+        let tag of showMoreTags
+          ? (sortedTags | async)
+          : (sortedTags | async | slice: 0:8)
+      "
       class="sidebar-right__tags-item"
       attr.data-count="x {{ tag[1] }}"
     >
@@ -10,7 +14,7 @@
     </li>
   </ul>
   <button
-    *ngIf="shownTags"
+    *ngIf="sortedTags"
     (click)="onButtonClick()"
     class="sidebar-right__button"
   >

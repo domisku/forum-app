@@ -15,17 +15,17 @@
       <img
         class="question__img"
         alt="profile picture"
-        [src]="authors[index].profileImgUrl"
+        [src]="question.profileImgUrl"
       />
-      <span class="question__username">{{ authors[index].username }}</span>
+      <span class="question__username">{{ question.username }}</span>
       <span
         class="question__status"
         [ngClass]="{
-          'question__status--professor': authors[index].status === 'professor',
-          'question__status--reviewer': authors[index].status === 'reviewer',
-          'question__status--train': authors[index].status === 'train'
+          'question__status--professor': question.status === 'professor',
+          'question__status--reviewer': question.status === 'reviewer',
+          'question__status--train': question.status === 'train'
         }"
-        >{{ authors[index].status }}</span
+        >{{ question.status }}</span
       >
       <span class="question__asked-on">
         <span class="question__placeholder">Asked on </span>

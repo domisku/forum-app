@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
-import Question from 'src/app/core/recources/models/question.model';
-import User from 'src/app/core/recources/models/user.model';
+import { QuestionWithAuthor } from 'src/app/core/recources/models/question-with-author.model';
 
 @Component({
   selector: 'app-question',
@@ -10,8 +8,7 @@ import User from 'src/app/core/recources/models/user.model';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent {
-  @Input('questions') questions?: Question[];
-  @Input('authors') authors!: User[];
+  @Input('questions') questions?: QuestionWithAuthor[] | null;
 
   constructor(private route: Router) {}
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import Question from 'src/app/core/recources/models/question.model';
 import { QuestionsService } from 'src/app/core/recources/services/questions.service';
@@ -10,6 +11,7 @@ import {
   updateLimit,
   updateOrderAndSorting,
 } from 'src/app/store/filters/filters.actions';
+import Db from 'src/app/core/recources/models/db.model';
 
 type SortOptions = 'dateCreated' | 'votes' | 'answers';
 
@@ -20,23 +22,17 @@ type SortOptions = 'dateCreated' | 'votes' | 'answers';
   styleUrls: ['./all-questions-header.component.scss'],
 })
 export class AllQuestionsHeaderComponent implements OnInit {
-  questionsCategories?: string[];
+  questionsCategories: Observable<string[] | null> | null = null;
   activeSort: SortOptions = 'dateCreated';
 
   @Output() onFilterChange = new EventEmitter();
 
-  constructor(
-    private questionsService: QuestionsService,
-    private store: Store<{ filters: Filters }>
-  ) {}
+  constructor(private store: Store<{ filters: Filters; db: Db }>) {}
 
   ngOnInit(): void {
-    this.questionsService
-      .get()
-      .pipe(untilDestroyed(this))
-      .subscribe((questions) => {
-        this.findAllCategories(questions);
-      });
+    this.questionsCategories = this.store.select((store) =>
+      this.findAllCategories(store.db.allQuestions)
+    );
   }
 
   onChangeSort(sortBy: SortOptions) {
@@ -79,13 +75,17 @@ export class AllQuestionsHeaderComponent implements OnInit {
     this.onFilterChange.emit();
   }
 
-  private findAllCategories(questions: Question[]) {
+  private findAllCategories(questions: Question[] | null) {
+    if (!questions) {
+      return null;
+    }
+
     const categoryMap: { [key: string]: number } = {};
 
     questions.forEach((question) => {
       if (!categoryMap[question.category]) categoryMap[question.category] = 1;
     });
 
-    this.questionsCategories = Object.keys(categoryMap);
+    return Object.keys(categoryMap);
   }
 }

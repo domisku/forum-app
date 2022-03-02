@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -11,7 +10,6 @@ export class StoreService {
   alertMessage = '';
   isError = false;
   timeoutId?: NodeJS.Timeout;
-  formActionSubject = new Subject<void>();
 
   showAlert(message: string, isError?: boolean) {
     this.handleOldAlert();

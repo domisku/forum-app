@@ -1,7 +1,8 @@
 <footer class="pagination">
   <div class="pagination__text">
-    Viewing results <span class="pagination__from">{{ resultsFrom }}</span> -
-    <span class="pagination__to">{{ resultsTo }}</span>
+    Viewing results
+    <span class="pagination__from">{{ resultsFrom | async }}</span> -
+    <span class="pagination__to">{{ resultsTo | async }}</span>
   </div>
   <nav class="pagination__nav">
     <button

@@ -23,9 +23,10 @@ import { HotQuestionsComponent } from './core/components/sidebar-right/hot-quest
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { LengthPipe } from './core/pipes/length.pipe';
 import { filtersReducer } from './store/filters/filters.reducer';
 import { FiltersEffects } from './store/filters/filters.effects';
+import { dbReducer } from './store/db/db.reducers';
+import { DbEffects } from './store/db/db.effects';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,6 @@ import { FiltersEffects } from './store/filters/filters.effects';
     MostUsedTagsComponent,
     HotQuestionsComponent,
     NotFoundComponent,
-    LengthPipe,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +50,8 @@ import { FiltersEffects } from './store/filters/filters.effects';
     FontAwesomeModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forRoot({ filters: filtersReducer }),
-    EffectsModule.forRoot([FiltersEffects]),
+    StoreModule.forRoot({ filters: filtersReducer, db: dbReducer }),
+    EffectsModule.forRoot([FiltersEffects, DbEffects]),
   ],
   providers: [
     {

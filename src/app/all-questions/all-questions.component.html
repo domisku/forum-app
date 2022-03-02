@@ -1,14 +1,10 @@
 <app-all-questions-header
   (onFilterChange)="filterChanged()"
 ></app-all-questions-header>
-<app-question
-  *ngIf="authors && questions"
-  [questions]="questions"
-  [authors]="authors"
-></app-question>
+<app-question *ngIf="questions" [questions]="questions | async"></app-question>
 <app-pagination
-  *ngIf="authors && questions"
+  *ngIf="questions"
   (onPageChange)="pageChanged()"
-  [resultsCount]="authors.length"
+  [resultsCount]="questions | async | length"
 ></app-pagination>
 <app-loading-spinner [sizing]="'large'"></app-loading-spinner>

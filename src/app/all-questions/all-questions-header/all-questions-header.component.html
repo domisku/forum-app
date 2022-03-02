@@ -9,7 +9,10 @@
     >
       <option value="" disabled selected>Filter by category</option>
       <option value="all">All Questions</option>
-      <option *ngFor="let category of questionsCategories" [value]="category">
+      <option
+        *ngFor="let category of questionsCategories | async"
+        [value]="category"
+      >
         {{ category | titlecase }}
       </option>
     </select>

@@ -18,6 +18,8 @@ import {
   setCurrentPageAsLastPage,
   updatePage,
 } from 'src/app/store/filters/filters.actions';
+import { getQuestionsWithAuthors } from 'src/app/store/db/db.actions';
+import Db from 'src/app/core/recources/models/db.model';
 
 @UntilDestroy()
 @Component({
@@ -28,20 +30,20 @@ import {
 export class PaginationComponent implements OnInit {
   currentPage?: Observable<number>;
   lastPage?: Observable<number>;
-  resultsFrom?: number;
-  resultsTo?: number;
+  resultsFrom?: Observable<number>;
+  resultsTo?: Observable<number>;
 
   faAngleLeft = faAngleLeft;
   faAnglesLeft = faAnglesLeft;
   faAngleRight = faAngleRight;
   faAnglesRight = faAnglesRight;
 
-  @Input('resultsCount') resultsCount!: number;
+  @Input('resultsCount') resultsCount?: number | null;
   @Output() onPageChange = new EventEmitter();
 
   constructor(
     public storeService: StoreService,
-    private store: Store<{ filters: Filters }>
+    private store: Store<{ filters: Filters; db: Db }>
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class PaginationComponent implements OnInit {
   }
 
   resetPagination() {
+    this.store.dispatch(getLastPage());
     this.store.dispatch(updatePage({ page: 1 }));
   }
 
@@ -76,15 +79,28 @@ export class PaginationComponent implements OnInit {
   }
 
   private calculateResultsIndexes() {
-    this.store
-      .select('filters')
-      .pipe(untilDestroyed(this))
-      .subscribe((filters) => {
-        const limit = filters.limit;
-        const currentPage = filters.page;
+    this.resultsFrom = this.store.select((store) => {
+      const limit = store.filters.limit;
+      const currentPage = store.filters.page;
 
-        this.resultsFrom = currentPage * limit - limit + 1;
-        this.resultsTo = this.resultsFrom + this.resultsCount - 1;
-      });
+      return currentPage * limit - limit + 1;
+    });
+
+    this.resultsTo = this.store.select((store) => {
+      const limit = store.filters.limit;
+      const currentPage = store.filters.page;
+      const results = store.db.questionsWithAuthors;
+
+      let resultsCount;
+      if (results === null) {
+        resultsCount = 12;
+      } else {
+        resultsCount = results.length;
+      }
+
+      const resultsFrom = currentPage * limit - limit + 1;
+
+      return resultsFrom + resultsCount - 1;
+    });
   }
 }

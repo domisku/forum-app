@@ -16,6 +16,13 @@ import splitByComma from '../core/utils/split-by-comma.util';
 import { onCanFormDeactivate } from '../shared/guards/can-deactivate.guard';
 import { CanComponentDeactivate } from '../shared/guards/can-deactivate.guard';
 import { FormComponent } from '../shared/components/form/form.component';
+import { Store } from '@ngrx/store';
+import Db from '../core/recources/models/db.model';
+import {
+  getAllQuestions,
+  getHotQuestions,
+  getUsers,
+} from '../store/db/db.actions';
 
 @UntilDestroy()
 @Component({
@@ -32,7 +39,8 @@ export class AskQuestionComponent implements CanComponentDeactivate {
     private questionsService: QuestionsService,
     private usersService: UsersService,
     private storeService: StoreService,
-    private router: Router
+    private router: Router,
+    private store: Store<{ db: Db }>
   ) {}
 
   resetForm(form: FormGroup) {
@@ -93,7 +101,9 @@ export class AskQuestionComponent implements CanComponentDeactivate {
       .post(user)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.storeService.formActionSubject.next();
+        this.store.dispatch(getAllQuestions());
+        this.store.dispatch(getHotQuestions());
+        this.store.dispatch(getUsers());
         this.router.navigate(['/all']);
         this.storeService.showAlert('Your question was posted successfully');
       });

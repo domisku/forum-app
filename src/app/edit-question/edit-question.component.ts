@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
@@ -17,6 +18,8 @@ import {
   onCanFormDeactivate,
 } from '../shared/guards/can-deactivate.guard';
 import { FormComponent } from '../shared/components/form/form.component';
+import Db from '../core/recources/models/db.model';
+import { getAllQuestions, getHotQuestions } from '../store/db/db.actions';
 
 @UntilDestroy()
 @Component({
@@ -38,7 +41,8 @@ export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
     private usersService: UsersService,
     private storeService: StoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store<{ db: Db }>
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +72,8 @@ export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
       .delete(this.questionId!)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.storeService.formActionSubject.next();
+        this.store.dispatch(getAllQuestions());
+        this.store.dispatch(getHotQuestions());
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully deleted');
       });
@@ -97,7 +102,8 @@ export class EditQuestionComponent implements OnInit, CanComponentDeactivate {
       .patch(user, this.userId!)
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.storeService.formActionSubject.next();
+        this.store.dispatch(getAllQuestions());
+        this.store.dispatch(getHotQuestions());
         this.router.navigate(['/all']);
         this.storeService.showAlert('Question was successfully updated');
       });

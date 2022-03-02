@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import Question from '../core/recources/models/question.model';
 import User from '../core/recources/models/user.model';
@@ -9,7 +10,10 @@ import { UsersService } from '../core/recources/services/users.service';
 import { PaginationComponent } from '../shared/components/pagination/pagination.component';
 import { ScrollService } from '../core/recources/services/scroll.service';
 import Filters from '../core/recources/models/filters.model';
-import { reset } from '../store/filters/filters.actions';
+import { getLastPage, reset } from '../store/filters/filters.actions';
+import Db from '../core/recources/models/db.model';
+import { QuestionWithAuthor } from '../core/recources/models/question-with-author.model';
+import { getQuestionsWithAuthors } from '../store/db/db.actions';
 
 @UntilDestroy()
 @Component({
@@ -18,66 +22,36 @@ import { reset } from '../store/filters/filters.actions';
   styleUrls: ['./all-questions.component.scss'],
 })
 export class AllQuestionsComponent implements OnInit {
-  questions: Question[] | null = null;
-  authors: User[] | null = null;
+  questions?: Observable<QuestionWithAuthor[] | null>;
 
   @ViewChild(PaginationComponent, { static: false })
   private paginationComponent?: PaginationComponent;
 
   constructor(
-    private questionsService: QuestionsService,
-    private usersService: UsersService,
     private scrollService: ScrollService,
-    private store: Store<{ filters: Filters }>
+    private store: Store<{ filters: Filters; db: Db }>
   ) {}
 
   ngOnInit(): void {
     this.store.dispatch(reset());
-    this.setQuestions();
+    this.store.dispatch(getQuestionsWithAuthors());
+    this.questions = this.store.select((store) => {
+      return store.db.questionsWithAuthors;
+    });
   }
 
   filterChanged() {
-    this.clearCurrentData();
     this.resetPagination();
+    this.store.dispatch(getQuestionsWithAuthors());
+    this.store.dispatch(getLastPage());
   }
 
   pageChanged() {
-    this.clearCurrentData();
     this.scrollService.scrollToPageTop();
-  }
-
-  private clearCurrentData() {
-    this.questions = null;
-    this.authors = null;
+    this.store.dispatch(getQuestionsWithAuthors());
   }
 
   private resetPagination() {
     this.paginationComponent?.resetPagination();
-  }
-
-  private setQuestions() {
-    this.store
-      .select('filters')
-      .pipe(untilDestroyed(this))
-      .subscribe((filters) => {
-        this.questionsService
-          .get(filters)
-          .pipe(untilDestroyed(this))
-          .subscribe((questions) => {
-            this.questions = questions;
-            this.setAuthors();
-          });
-      });
-  }
-
-  private setAuthors() {
-    this.usersService
-      .get()
-      .pipe(untilDestroyed(this))
-      .subscribe((users) => {
-        this.authors = this.questions!.map((question) => {
-          return users.find((user) => user.id === question.userId) as User;
-        });
-      });
   }
 }

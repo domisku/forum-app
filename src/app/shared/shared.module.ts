@@ -12,6 +12,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { AlertComponent } from './components/UI/alert/alert.component';
 import { LoadingSpinnerComponent } from './components/UI/loading-spinner/loading-spinner.component';
 import { ScrollButtonsComponent } from './components/UI/scroll-buttons/scroll-buttons.component';
+import { LengthPipe } from './pipes/length.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ScrollButtonsComponent } from './components/UI/scroll-buttons/scroll-bu
     ScrollButtonsComponent,
     InputDirective,
     ErrorLabelDirective,
+    LengthPipe,
   ],
   imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
   exports: [
@@ -36,6 +38,7 @@ import { ScrollButtonsComponent } from './components/UI/scroll-buttons/scroll-bu
     ScrollButtonsComponent,
     InputDirective,
     ErrorLabelDirective,
+    LengthPipe,
   ],
 })
 export class SharedModule {}

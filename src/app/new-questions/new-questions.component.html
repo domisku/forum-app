@@ -1,12 +1,8 @@
 <app-content-header [headerTitle]="'New Questions'"></app-content-header>
-<app-question
-  *ngIf="authors && questions"
-  [questions]="questions"
-  [authors]="authors"
-></app-question>
+<app-question *ngIf="questions" [questions]="questions | async"></app-question>
 <app-pagination
-  *ngIf="authors"
-  [resultsCount]="authors.length"
+  *ngIf="questions"
+  [resultsCount]="questions | async | length"
   (onPageChange)="pageChanged()"
 ></app-pagination>
 <app-loading-spinner [sizing]="'large'"></app-loading-spinner>
