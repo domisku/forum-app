@@ -1,5 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { debounceTime, fromEvent } from 'rxjs';
 
 import { ScrollService } from 'src/app/core/recources/services/scroll.service';
 
@@ -14,26 +15,13 @@ export class ScrollButtonsComponent {
   faAngleDown = faAngleDown;
   faAngleUp = faAngleUp;
 
-  @HostListener('window:scroll') onScrollEvent() {
-    let scrolling = false;
+  constructor(private scrollService: ScrollService) {
+    const scrollObservable = fromEvent(window, 'scroll');
 
-    //scroll throttling
-    if (!scrolling) {
-      setTimeout(() => {
-        scrolling = false;
-        let scrollPosition = window.scrollY;
-        if (scrollPosition > this.scrollThreshold) {
-          this.showScrollButtons = true;
-        } else if (scrollPosition < this.scrollThreshold) {
-          this.showScrollButtons = false;
-        }
-      }, 300);
-
-      scrolling = true;
-    }
+    scrollObservable
+      .pipe(debounceTime(300))
+      .subscribe(this.toggleButtons.bind(this));
   }
-
-  constructor(private scrollService: ScrollService) {}
 
   scrollToPageTop() {
     this.scrollService.scrollToPageTop();
@@ -41,5 +29,14 @@ export class ScrollButtonsComponent {
 
   scrollToPageBottom() {
     this.scrollService.scrollToPageBottom();
+  }
+
+  private toggleButtons() {
+    let scrollPosition = window.scrollY;
+    if (scrollPosition > this.scrollThreshold) {
+      this.showScrollButtons = true;
+    } else if (scrollPosition < this.scrollThreshold) {
+      this.showScrollButtons = false;
+    }
   }
 }
