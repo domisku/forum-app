@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
@@ -51,6 +52,7 @@ import * as fromApp from './store/app.reducer';
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([FiltersEffects, DbEffects]),
+    BrowserAnimationsModule,
   ],
   providers: [
     {

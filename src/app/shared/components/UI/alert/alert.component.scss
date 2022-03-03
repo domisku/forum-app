@@ -14,11 +14,6 @@
   color: white;
   font-weight: 600;
 
-  &--slide-in {
-    transform-origin: left;
-    animation: slide-in 600ms ease-in-out forwards;
-  }
-
   &--error {
     background-color: var(--error);
   }
@@ -55,16 +50,5 @@
     &:hover::after {
       transform: scaleX(1);
     }
-  }
-}
-
-@keyframes slide-in {
-  0% {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  100% {
-    opacity: 1;
-    transform: scaleX(1);
   }
 }
